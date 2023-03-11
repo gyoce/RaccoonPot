@@ -1,17 +1,15 @@
 #include <gtest/gtest.h>
 
+#include <CommonTypes.hpp>
+
 #include <Core/Components/ComponentArray.hpp>
 
 using namespace GameEngine;
 
-struct ComponentTest {
-    int x;
-};
-
 TEST(ComponentArray, AssociateDataForComponent) {
     Entity entity = 0;
     ComponentArray<ComponentTest> ca{};
-    ca.InsertData(entity, ComponentTest{ .x = 5 });
+    ca.InsertData(entity, ComponentTest{5});
     ComponentTest ct = ca.GetData(0);
     EXPECT_EQ(ct.x, 5);
 }

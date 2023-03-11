@@ -1,12 +1,10 @@
 #include <gtest/gtest.h>
 
+#include <CommonTypes.hpp>
+
 #include <Core/Managers/ComponentManager.hpp>
 
 using namespace GameEngine;
-
-struct ComponentTest {
-    int x;
-};
 
 TEST(ComponentManager, GetComponentType) {
     Entity entity = 0;
@@ -20,7 +18,7 @@ TEST(ComponentManager, AssociateComponentCorrectly) {
     Entity entity = 0;
     ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
-    cm.AddComponent(entity, ComponentTest{ .x = 5 });
+    cm.AddComponent(entity, ComponentTest{5});
     ComponentTest ct = cm.GetComponent<ComponentTest>(entity);
     EXPECT_EQ(ct.x, 5);
 }

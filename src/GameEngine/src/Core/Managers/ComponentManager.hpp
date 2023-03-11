@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <memory>
 
-#include "Core/Types.hpp"
+#include <Core/Types.hpp>
 #include <Core/Components/ComponentArray.hpp>
 
 namespace GameEngine {
