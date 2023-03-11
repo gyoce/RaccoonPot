@@ -7,4 +7,4 @@ include_directories(Game/src)
 include_directories(GameEngine/src)
 
 add_executable(${PROJECT_NAME} Main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE game GameEngine)
+target_link_libraries(${PROJECT_NAME} PRIVATE Game GameEngine)
