@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.8)
+
+include_directories(
+    ../external/googletest/googletest/include
+    ../external/googletest/googlemock/include
+    ../src/GameEngine/src
+)
+
+set(TEST_EXEC_NAME ${PROJECT_NAME}Tests)
+
+add_executable(${TEST_EXEC_NAME}
+    UnitTests/ComponentArrayTest.cpp
+    UnitTests/ComponentManagerTest.cpp
+    UnitTests/SystemManagerTest.cpp
+    UnitTests/EntityManagerTest.cpp
+
+    IntegrationTests/CoordinatorTest.cpp
+)
+
+target_link_libraries(${TEST_EXEC_NAME} GameEngine gtest gtest_main)
