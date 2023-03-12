@@ -11,5 +11,11 @@ add_executable(${DEMO_GAME_EXEC_NAME}
     src/Game.cpp
 )
 
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+    set(TARGET_LINK_DIR ${CMAKE_BINARY_DIR}/external/SDL)
+else ()
+    set(TARGET_LINK_DIR ${CMAKE_BINARY_DIR})
+endif()
+
 target_link_libraries(${DEMO_GAME_EXEC_NAME} PRIVATE ${ECS_GAME_ENGINE_LIBRARY} SDL3)
-target_link_directories(${DEMO_GAME_EXEC_NAME} PUBLIC ${CMAKE_BINARY_DIR}/external/SDL)
+target_link_directories(${DEMO_GAME_EXEC_NAME} PUBLIC ${TARGET_LINK_DIR})
