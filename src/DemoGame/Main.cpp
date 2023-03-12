@@ -1,8 +1,9 @@
 #include <iostream>
 
-#include "DemoGame.hpp"
+#include <Game.hpp>
 
 int main() {
     std::cout << "Hello World!\n";
-    test();
+    Game game{};
+    return game.Run();
 }
