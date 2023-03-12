@@ -6,7 +6,7 @@
 
 #include <Core/Types.hpp>
 
-namespace GameEngine {
+namespace ECSGameEngine {
 
     class EntityManager {
     public:

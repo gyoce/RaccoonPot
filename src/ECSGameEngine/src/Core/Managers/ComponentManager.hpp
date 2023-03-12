@@ -7,7 +7,7 @@
 #include <Core/Types.hpp>
 #include <Core/Components/ComponentArray.hpp>
 
-namespace GameEngine {
+namespace ECSGameEngine {
 
     class ComponentManager {
     public:

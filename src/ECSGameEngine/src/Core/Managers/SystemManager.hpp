@@ -5,9 +5,9 @@
 #include <memory>
 
 #include <Core/Systems/System.hpp>
-#include "Core/Types.hpp"
+#include <Core/Types.hpp>
 
-namespace GameEngine {
+namespace ECSGameEngine {
 
     class SystemManager {
     public:

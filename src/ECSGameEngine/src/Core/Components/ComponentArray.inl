@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 template<class T>
 void ComponentArray<T>::InsertData(Entity entity, T component) {

@@ -9,7 +9,7 @@ struct ComponentTest {
     int x;
 };
 
-class SystemTest : public GameEngine::System {
+class SystemTest : public ECSGameEngine::System {
 
 };
 

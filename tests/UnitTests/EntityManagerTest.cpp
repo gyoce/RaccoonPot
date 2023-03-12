@@ -2,7 +2,7 @@
 
 #include <Core/Managers/EntityManager.hpp>
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 TEST(EntityManager, CreateEntity) {
     EntityManager em{};

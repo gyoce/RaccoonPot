@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 EntityManager::EntityManager() {
     for (Entity entity = 0; entity < MAX_ENTITIES; entity++) {

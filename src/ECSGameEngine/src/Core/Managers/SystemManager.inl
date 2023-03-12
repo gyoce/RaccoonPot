@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 template<class T>
 std::shared_ptr<T> SystemManager::RegisterSystem() {

@@ -4,7 +4,7 @@
 
 #include <Core/Managers/ComponentManager.hpp>
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 TEST(ComponentManager, GetComponentType) {
     Entity entity = 0;

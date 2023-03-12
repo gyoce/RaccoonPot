@@ -8,7 +8,7 @@
 #include <Core/Managers/EntityManager.hpp>
 #include <Core/Managers/SystemManager.hpp>
 
-namespace GameEngine {
+namespace ECSGameEngine {
 
     class Coordinator {
     public:

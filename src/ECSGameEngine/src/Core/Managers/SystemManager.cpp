@@ -1,6 +1,6 @@
 #include "SystemManager.hpp"
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 void SystemManager::EntityDestroyed(Entity entity) {
     for (const std::pair<const char* const, std::shared_ptr<System>>& pair : systems) {

@@ -1,6 +1,6 @@
 #include "Coordinator.hpp"
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 template<class T> 
 void Coordinator::RegisterComponent() {

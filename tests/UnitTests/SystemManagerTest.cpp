@@ -4,7 +4,7 @@
 
 #include <Core/Managers/SystemManager.hpp>
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 TEST(SystemManager, RegisterSystem) {
     SystemManager sm{};

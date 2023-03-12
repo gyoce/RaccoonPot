@@ -4,6 +4,8 @@
 
 #include <Core/Coordinator.hpp>
 
+using namespace ECSGameEngine;
+
 TEST(Coordinator, EntityWithComponent) {
     Coordinator c{};
     c.RegisterComponent<ComponentTest>();

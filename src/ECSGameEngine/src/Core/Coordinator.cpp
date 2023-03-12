@@ -1,6 +1,6 @@
 #include "Coordinator.hpp"
 
-using namespace GameEngine;
+using namespace ECSGameEngine;
 
 Coordinator::Coordinator() {
     componentManager = std::make_shared<ComponentManager>();

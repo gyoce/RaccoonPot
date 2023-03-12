@@ -4,9 +4,9 @@
 #include <array>
 #include <unordered_map>
 
-#include "Core/Types.hpp"
+#include <Core/Types.hpp>
 
-namespace GameEngine {
+namespace ECSGameEngine {
 
     class IComponentArray {
     public:

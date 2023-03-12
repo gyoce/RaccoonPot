@@ -5,7 +5,7 @@
 
 #include <Core/Types.hpp>
 
-namespace GameEngine {
+namespace ECSGameEngine {
 
     class System {
     public:
