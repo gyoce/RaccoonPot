@@ -1,12 +1,14 @@
 #include <gtest/gtest.h>
 
+#include <CommonTypes.hpp>
+
 #include <Core/Managers/SystemManager.hpp>
 
 using namespace GameEngine;
 
 TEST(SystemManager, RegisterSystem) {
     SystemManager sm{};
-    std::shared_ptr<System> system = sm.RegisterSystem<System>();
+    std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     EXPECT_TRUE(system != nullptr);
 }
 
@@ -14,8 +16,8 @@ TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
     Entity entity {0};
     Signature signature {0b0100};
     SystemManager sm{};
-    std::shared_ptr<System> system = sm.RegisterSystem<System>();
-    sm.SetSignature<System>(signature);
+    std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
+    sm.SetSignature<SystemTest>(signature);
     sm.EntitySignatureChanged(entity, signature);
     EXPECT_EQ(system->Entities.size(), 1);
     sm.EntityDestroyed(entity);
@@ -24,9 +26,9 @@ TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
 
 TEST(SystemManagerDeath, RegisterSystemTwice) {
     SystemManager sm{};
-    std::shared_ptr<System> system = sm.RegisterSystem<System>();
+    std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     ASSERT_DEATH({
-        sm.RegisterSystem<System>();
+        sm.RegisterSystem<SystemTest>();
     }, "");
 }
 
@@ -34,6 +36,6 @@ TEST(SystemManagerDeath, SetSignatureBeforeRegistered) {
     SystemManager sm{};
     Signature signature{};
     ASSERT_DEATH({
-        sm.SetSignature<System>(signature);
+        sm.SetSignature<SystemTest>(signature);
     }, "");
 }
