@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 set(TEST_EXEC_NAME ${PROJECT_NAME}Tests)
+set(DEMO_GAME_EXEC_NAME ${PROJECT_NAME}Demo)
 
 add_subdirectory(external/googletest)
 add_subdirectory(tests)
