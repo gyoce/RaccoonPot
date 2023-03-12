@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.14)
 
-add_subdirectory(Game)
-add_subdirectory(GameEngine)
+add_subdirectory(DemoGame)
+add_subdirectory(ECSGameEngine)
 
-include_directories(Game/src)
-include_directories(GameEngine/src)
+include_directories(DemoGame/src)
+include_directories(ECSGameEngine/src)
 
-add_executable(${PROJECT_NAME} Main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE Game GameEngine)
+add_executable(DemoGame Main.cpp)
+target_link_libraries(DemoGame PRIVATE demogame ecsgameengine)

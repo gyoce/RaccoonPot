@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Game.hpp"
+#include "DemoGame.hpp"
 
 int main() {
     std::cout << "Hello World!\n";
