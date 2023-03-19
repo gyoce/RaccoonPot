@@ -5,6 +5,7 @@
 #include <sstream>
 #include <chrono>
 #include <iomanip>
+#include <cstring>
 
 using namespace ECSGameEngine;
 
