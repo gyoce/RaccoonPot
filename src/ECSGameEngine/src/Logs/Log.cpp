@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <cstdarg>
-#include <sstream>
 #include <chrono>
+#include <sstream>
 #include <iomanip>
 #include <cstring>
 
@@ -35,9 +35,14 @@ void Log::LogError(const char* format, ...) {
 std::string getLocalTimeStr() {
     auto now = std::chrono::system_clock::now();
     time_t time = std::chrono::system_clock::to_time_t(now);
-    tm* tm = std::localtime(&time);
+    std::tm tm{};
+#if defined(_MSC_VER)
+    localtime_s(&tm, &time);
+#else
+    tm = *std::localtime(&time);
+#endif  
     std::stringstream ss;
-    ss << std::put_time(tm, "%H:%M:%S");
+    ss << std::put_time(&tm, "%H:%M:%S");
     return ss.str();
 }
 
