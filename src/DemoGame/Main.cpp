@@ -5,5 +5,6 @@
 int main() {
     std::cout << "Hello World!\n";
     Game game{};
+    game.Init();
     return game.Run();
 }
