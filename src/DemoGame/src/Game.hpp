@@ -9,10 +9,12 @@ public:
     ~Game();
 
     void Init();
-    int Run();
+    int Run() const;
 
 private:
     bool initSDL();
+    bool initWindow();
+    bool initRenderer();
 
     bool init = false;
     SDL_Window* window = nullptr;

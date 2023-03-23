@@ -17,6 +17,6 @@ add_executable(${TEST_EXEC_NAME}
     IntegrationTests/CoordinatorTest.cpp
 )
 
-target_link_libraries(${TEST_EXEC_NAME} ${ECS_GAME_ENGINE_LIBRARY} gtest gtest_main)
+target_link_libraries(${TEST_EXEC_NAME} ${ECS_GAME_ENGINE_LIBRARY} GTest::gtest_main)
 include(GoogleTest)
 gtest_discover_tests(${TEST_EXEC_NAME})
