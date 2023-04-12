@@ -2,10 +2,6 @@
 
 #include <Logs/Log.hpp>
 
-Game::Game() {
-
-}
-
 void Game::Init() {
     init = initSDL() && initWindow() && initRenderer();
 }
@@ -23,7 +19,7 @@ int Game::Run() const {
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
-                case SDL_EVENT_QUIT:
+                case SDL_QUIT:
                     run = false;
                     break;
             }
@@ -44,7 +40,7 @@ bool Game::initSDL() {
 
 bool Game::initWindow() {
     ECSGameEngine::Log::Log("Initializing Window");
-    window = SDL_CreateWindow("DemoGame", 1280, 720, 0);
+    window = SDL_CreateWindow("DemoGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     if (window == nullptr) {
         ECSGameEngine::Log::LogError("Error while initializing Window %s", SDL_GetError());
         return false;
@@ -54,7 +50,7 @@ bool Game::initWindow() {
 
 bool Game::initRenderer() {
     ECSGameEngine::Log::Log("Initializing Renderer");
-    renderer = SDL_CreateRenderer(window, nullptr, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
         ECSGameEngine::Log::LogError("Error while initializing Renderer %s", SDL_GetError());
         return false;

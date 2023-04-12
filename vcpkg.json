@@ -1,0 +1,8 @@
+{
+    "name": "ecsgameengine",
+    "version": "1.0",
+    "dependencies": [
+        "sdl2",
+        "gtest"
+    ]
+}
