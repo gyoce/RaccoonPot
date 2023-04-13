@@ -18,7 +18,7 @@ TEST(ComponentManager, AssociateComponentCorrectly) {
     Entity entity = 0;
     ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
-    cm.AddComponent(entity, ComponentTest{5});
+    cm.AddComponent(entity, ComponentTest{ 5 });
     ComponentTest ct = cm.GetComponent<ComponentTest>(entity);
     EXPECT_EQ(ct.x, 5);
 }

@@ -14,7 +14,7 @@ TEST(EntityManager, CreateEntity) {
 
 TEST(EntityManager, GetSignature) {
     EntityManager em{};
-    Signature signature{0b0101};
+    Signature signature{ 0b0101 };
     Entity entity = em.CreateEntity();
     em.SetSignature(entity, signature);
     Signature signatureGet = em.GetSignature(entity);
@@ -23,7 +23,7 @@ TEST(EntityManager, GetSignature) {
 
 TEST(EntityManager, DestroyEntity) {
     EntityManager em{};
-    Signature signature{0b1100};
+    Signature signature{ 0b1100 };
     Entity entity = em.CreateEntity();
     em.SetSignature(entity, signature);
     em.DestroyEntity(entity);

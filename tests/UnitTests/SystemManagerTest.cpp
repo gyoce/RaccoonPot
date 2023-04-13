@@ -13,8 +13,8 @@ TEST(SystemManager, RegisterSystem) {
 }
 
 TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
-    Entity entity {0};
-    Signature signature {0b0100};
+    Entity entity{ 0 };
+    Signature signature{ 0b0100 };
     SystemManager sm{};
     std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     sm.SetSignature<SystemTest>(signature);
