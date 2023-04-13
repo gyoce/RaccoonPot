@@ -23,12 +23,13 @@ jobs:
     - name: Setup VCPKG
       uses: lukka/run-vcpkg@v11
       with:
+        vcpkgDirectory: '${{github.workspace}}/vcpkg'
         vcpkgGitCommitId: 'f9df715209fead96c2ed3b88f2e1d4948dccb74a'
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE="${{github.workspace}}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
     - name: Build
       # Build your program with the given configuration
