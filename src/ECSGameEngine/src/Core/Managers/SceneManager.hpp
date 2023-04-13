@@ -8,19 +8,19 @@
 
 namespace ECSGameEngine {
 
-	class SceneManager {
-	public:
-		SceneManager(int baseAction);
+    class SceneManager {
+    public:
+        SceneManager(int baseAction);
 
-		template<class T> void RegisterScene(int action);
+        template<class T> void RegisterScene(int action);
 
-		int Loop();
-	
-	private:
-		int baseAction;
-		std::unordered_map<int, std::shared_ptr<Scene>> scenes{};
-		std::vector<const char*> sceneNames{};
-	};
+        int Loop();
+    
+    private:
+        int baseAction;
+        std::unordered_map<int, std::shared_ptr<Scene>> scenes{};
+        std::vector<const char*> sceneNames{};
+    };
 
 }
 

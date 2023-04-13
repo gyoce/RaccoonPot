@@ -5,14 +5,14 @@
 
 namespace ECSGameEngine {
 
-	class Scene {
-	public:
-		Scene(std::unique_ptr<Coordinator> coordinator);
-		virtual int Loop() = 0;
+    class Scene {
+    public:
+        Scene(std::unique_ptr<Coordinator> coordinator);
+        virtual int Loop() = 0;
 
-	protected:
-		std::unique_ptr<Coordinator> coordinator;
-	};
+    protected:
+        std::unique_ptr<Coordinator> coordinator;
+    };
 
 }
 
