@@ -7,7 +7,7 @@ namespace ECSGameEngine {
 
     class Scene {
     public:
-        Scene(std::unique_ptr<Coordinator> coordinator);
+        explicit Scene(std::unique_ptr<Coordinator> coordinator);
         virtual int Loop() = 0;
 
     protected:
@@ -16,6 +16,6 @@ namespace ECSGameEngine {
 
 }
 
-#define SCENE_CONSTRUCTOR(SceneName) SceneName(std::unique_ptr<Coordinator> coordinator) : Scene(std::move(coordinator)) {}
+#define SCENE_CONSTRUCTOR(SceneName) explicit SceneName(std::unique_ptr<Coordinator> coordinator) : Scene(std::move(coordinator)) {}
 
 #endif // SCENE_HPP
