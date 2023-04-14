@@ -8,7 +8,7 @@ include_directories(
 add_executable(${DEMO_GAME_EXEC_NAME} 
     Main.cpp
     src/Game.cpp
-)
+    src/Scenes/MenuScene.cpp)
 
 find_package(SDL2 CONFIG REQUIRED)
 target_link_libraries(${DEMO_GAME_EXEC_NAME} 

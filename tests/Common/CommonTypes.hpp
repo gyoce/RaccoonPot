@@ -16,9 +16,9 @@ class SystemTest : public ECSGameEngine::System {
 
 class SceneTest : public ECSGameEngine::Scene {
 public:
-    inline static int LOOP_RETURN = 0;
+    SCENE_CONSTRUCTOR(SceneTest)
 
-    SceneTest(std::unique_ptr<Coordinator> coord) : Scene(std::move(coord)) {  }
+    inline static int LOOP_RETURN = 0;
 
     int Loop() override {
         return LOOP_RETURN;
@@ -27,9 +27,9 @@ public:
 
 class SceneTest2 : public ECSGameEngine::Scene {
 public:
-    inline static int LOOP_RETURN = 0;
+    SCENE_CONSTRUCTOR(SceneTest2)
 
-    SceneTest2(std::unique_ptr<Coordinator> coord) : Scene(std::move(coord)) {  }
+    inline static int LOOP_RETURN = 0;
 
     int Loop() override {
         return LOOP_RETURN;

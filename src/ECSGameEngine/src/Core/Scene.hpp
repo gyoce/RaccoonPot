@@ -16,4 +16,6 @@ namespace ECSGameEngine {
 
 }
 
+#define SCENE_CONSTRUCTOR(SceneName) SceneName(std::unique_ptr<Coordinator> coordinator) : Scene(std::move(coordinator)) {}
+
 #endif // SCENE_HPP

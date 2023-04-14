@@ -2,9 +2,8 @@
 
 #include <Logs/Log.hpp>
 
-void Game::Init() {
-    init = initSDL() && initWindow() && initRenderer();
-}
+#include <Scenes/MenuScene.hpp>
+#include <Scenes/SceneAction.hpp>
 
 Game::~Game() {
     if (renderer != nullptr) { SDL_DestroyRenderer(renderer); }
@@ -12,21 +11,20 @@ Game::~Game() {
     SDL_Quit();
 }
 
+void Game::Init() {
+    init = initUI() && initGameEngine();
+}
+
 int Game::Run() const {
-    if (!init) { return -1; }
-    bool run = true;
-    while (run) {
-        SDL_Event event;
-        while (SDL_PollEvent(&event)) {
-            switch (event.type) {
-                case SDL_QUIT:
-                    run = false;
-                    break;
-            }
-        }
-    }
-    
-    return 0;
+    return init ? sceneManager->Loop() : -1;
+}
+
+bool Game::initUI() {
+    return initSDL() && initWindow() && initRenderer();
+}
+
+bool Game::initGameEngine() {
+    return initScenes();
 }
 
 bool Game::initSDL() {
@@ -55,5 +53,11 @@ bool Game::initRenderer() {
         ECSGameEngine::Log::LogError("Error while initializing Renderer %s", SDL_GetError());
         return false;
     }
+    return true;
+}
+
+bool Game::initScenes() {
+    sceneManager = std::make_unique<SceneManager>(SceneAction::Menu);
+    sceneManager->RegisterScene<MenuScene>(SceneAction::Menu);
     return true;
 }
