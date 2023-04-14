@@ -6,7 +6,7 @@
 
 #include <Core/Types.hpp>
 
-namespace ECSGameEngine {
+namespace EcsGameEngine {
 
     class EntityManager {
     public:
@@ -14,7 +14,7 @@ namespace ECSGameEngine {
         Entity CreateEntity();
         void DestroyEntity(Entity entity);
         void SetSignature(Entity entity, Signature signature);
-        Signature GetSignature(Entity entity);
+        Signature GetSignature(Entity entity) const;
 
     private:
         std::queue<Entity> availableEntities{};

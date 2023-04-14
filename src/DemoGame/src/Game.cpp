@@ -12,14 +12,14 @@ Game::~Game() {
 }
 
 void Game::Init() {
-    init = initUI() && initGameEngine();
+    init = initUi() && initGameEngine();
 }
 
 int Game::Run() const {
     return init ? sceneManager->Loop() : -1;
 }
 
-bool Game::initUI() {
+bool Game::initUi() {
     return initSDL() && initWindow() && initRenderer();
 }
 
@@ -28,36 +28,36 @@ bool Game::initGameEngine() {
 }
 
 bool Game::initSDL() {
-    ECSGameEngine::Log::Log("Initializing SDL");
+    EcsGameEngine::Log::Log("Initializing SDL");
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        ECSGameEngine::Log::LogError("Error while initializing SDL %s", SDL_GetError());
+        EcsGameEngine::Log::LogError("Error while initializing SDL %s", SDL_GetError());
         return false;
     }
     return true;
 }
 
 bool Game::initWindow() {
-    ECSGameEngine::Log::Log("Initializing Window");
+    EcsGameEngine::Log::Log("Initializing Window");
     window = SDL_CreateWindow("DemoGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     if (window == nullptr) {
-        ECSGameEngine::Log::LogError("Error while initializing Window %s", SDL_GetError());
+        EcsGameEngine::Log::LogError("Error while initializing Window %s", SDL_GetError());
         return false;
     }
     return true;
 }
 
 bool Game::initRenderer() {
-    ECSGameEngine::Log::Log("Initializing Renderer");
+    EcsGameEngine::Log::Log("Initializing Renderer");
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
-        ECSGameEngine::Log::LogError("Error while initializing Renderer %s", SDL_GetError());
+        EcsGameEngine::Log::LogError("Error while initializing Renderer %s", SDL_GetError());
         return false;
     }
     return true;
 }
 
 bool Game::initScenes() {
-    sceneManager = std::make_unique<SceneManager>(SceneAction::Menu);
-    sceneManager->RegisterScene<MenuScene>(SceneAction::Menu);
+    sceneManager = std::make_unique<EcsGameEngine::SceneManager>(SA_Menu);
+    sceneManager->RegisterScene<MenuScene>(SA_Menu);
     return true;
 }

@@ -1,9 +1,7 @@
 #ifndef LOG_HPP
 #define LOG_HPP
 
-#include <streambuf>
-
-namespace ECSGameEngine::Log {
+namespace EcsGameEngine::Log {
 
     void Log(const char* format, ...);
     void LogError(const char* format, ...);

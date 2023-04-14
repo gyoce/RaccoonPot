@@ -7,7 +7,7 @@
 #include <Core/Types.hpp>
 #include <Core/Components/ComponentArray.hpp>
 
-namespace ECSGameEngine {
+namespace EcsGameEngine {
 
     class ComponentManager {
     public:
@@ -17,7 +17,7 @@ namespace ECSGameEngine {
         template<class T> void RemoveComponent(Entity entity);
         template<class T> T& GetComponent(Entity entity);
 
-        void EntityDestroyed(Entity entity);
+        void EntityDestroyed(Entity entity) const;
 
     private:
         template<class T> std::shared_ptr<ComponentArray<T>> getComponentArray();

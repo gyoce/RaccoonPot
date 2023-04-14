@@ -1,6 +1,6 @@
 #include "Coordinator.hpp"
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 Coordinator::Coordinator() {
     componentManager = std::make_shared<ComponentManager>();
@@ -8,11 +8,11 @@ Coordinator::Coordinator() {
     systemManager = std::make_shared<SystemManager>();
 }
 
-Entity Coordinator::CreateEntity() {
+Entity Coordinator::CreateEntity() const {
     return entityManager->CreateEntity();
 }
 
-void Coordinator::DestroyEntity(Entity entity) {
+void Coordinator::DestroyEntity(const Entity entity) const {
     entityManager->DestroyEntity(entity);
     componentManager->EntityDestroyed(entity);
     systemManager->EntityDestroyed(entity);

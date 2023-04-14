@@ -6,13 +6,13 @@
 #include <unordered_map>
 #include <vector>
 
-namespace ECSGameEngine {
+namespace EcsGameEngine {
 
     class SceneManager {
     public:
         SceneManager(int baseAction);
 
-        template<class T> void RegisterScene(int action);
+        template<class T> std::shared_ptr<T> RegisterScene(int action);
 
         int Loop();
     

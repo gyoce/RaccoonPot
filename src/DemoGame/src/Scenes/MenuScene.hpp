@@ -3,7 +3,7 @@
 
 #include <Core/Scene.hpp>
 
-class MenuScene : public ECSGameEngine::Scene {
+class MenuScene : public EcsGameEngine::Scene {
 public:
     SCENE_CONSTRUCTOR(MenuScene)
     int Loop() override;

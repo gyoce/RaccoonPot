@@ -6,7 +6,7 @@
 
 #include <Core/Types.hpp>
 
-namespace ECSGameEngine {
+namespace EcsGameEngine {
 
     class IComponentArray {
     public:

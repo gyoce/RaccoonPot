@@ -4,7 +4,7 @@
 
 #include <Core/Components/ComponentArray.hpp>
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 TEST(ComponentArray, AssociateDataForComponent) {
     Entity entity = 0;

@@ -1,6 +1,6 @@
 #include "Scene.hpp"
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 Scene::Scene(std::unique_ptr<Coordinator> coordinator) 
     : coordinator(std::move(coordinator)) {  }

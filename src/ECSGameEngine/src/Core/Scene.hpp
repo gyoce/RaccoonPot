@@ -3,7 +3,7 @@
 
 #include <Core/Coordinator.hpp>
 
-namespace ECSGameEngine {
+namespace EcsGameEngine {
 
     class Scene {
     public:
@@ -16,6 +16,6 @@ namespace ECSGameEngine {
 
 }
 
-#define SCENE_CONSTRUCTOR(SceneName) explicit SceneName(std::unique_ptr<Coordinator> coordinator) : Scene(std::move(coordinator)) {}
+#define SCENE_CONSTRUCTOR(SceneName) explicit SceneName(std::unique_ptr<EcsGameEngine::Coordinator> coordinator) : Scene(std::move(coordinator)) {}
 
 #endif // SCENE_HPP

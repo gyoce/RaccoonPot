@@ -3,7 +3,7 @@
 
 #include <Logs/Log.hpp>
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 using ::testing::MatchesRegex;
 

@@ -13,7 +13,7 @@ public:
     int Run() const;
 
 private:
-    bool initUI();
+    bool initUi();
     bool initGameEngine();
 
     bool initSDL();
@@ -25,7 +25,7 @@ private:
     bool init = false;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
-    std::unique_ptr<SceneManager> sceneManager = nullptr;
+    std::unique_ptr<EcsGameEngine::SceneManager> sceneManager = nullptr;
 };
 
 #endif // GAME_HPP

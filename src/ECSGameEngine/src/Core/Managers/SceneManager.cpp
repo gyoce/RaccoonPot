@@ -1,6 +1,6 @@
 #include "SceneManager.hpp"
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 SceneManager::SceneManager(int action) 
     : baseAction(action) {  }

@@ -10,30 +10,40 @@ struct ComponentTest {
     int x;
 };
 
-class SystemTest : public ECSGameEngine::System {
+class SystemTest : public EcsGameEngine::System {
 
 };
 
-class SceneTest : public ECSGameEngine::Scene {
+class SceneTest : public EcsGameEngine::Scene {
 public:
     SCENE_CONSTRUCTOR(SceneTest)
 
-    inline static int LOOP_RETURN = 0;
+    void SetLoopReturn(const int newLoopReturn) {
+        loopReturn = newLoopReturn;
+    }
 
     int Loop() override {
-        return LOOP_RETURN;
+        return loopReturn;
     }
+
+private:
+    int loopReturn = 0;
 };
 
-class SceneTest2 : public ECSGameEngine::Scene {
+class SceneTest2 : public EcsGameEngine::Scene {
 public:
     SCENE_CONSTRUCTOR(SceneTest2)
 
-    inline static int LOOP_RETURN = 0;
+    void SetLoopReturn(const int newLoopReturn) {
+        loopReturn = newLoopReturn;
+    }
 
     int Loop() override {
-        return LOOP_RETURN;
+        return loopReturn;
     }
+
+private:
+    int loopReturn = 0;
 };
 
 #endif // COMMON_TYPES_HPP

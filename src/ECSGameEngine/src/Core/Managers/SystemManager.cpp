@@ -1,15 +1,15 @@
 #include "SystemManager.hpp"
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
-void SystemManager::EntityDestroyed(Entity entity) {
+void SystemManager::EntityDestroyed(const Entity entity) const {
     for (const std::pair<const char* const, std::shared_ptr<System>>& pair : systems) {
         const std::shared_ptr<System>& system = pair.second;
         system->Entities.erase(entity);
     }
 }
 
-void SystemManager::EntitySignatureChanged(Entity entity, Signature entitySignature) {
+void SystemManager::EntitySignatureChanged(const Entity entity, const Signature entitySignature) {
     for (const std::pair<const char* const, std::shared_ptr<System>>& pair : systems) {
         const char* const type = pair.first;
         const std::shared_ptr<System>& system = pair.second;

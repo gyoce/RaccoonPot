@@ -7,13 +7,13 @@
 #include <Core/Systems/System.hpp>
 #include <Core/Types.hpp>
 
-namespace ECSGameEngine {
+namespace EcsGameEngine {
 
     class SystemManager {
     public:
         template<class T> std::shared_ptr<T> RegisterSystem();
         template<class T> void SetSignature(Signature signature);
-        void EntityDestroyed(Entity entity);
+        void EntityDestroyed(Entity entity) const;
         void EntitySignatureChanged(Entity entity, Signature entitySignature);
 
     private:

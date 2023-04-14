@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <cstring>
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 std::string getLocalTimeStr();
 void formatLog(std::stringstream& ss, const char* format, va_list& list);
@@ -33,7 +33,7 @@ void Log::LogError(const char* format, ...) {
 }
 
 std::string getLocalTimeStr() {
-    auto now = std::chrono::system_clock::now();
+    const auto now = std::chrono::system_clock::now();
     time_t time = std::chrono::system_clock::to_time_t(now);
     std::tm tm{};
 #if defined(_MSC_VER)
@@ -55,7 +55,7 @@ void formatLog(std::stringstream& ss, const char* format, va_list& list) {
             continue;
         }
         index++;
-        if (index >= (int)strlen(format)) { break; }
+        if (index >= static_cast<int>(strlen(format))) { break; }
         switch (format[index]) {
         case 'd':
             ss << va_arg(list, int);

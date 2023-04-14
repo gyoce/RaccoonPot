@@ -4,7 +4,7 @@
 
 #include <Core/Coordinator.hpp>
 
-using namespace ECSGameEngine;
+using namespace EcsGameEngine;
 
 class CoordinatorTest : public ::testing::Test {
 protected:
@@ -17,13 +17,12 @@ protected:
         Signature signature{};
         signature.set(coordinator.GetComponentType<ComponentTest>());
         coordinator.SetSystemSignature<SystemTest>(signature);
-        coordinator.SetSystemSignature<SystemTest>(signature);
     }
 };
 
 TEST_F(CoordinatorTest, EntityWithComponent) {
     Entity entity = coordinator.CreateEntity();
-    coordinator.AddComponent<ComponentTest>(entity, ComponentTest{5 });
+    coordinator.AddComponent<ComponentTest>(entity, ComponentTest{ 5 });
     ComponentTest ct = coordinator.GetComponent<ComponentTest>(entity);
     EXPECT_EQ(ct.x, 5);
     ComponentType componentType = coordinator.GetComponentType<ComponentTest>();
@@ -32,7 +31,7 @@ TEST_F(CoordinatorTest, EntityWithComponent) {
 
 TEST_F(CoordinatorTest, EntityInSystem) {
     Entity entity = coordinator.CreateEntity();
-    coordinator.AddComponent<ComponentTest>(entity, ComponentTest{5 });
+    coordinator.AddComponent<ComponentTest>(entity, ComponentTest{ 5 });
     EXPECT_EQ(system->Entities.size(), 1);
     coordinator.RemoveComponent<ComponentTest>(entity);
     EXPECT_EQ(system->Entities.size(), 0);
@@ -40,7 +39,7 @@ TEST_F(CoordinatorTest, EntityInSystem) {
 
 TEST_F(CoordinatorTest, EntityDestroyed) {
     Entity entity = coordinator.CreateEntity();
-    coordinator.AddComponent<ComponentTest>(entity, ComponentTest{5 });
+    coordinator.AddComponent<ComponentTest>(entity, ComponentTest{ 5 });
     EXPECT_EQ(system->Entities.size(), 1);
     coordinator.DestroyEntity(entity);
     EXPECT_EQ(system->Entities.size(), 0);

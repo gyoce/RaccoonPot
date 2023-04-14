@@ -4,9 +4,9 @@
 #include <bitset>
 #include <cstdint>
 
-namespace ECSGameEngine {
-    const std::uint16_t MAX_ENTITIES = 5000;
-    const std::uint8_t MAX_COMPONENTS = 32;
+namespace EcsGameEngine {
+    constexpr std::uint16_t MAX_ENTITIES = 5000;
+    constexpr std::uint8_t MAX_COMPONENTS = 32;
 
     using Entity = std::uint32_t;
     using ComponentType = std::uint8_t;

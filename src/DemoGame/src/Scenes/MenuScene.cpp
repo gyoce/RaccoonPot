@@ -16,5 +16,5 @@ int MenuScene::Loop() {
             }
         }
     }
-    return SceneAction::Quit;
+    return SA_Quit;
 }
