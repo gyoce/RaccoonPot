@@ -1,8 +1,8 @@
 #ifndef COMMON_TYPES_HPP
 #define COMMON_TYPES_HPP
 
-#include <Core/Scene.hpp>
-#include <Core/Systems/System.hpp>
+#include <RP/Core/Scene.hpp>
+#include <RP/Core/Systems/System.hpp>
 
 struct ComponentTest {
     ComponentTest() = default;
@@ -10,11 +10,11 @@ struct ComponentTest {
     int x;
 };
 
-class SystemTest : public EcsGameEngine::System {
+class SystemTest : public RP::System {
 
 };
 
-class SceneTest : public EcsGameEngine::Scene {
+class SceneTest : public RP::Scene {
 public:
     SCENE_CONSTRUCTOR(SceneTest)
 
@@ -30,7 +30,7 @@ private:
     int loopReturn = 0;
 };
 
-class SceneTest2 : public EcsGameEngine::Scene {
+class SceneTest2 : public RP::Scene {
 public:
     SCENE_CONSTRUCTOR(SceneTest2)
 

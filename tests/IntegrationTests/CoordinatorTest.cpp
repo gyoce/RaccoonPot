@@ -2,9 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-#include <Core/Coordinator.hpp>
+#include <RP/Core/Coordinator.hpp>
 
-using namespace EcsGameEngine;
+using namespace RP;
 
 class CoordinatorTest : public ::testing::Test {
 protected:

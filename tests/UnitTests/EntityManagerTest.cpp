@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include <Core/Managers/EntityManager.hpp>
+#include <RP/Core/Managers/EntityManager.hpp>
 
-using namespace EcsGameEngine;
+using namespace RP;
 
 TEST(EntityManager, CreateEntity) {
     EntityManager em{};

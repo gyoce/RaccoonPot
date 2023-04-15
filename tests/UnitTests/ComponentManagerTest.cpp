@@ -2,9 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-#include <Core/Managers/ComponentManager.hpp>
+#include <RP/Core/Managers/ComponentManager.hpp>
 
-using namespace EcsGameEngine;
+using namespace RP;
 
 TEST(ComponentManager, GetComponentType) {
     Entity entity = 0;

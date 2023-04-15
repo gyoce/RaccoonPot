@@ -1,6 +1,7 @@
 #define SDL_MAIN_HANDLED
 #include <iostream>
-#include <Game.hpp>
+
+#include "Game.hpp"
 
 int main() {
     std::cout << "Hello World!\n";

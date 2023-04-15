@@ -2,9 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-#include <Core/Managers/SystemManager.hpp>
+#include <RP/Core/Managers/SystemManager.hpp>
 
-using namespace EcsGameEngine;
+using namespace RP;
 
 TEST(SystemManager, RegisterSystem) {
     SystemManager sm{};

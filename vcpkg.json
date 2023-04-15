@@ -1,5 +1,5 @@
 {
-    "name": "ecsgameengine",
+    "name": "raccoonpot",
     "version": "1.0",
     "dependencies": [
         "sdl2",

@@ -2,18 +2,21 @@ cmake_minimum_required(VERSION 3.14)
 
 include_directories(
     ${CMAKE_ROOT_DIR}/src/DemoGame/src
-    ${CMAKE_ROOT_DIR}/src/ECSGameEngine/src
+    ${CMAKE_ROOT_DIR}/src/RaccoonPot
 )
 
 add_executable(${DEMO_GAME_EXEC_NAME} 
     Main.cpp
     src/Game.cpp
-    src/Scenes/MenuScene.cpp)
+    src/Scenes/MenuScene.cpp 
+    src/Entities/Button.cpp 
+    src/Systems/RenderSystem.cpp
+)
 
 find_package(SDL2 CONFIG REQUIRED)
 target_link_libraries(${DEMO_GAME_EXEC_NAME} 
     PRIVATE 
-    ${ECS_GAME_ENGINE_LIBRARY} 
+    ${RACCOON_POT_LIBRARY} 
     $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
     $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
 )

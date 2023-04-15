@@ -2,8 +2,7 @@
 #define GAME_HPP
 
 #include <SDL2/SDL.h>
-
-#include <Core/Managers/SceneManager.hpp>
+#include <RP/Core/Managers/SceneManager.hpp>
 
 class Game {
 public:
@@ -16,7 +15,7 @@ private:
     bool initUi();
     bool initGameEngine();
 
-    bool initSDL();
+    bool initSdl();
     bool initWindow();
     bool initRenderer();
 
@@ -25,7 +24,7 @@ private:
     bool init = false;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
-    std::unique_ptr<EcsGameEngine::SceneManager> sceneManager = nullptr;
+    std::unique_ptr<RP::SceneManager> sceneManager = nullptr;
 };
 
 #endif // GAME_HPP

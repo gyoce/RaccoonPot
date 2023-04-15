@@ -2,9 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-#include <Core/Components/ComponentArray.hpp>
+#include <RP/Core/Components/ComponentArray.hpp>
 
-using namespace EcsGameEngine;
+using namespace RP;
 
 TEST(ComponentArray, AssociateDataForComponent) {
     Entity entity = 0;

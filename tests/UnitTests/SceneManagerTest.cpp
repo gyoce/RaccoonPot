@@ -2,9 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-#include <Core/Managers/SceneManager.hpp>
+#include <RP/Core/Managers/SceneManager.hpp>
 
-using namespace EcsGameEngine;
+using namespace RP;
 
 TEST(SceneManager, RegisterScene) {
     SceneManager sm{ 88 }; 

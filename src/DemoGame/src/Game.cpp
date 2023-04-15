@@ -1,9 +1,9 @@
 #include "Game.hpp"
 
-#include <Logs/Log.hpp>
+#include <RP/Logs/Log.hpp>
 
-#include <Scenes/MenuScene.hpp>
-#include <Scenes/SceneAction.hpp>
+#include "Scenes/MenuScene.hpp"
+#include "Scenes/SceneAction.hpp"
 
 Game::~Game() {
     if (renderer != nullptr) { SDL_DestroyRenderer(renderer); }
@@ -20,44 +20,45 @@ int Game::Run() const {
 }
 
 bool Game::initUi() {
-    return initSDL() && initWindow() && initRenderer();
+    return initSdl() && initWindow() && initRenderer();
 }
 
 bool Game::initGameEngine() {
     return initScenes();
 }
 
-bool Game::initSDL() {
-    EcsGameEngine::Log::Log("Initializing SDL");
+bool Game::initSdl() {
+    RP::Log("Initializing SDL");
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        EcsGameEngine::Log::LogError("Error while initializing SDL %s", SDL_GetError());
+        RP::LogError("Error while initializing SDL %s", SDL_GetError());
         return false;
     }
     return true;
 }
 
 bool Game::initWindow() {
-    EcsGameEngine::Log::Log("Initializing Window");
+    RP::Log("Initializing Window");
     window = SDL_CreateWindow("DemoGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
     if (window == nullptr) {
-        EcsGameEngine::Log::LogError("Error while initializing Window %s", SDL_GetError());
+        RP::LogError("Error while initializing Window %s", SDL_GetError());
         return false;
     }
     return true;
 }
 
 bool Game::initRenderer() {
-    EcsGameEngine::Log::Log("Initializing Renderer");
+    RP::Log("Initializing Renderer");
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (renderer == nullptr) {
-        EcsGameEngine::Log::LogError("Error while initializing Renderer %s", SDL_GetError());
+        RP::LogError("Error while initializing Renderer %s", SDL_GetError());
         return false;
     }
     return true;
 }
 
 bool Game::initScenes() {
-    sceneManager = std::make_unique<EcsGameEngine::SceneManager>(SA_Menu);
-    sceneManager->RegisterScene<MenuScene>(SA_Menu);
+    sceneManager = std::make_unique<RP::SceneManager>(SA_Menu);
+    const std::shared_ptr<MenuScene> menuScene = sceneManager->RegisterScene<MenuScene>(SA_Menu);
+    menuScene->Init(renderer);
     return true;
 }
