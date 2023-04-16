@@ -9,8 +9,6 @@ add_executable(${DEMO_GAME_EXEC_NAME}
     Main.cpp
     src/Game.cpp
     src/Scenes/MenuScene.cpp 
-    src/Entities/Button.cpp 
-    src/Systems/RenderSystem.cpp
 )
 
 find_package(SDL2 CONFIG REQUIRED)

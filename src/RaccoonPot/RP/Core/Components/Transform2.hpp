@@ -7,6 +7,7 @@ namespace RP {
 
     struct Transform2 {
         Vector2 Position;
+        Vector2 Scale;
     };
 
 }

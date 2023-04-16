@@ -8,10 +8,11 @@ include_directories(
 add_executable(${TEST_EXEC_NAME}
     UnitTests/ComponentArrayTest.cpp
     UnitTests/ComponentManagerTest.cpp
-    UnitTests/SystemManagerTest.cpp
     UnitTests/EntityManagerTest.cpp
-    UnitTests/SceneManagerTest.cpp
+    UnitTests/EventManagerTest.cpp
     UnitTests/LogTest.cpp
+    UnitTests/SceneManagerTest.cpp
+    UnitTests/SystemManagerTest.cpp
 
     IntegrationTests/CoordinatorTest.cpp
 )

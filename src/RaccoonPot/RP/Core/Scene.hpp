@@ -16,6 +16,6 @@ namespace RP {
 
 }
 
-#define SCENE_CONSTRUCTOR(SceneName) explicit SceneName(std::unique_ptr<RP::Coordinator> coordinator) : Scene(std::move(coordinator)) {}
+#define RP_SCENE_CONSTRUCTOR(SceneName) explicit SceneName(std::unique_ptr<RP::Coordinator> coordinator) : Scene(std::move(coordinator)) {}
 
 #endif // SCENE_HPP
