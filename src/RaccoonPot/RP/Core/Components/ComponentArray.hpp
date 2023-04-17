@@ -15,7 +15,7 @@ namespace RP {
     };
 
     template<class T>
-    class ComponentArray : public IComponentArray {
+    class ComponentArray final : public IComponentArray {
     public:
         void InsertData(Entity entity, T component);
         void RemoveData(Entity entity);

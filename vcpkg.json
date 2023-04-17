@@ -1,8 +1,9 @@
 {
-    "name": "raccoonpot",
-    "version": "1.0",
-    "dependencies": [
-        "sdl2",
-        "gtest"
-    ]
+  "name": "raccoonpot",
+  "version": "1.0",
+  "dependencies": [
+    "gtest",
+    "sdl2",
+    "sdl2-image"
+  ] 
 }

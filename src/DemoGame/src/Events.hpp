@@ -2,7 +2,8 @@
 #define EVENTS_HPP
 
 enum Events {
-    E_Quit
+    EQuit,
+    EClick
 };
 
 #endif // EVENTS_HPP

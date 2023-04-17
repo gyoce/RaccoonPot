@@ -2,8 +2,8 @@
 #define SCENE_ACTION_HPP
 
 enum SceneAction {
-    SA_Quit,
-    SA_Menu
+    SaQuit,
+    SaMenu
 };
 
 #endif // SCENE_ACTION_HPP

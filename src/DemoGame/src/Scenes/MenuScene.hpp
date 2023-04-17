@@ -12,7 +12,9 @@ public:
     void Init(SDL_Renderer* renderer);
 
 private:
+    void event() const;
     void quitMenu();
+    static void click(int x, int y);
 
     bool run = false;
     SDL_Renderer* renderer = nullptr;
