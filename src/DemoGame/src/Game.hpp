@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include <SDL2/SDL.h>
-#include <RP/Core/Managers/SceneManager.hpp>
+#include <RP/RP.hpp>
 
 class Game {
 public:
@@ -15,7 +15,7 @@ private:
     bool initUi();
     bool initGameEngine();
 
-    bool initSdl();
+    static bool initSdl();
     bool initWindow();
     bool initRenderer();
 

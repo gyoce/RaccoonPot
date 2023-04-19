@@ -2,7 +2,7 @@
 
 #include <CommonTypes.hpp>
 
-#include <RP/Core/Components/ComponentArray.hpp>
+#include <RP/RP.hpp>
 
 using namespace RP;
 

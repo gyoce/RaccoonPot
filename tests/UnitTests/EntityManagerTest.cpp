@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <RP/Core/Managers/EntityManager.hpp>
+#include <RP/RP.hpp>
 
 using namespace RP;
 

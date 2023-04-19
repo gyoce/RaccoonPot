@@ -10,6 +10,7 @@ add_executable(${TEST_EXEC_NAME}
     UnitTests/ComponentManagerTest.cpp
     UnitTests/EntityManagerTest.cpp
     UnitTests/EventManagerTest.cpp
+    UnitTests/GuiManagerTest.cpp
     UnitTests/LogTest.cpp
     UnitTests/SceneManagerTest.cpp
     UnitTests/SystemManagerTest.cpp

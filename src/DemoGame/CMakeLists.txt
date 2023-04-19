@@ -8,7 +8,9 @@ include_directories(
 add_executable(${DEMO_GAME_EXEC_NAME} 
     Main.cpp
     src/Game.cpp
-    src/Scenes/MenuScene.cpp 
+    src/Utils.cpp
+    src/Scenes/MenuScene.cpp
+    src/Gui/GuiButtonTexture.cpp
 )
 
 find_package(SDL2 CONFIG REQUIRED)

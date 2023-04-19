@@ -1,7 +1,5 @@
 #include "Game.hpp"
 
-#include <RP/Logs/Log.hpp>
-
 #include "Scenes/MenuScene.hpp"
 #include "Scenes/SceneAction.hpp"
 

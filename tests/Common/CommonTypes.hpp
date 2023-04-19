@@ -1,8 +1,7 @@
 #ifndef COMMON_TYPES_HPP
 #define COMMON_TYPES_HPP
 
-#include <RP/Core/Scene.hpp>
-#include <RP/Core/Systems/System.hpp>
+#include <RP/RP.hpp>
 
 struct ComponentTest {
     ComponentTest() = default;
@@ -44,6 +43,11 @@ public:
 
 private:
     int loopReturn = 0;
+};
+
+class WidgetTest : public RP::GuiWidget {
+public:
+    bool CallRenderFunction = false;
 };
 
 #endif // COMMON_TYPES_HPP

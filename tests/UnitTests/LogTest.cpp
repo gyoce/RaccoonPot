@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include <RP/Logs/Log.hpp>
+#include <RP/RP.hpp>
 
 using ::testing::MatchesRegex;
 

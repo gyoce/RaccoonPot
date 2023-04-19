@@ -2,7 +2,7 @@
 
 #include <CommonTypes.hpp>
 
-#include <RP/Core/Coordinator.hpp>
+#include <RP/RP.hpp>
 
 using namespace RP;
 
