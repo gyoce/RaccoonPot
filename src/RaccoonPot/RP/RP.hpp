@@ -14,8 +14,6 @@
 
 // GUI
 #include "Gui/GuiButton.hpp"
-#include "Gui/GuiButtonText.hpp"
-#include "Gui/GuiText.hpp"
 #include "Gui/GuiWidget.hpp"
 
 // LOGS
