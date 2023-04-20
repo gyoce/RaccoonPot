@@ -5,15 +5,14 @@
 
 #include <unordered_map>
 #include <vector>
+#include <memory>
 
 namespace RP {
 
     class SceneManager {
     public:
-        SceneManager(int baseAction);
-
-        template<class T> std::shared_ptr<T> RegisterScene(int action);
-
+        explicit SceneManager(int baseAction);
+        template<class T, typename ...Args> std::shared_ptr<T> RegisterScene(int action, Args&&... args);
         int Loop();
     
     private:

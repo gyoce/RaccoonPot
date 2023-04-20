@@ -7,9 +7,11 @@
 #include "../Gui/GuiButtonTexture.hpp"
 #include "../Utils.hpp"
 
-void MenuScene::Init(SDL_Renderer* renderer) {
+MenuScene::MenuScene(SDL_Renderer* renderer) {
     this->renderer = renderer;
+}
 
+void MenuScene::Init() {
     if (SDL_Surface* surface = IMG_Load("res/SpriteSheet.png"); surface == nullptr) {
         RP::LogError("Could not load res/SpriteSheet.png");
     } else {
@@ -17,22 +19,8 @@ void MenuScene::Init(SDL_Renderer* renderer) {
         SDL_FreeSurface(surface);
     }
 
-    eventManager = std::make_shared<RP::EventManager>();
-    eventManager->Bind<void()>(EQuit, [this] { quitMenu(); });
-    eventManager->Bind<void(int, int)>(EClick, [](const int x, const int y) { click(x, y); });
-
-    guiManager = std::make_shared<RP::GuiManager>();
-    guiManager->RegisterEventManager(eventManager);
-    guiManager->RegisterClickEvent(EClick);
-    guiManager->RegisterRenderFunctionForWidget<GuiButtonTexture>([this](const std::shared_ptr<GuiButtonTexture>& button) {
-        const SDL_Rect rect = { button->x, button->y, button->Width, button->Height };
-        SDL_RenderCopy(this->renderer, button->Texture, nullptr, &rect);
-    });
-    const std::shared_ptr<GuiButtonTexture> button = guiManager->CreateWidget<GuiButtonTexture>();
-    button->x = 10; button->y = 10; button->Width = 200; button->Height = 100;
-    if (this->spriteSheet) {
-        button->Texture = Utils::ExtractTextureFromSource({ 0, 0, 192, 64 }, this->renderer, this->spriteSheet);
-    }
+    initEvents();
+    initGui();
 }
 
 int MenuScene::Loop() {
@@ -66,10 +54,22 @@ void MenuScene::draw() const {
     guiManager->Render();
 }
 
-void MenuScene::quitMenu() {
-    run = false;
+void MenuScene::initEvents() {
+    eventManager = std::make_shared<RP::EventManager>();
+    eventManager->Bind<void()>(EQuit, [this] { run = false; });
 }
 
-void MenuScene::click(const int x, const int y) {
-    RP::Log("Click @[%d, %d]", x, y);
+void MenuScene::initGui() {
+    guiManager = std::make_shared<RP::GuiManager>();
+    guiManager->RegisterEventManager(eventManager);
+    guiManager->RegisterClickEvent(EClick);
+    guiManager->RegisterRenderFunctionForWidget<GuiButtonTexture>([this](const std::shared_ptr<GuiButtonTexture>& button) {
+        const SDL_Rect rect = { button->x, button->y, button->Width, button->Height };
+        SDL_RenderCopy(this->renderer, button->Texture, nullptr, &rect);
+    });
+    const std::shared_ptr<GuiButtonTexture> button = guiManager->CreateWidget<GuiButtonTexture>();
+    button->x = 10; button->y = 10; button->Width = 200; button->Height = 100;
+    if (this->spriteSheet) {
+        button->Texture = Utils::ExtractTextureFromSource({ 0, 0, 192, 64 }, this->renderer, this->spriteSheet);
+    }
 }

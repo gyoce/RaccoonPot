@@ -56,7 +56,7 @@ bool Game::initRenderer() {
 
 bool Game::initScenes() {
     sceneManager = std::make_unique<RP::SceneManager>(SaMenu);
-    const std::shared_ptr<MenuScene> menuScene = sceneManager->RegisterScene<MenuScene>(SaMenu);
-    menuScene->Init(renderer);
+    const std::shared_ptr<MenuScene> menuScene = sceneManager->RegisterScene<MenuScene>(SaMenu, renderer);
+    menuScene->Init();
     return true;
 }

@@ -9,14 +9,14 @@ using namespace RP;
 TEST(SceneManager, RegisterScene) {
     SceneManager sm{ 88 }; 
     sm.RegisterScene<SceneTest>(88)->SetLoopReturn(10);
-    EXPECT_TRUE(sm.Loop() == 10);
+    EXPECT_EQ(sm.Loop(), 10);
 }
 
 TEST(SceneManager, ChangeOfScene) {
     SceneManager sm{ 33 };
     sm.RegisterScene<SceneTest>(33)->SetLoopReturn(44);
     sm.RegisterScene<SceneTest2>(44)->SetLoopReturn(55);
-    EXPECT_TRUE(sm.Loop() == 55);
+    EXPECT_EQ(sm.Loop(), 55);
 }
 
 TEST(SceneManagerDeath, RegisterTwiceTheSameScene) {

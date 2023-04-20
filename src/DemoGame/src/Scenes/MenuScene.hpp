@@ -4,17 +4,18 @@
 #include <SDL2/SDL.h>
 #include <RP/RP.hpp>
 
-class MenuScene : public RP::Scene {
+class MenuScene final : public RP::Scene {
 public:
-    RP_SCENE_CONSTRUCTOR(MenuScene)
-    void Init(SDL_Renderer* renderer);
+    explicit MenuScene(SDL_Renderer* renderer);
+    void Init();
     int Loop() override;
 
 private:
     void event() const;
     void draw() const;
-    void quitMenu();
-    static void click(int x, int y);
+
+    void initEvents();
+    void initGui();
 
     bool run = false;
     SDL_Renderer* renderer = nullptr;

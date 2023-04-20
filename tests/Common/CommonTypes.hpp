@@ -15,8 +15,6 @@ class SystemTest : public RP::System {
 
 class SceneTest : public RP::Scene {
 public:
-    RP_SCENE_CONSTRUCTOR(SceneTest)
-
     void SetLoopReturn(const int newLoopReturn) {
         loopReturn = newLoopReturn;
     }
@@ -31,8 +29,6 @@ private:
 
 class SceneTest2 : public RP::Scene {
 public:
-    RP_SCENE_CONSTRUCTOR(SceneTest2)
-
     void SetLoopReturn(const int newLoopReturn) {
         loopReturn = newLoopReturn;
     }
