@@ -23,6 +23,7 @@ void MenuScene::Init(SDL_Renderer* renderer) {
 
     guiManager = std::make_shared<RP::GuiManager>();
     guiManager->RegisterEventManager(eventManager);
+    guiManager->RegisterClickEvent(EClick);
     guiManager->RegisterRenderFunctionForWidget<GuiButtonTexture>([this](const std::shared_ptr<GuiButtonTexture>& button) {
         const SDL_Rect rect = { button->x, button->y, button->Width, button->Height };
         SDL_RenderCopy(this->renderer, button->Texture, nullptr, &rect);

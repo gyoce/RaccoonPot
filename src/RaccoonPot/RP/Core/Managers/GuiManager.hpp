@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "EventManager.hpp"
+#include "../../Gui/GuiWidget.hpp"
 
 namespace RP {
 
@@ -12,6 +13,7 @@ namespace RP {
     public:
         void RegisterEventManager(const std::shared_ptr<EventManager>& eventManager);
         template<class T> void RegisterRenderFunctionForWidget(std::function<void(std::shared_ptr<T>)> function);
+        void RegisterClickEvent(int event) const;
         template<class T> std::shared_ptr<T> CreateWidget();
         void Render() const;
 
@@ -20,6 +22,7 @@ namespace RP {
         public:
             virtual ~IWidgetFunction() = default;
             virtual void RenderWidgets() const = 0;
+            std::vector<std::shared_ptr<GuiWidget>> Widgets{};
         };
 
         template<class T>
@@ -28,8 +31,9 @@ namespace RP {
             void RenderWidgets() const override;
 
             std::function<void(std::shared_ptr<T>)> RenderFunction;
-            std::vector<std::shared_ptr<T>> Widgets{};
         };
+
+        void checkForClickOnWidgetButton(int x, int y) const;
 
         std::shared_ptr<EventManager> eventManager = nullptr;
         std::unordered_map<const char*, std::shared_ptr<IWidgetFunction>> mapWidgets;

@@ -45,9 +45,14 @@ private:
     int loopReturn = 0;
 };
 
-class WidgetTest : public RP::GuiWidget {
+class WidgetTest : public RP::GuiButton {
 public:
     bool CallRenderFunction = false;
+    bool CallClickFunction = false;
+
+    void Click() override {
+        CallClickFunction = true;
+    }
 };
 
 #endif // COMMON_TYPES_HPP
