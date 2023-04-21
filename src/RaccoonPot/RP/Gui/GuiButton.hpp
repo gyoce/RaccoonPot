@@ -1,5 +1,5 @@
-#ifndef GUI_CLICKABLE_HPP
-#define GUI_CLICKABLE_HPP
+#ifndef RP_GUI_BUTTON_HPP
+#define RP_GUI_BUTTON_HPP
 
 #include "GuiWidget.hpp"
 
@@ -12,4 +12,4 @@ namespace RP {
 
 }
 
-#endif // GUI_CLICKABLE_HPP
+#endif // RP_GUI_BUTTON_HPP

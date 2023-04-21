@@ -1,5 +1,5 @@
-#ifndef VECTOR2_HPP
-#define VECTOR2_HPP
+#ifndef RP_VECTOR2_HPP
+#define RP_VECTOR2_HPP
 
 namespace RP {
 
@@ -13,4 +13,4 @@ namespace RP {
 
 }
 
-#endif // VECTOR2_HPP
+#endif // RP_VECTOR2_HPP

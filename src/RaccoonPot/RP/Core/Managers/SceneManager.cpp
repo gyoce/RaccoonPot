@@ -1,5 +1,7 @@
 #include "SceneManager.hpp"
 
+#include "../Scene.hpp"
+
 using namespace RP;
 
 SceneManager::SceneManager(const int baseAction) 
@@ -7,7 +9,7 @@ SceneManager::SceneManager(const int baseAction)
 
 int SceneManager::Loop() {
     assert(scenes.find(baseAction) != scenes.end() && "Scene with base action not present.");
-    std::shared_ptr<Scene> actualScene = scenes[baseAction];
+    ScenePtr actualScene = scenes[baseAction];
     int loopRes = actualScene->Loop();
     while (scenes.find(loopRes) != scenes.end()) {
         actualScene = scenes[loopRes];

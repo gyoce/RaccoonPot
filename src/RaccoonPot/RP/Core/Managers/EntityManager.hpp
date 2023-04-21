@@ -1,5 +1,5 @@
-#ifndef ENTITY_MANAGER_HPP
-#define ENTITY_MANAGER_HPP
+#ifndef RP_ENTITY_MANAGER_HPP
+#define RP_ENTITY_MANAGER_HPP
 
 #include <queue>
 #include <array>
@@ -24,4 +24,4 @@ namespace RP {
 
 }
 
-#endif // ENTITY_MANAGER_HPP
+#endif // RP_ENTITY_MANAGER_HPP

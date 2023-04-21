@@ -6,11 +6,11 @@ template<typename T>
 void RP::EventManager::Bind(int event, const std::function<T>& callback) {
     if (const auto iterator = eventFunctions.find(event); iterator == eventFunctions.end()) {
         std::shared_ptr<EventFunction<T>> eventFunction = std::make_shared<EventFunction<T>>();
-        eventFunction->Add(callback);
+        eventFunction->Functions.push_back(callback);
         eventFunctions.insert({ event,  eventFunction });
     } else {
         std::shared_ptr<EventFunction<T>> eventFunction = std::static_pointer_cast<EventFunction<T>>(iterator->second);
-        eventFunction->Add(callback);
+        eventFunction->Functions.push_back(callback);
     }
 }
 

@@ -1,5 +1,5 @@
-#ifndef COMMON_TYPES_HPP
-#define COMMON_TYPES_HPP
+#ifndef TESTS_COMMON_TYPES_HPP
+#define TESTS_COMMON_TYPES_HPP
 
 #include <RP/RP.hpp>
 
@@ -55,4 +55,4 @@ public:
     }
 };
 
-#endif // COMMON_TYPES_HPP
+#endif // TESTS_COMMON_TYPES_HPP

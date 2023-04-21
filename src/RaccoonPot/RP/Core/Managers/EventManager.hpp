@@ -1,5 +1,5 @@
-#ifndef EVENT_MANAGER_HPP
-#define EVENT_MANAGER_HPP
+#ifndef RP_EVENT_MANAGER_HPP
+#define RP_EVENT_MANAGER_HPP
 
 #include <unordered_map>
 #include <vector>
@@ -17,19 +17,19 @@ namespace RP {
         public:
             virtual ~IEventFunction() = default;
         };
+        typedef std::shared_ptr<IEventFunction> IEventFunctionPtr;
 
         template<class T>
         class EventFunction final : public IEventFunction {
         public:
-            void Add(std::function<T> function) { Functions.push_back(function); }
             std::vector<std::function<T>> Functions{};
         };
 
-        std::unordered_map<int, std::shared_ptr<IEventFunction>> eventFunctions{};
+        std::unordered_map<int, IEventFunctionPtr> eventFunctions{};
     };
 
 }
 
 #include "EventManager.inl"
 
-#endif // EVENT_MANAGER_HPP
+#endif // RP_EVENT_MANAGER_HPP

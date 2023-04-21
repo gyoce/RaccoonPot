@@ -4,7 +4,7 @@
 
 using namespace RP;
 
-void GuiManager::RegisterEventManager(const std::shared_ptr<EventManager>& eventManager) {
+void GuiManager::RegisterEventManager(const EventManagerPtr& eventManager) {
     this->eventManager = eventManager;
 }
 
@@ -14,15 +14,15 @@ void GuiManager::RegisterClickEvent(const int event) const {
 }
 
 void GuiManager::Render() const {
-    for (const std::pair<const char*, std::shared_ptr<IWidgetFunction>> pair : mapWidgets) {
+    for (const std::pair<const char*, IWidgetFunctionPtr> pair : mapWidgets) {
         pair.second->RenderWidgets();
     }
 }
 
 void GuiManager::checkForClickOnWidgetButton(const int x, const int y) const {
-    for (const std::pair<const char*, std::shared_ptr<IWidgetFunction>> pair : mapWidgets) {
-        for (const std::shared_ptr<GuiWidget>& widget : pair.second->Widgets) {
-            std::shared_ptr<GuiButton> button = std::dynamic_pointer_cast<GuiButton>(widget);
+    for (const std::pair<const char*, IWidgetFunctionPtr> pair : mapWidgets) {
+        for (const GuiWidgetPtr& widget : pair.second->Widgets) {
+            GuiButtonPtr button = std::dynamic_pointer_cast<GuiButton>(widget);
             if (button == nullptr) {
                 continue;
             }

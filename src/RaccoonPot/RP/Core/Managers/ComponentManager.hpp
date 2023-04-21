@@ -1,5 +1,5 @@
-#ifndef COMPONENT_MANAGER_HPP
-#define COMPONENT_MANAGER_HPP
+#ifndef RP_COMPONENT_MANAGER_HPP
+#define RP_COMPONENT_MANAGER_HPP
 
 #include <unordered_map>
 #include <memory>
@@ -23,7 +23,7 @@ namespace RP {
         template<class T> std::shared_ptr<ComponentArray<T>> getComponentArray();
 
         std::unordered_map<const char*, ComponentType> mapComponentTypes{};
-        std::unordered_map<const char*, std::shared_ptr<IComponentArray>> mapComponentArrays{};
+        std::unordered_map<const char*, IComponentArrayPtr> mapComponentArrays{};
         ComponentType nextComponentType{};
     };
 
@@ -31,4 +31,4 @@ namespace RP {
 
 #include "ComponentManager.inl"
 
-#endif // COMPONENT_MANAGER_HPP
+#endif // RP_COMPONENT_MANAGER_HPP

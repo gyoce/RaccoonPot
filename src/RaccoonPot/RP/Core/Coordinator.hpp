@@ -1,12 +1,9 @@
-#ifndef COORDINATOR_HPP
-#define COORDINATOR_HPP
+#ifndef RP_COORDINATOR_HPP
+#define RP_COORDINATOR_HPP
 
 #include <memory>
 
 #include "Types.hpp"
-#include "Managers/ComponentManager.hpp"
-#include "Managers/EntityManager.hpp"
-#include "Managers/SystemManager.hpp"
 
 namespace RP {
 
@@ -27,13 +24,13 @@ namespace RP {
         template<class T> void SetSystemSignature(Signature signature) const;
 
     private:
-        std::shared_ptr<ComponentManager> componentManager;
-        std::shared_ptr<EntityManager> entityManager;
-        std::shared_ptr<SystemManager> systemManager;
+        ComponentManagerPtr componentManager;
+        EntityManagerPtr entityManager;
+        SystemManagerPtr systemManager;
     };
 
 }
 
 #include "Coordinator.inl"
 
-#endif // COORDINATOR_HPP
+#endif // RP_COORDINATOR_HPP

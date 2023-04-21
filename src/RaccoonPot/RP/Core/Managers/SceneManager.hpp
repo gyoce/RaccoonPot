@@ -1,11 +1,11 @@
-#ifndef SCENE_MANAGER_HPP
-#define SCENE_MANAGER_HPP
-
-#include "../Scene.hpp"
+#ifndef RP_SCENE_MANAGER_HPP
+#define RP_SCENE_MANAGER_HPP
 
 #include <unordered_map>
 #include <vector>
 #include <memory>
+
+#include "../Types.hpp"
 
 namespace RP {
 
@@ -17,7 +17,7 @@ namespace RP {
     
     private:
         int baseAction;
-        std::unordered_map<int, std::shared_ptr<Scene>> scenes{};
+        std::unordered_map<int, ScenePtr> scenes{};
         std::vector<const char*> sceneNames{};
     };
 
@@ -25,4 +25,4 @@ namespace RP {
 
 #include "SceneManager.inl"
 
-#endif // SCENE_MANAGER_HPP
+#endif // RP_SCENE_MANAGER_HPP

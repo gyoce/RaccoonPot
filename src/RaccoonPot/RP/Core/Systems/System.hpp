@@ -1,5 +1,5 @@
-#ifndef SYSTEM_HPP
-#define SYSTEM_HPP
+#ifndef RP_SYSTEM_HPP
+#define RP_SYSTEM_HPP
 
 #include <set>
 
@@ -14,4 +14,4 @@ namespace RP {
 
 }
 
-#endif // SYSTEM_HPP
+#endif // RP_SYSTEM_HPP

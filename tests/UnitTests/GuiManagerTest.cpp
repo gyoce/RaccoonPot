@@ -19,7 +19,7 @@ protected:
         widget->CallRenderFunction = true;
     }
     
-    std::shared_ptr<EventManager> eventManager = nullptr;
+    EventManagerPtr eventManager = nullptr;
     GuiManager guiManager{};
 };
 

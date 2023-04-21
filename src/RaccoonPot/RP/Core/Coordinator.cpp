@@ -1,5 +1,9 @@
 #include "Coordinator.hpp"
 
+#include "Managers/ComponentManager.hpp"
+#include "Managers/EntityManager.hpp"
+#include "Managers/SystemManager.hpp"
+
 using namespace RP;
 
 Coordinator::Coordinator() {

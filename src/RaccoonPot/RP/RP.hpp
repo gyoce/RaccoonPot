@@ -12,6 +12,8 @@
 #include "Core/Managers/EventManager.hpp"
 #include "Core/Managers/SceneManager.hpp"
 
+#include "Core/Systems/System.hpp"
+
 // GUI
 #include "Gui/GuiButton.hpp"
 #include "Gui/GuiWidget.hpp"

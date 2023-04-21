@@ -1,5 +1,5 @@
-#ifndef GUI_WIDGET_HPP
-#define GUI_WIDGET_HPP
+#ifndef RP_GUI_WIDGET_HPP
+#define RP_GUI_WIDGET_HPP
 
 namespace RP {
 
@@ -11,4 +11,4 @@ namespace RP {
 
 }
 
-#endif // GUI_WIDGET_HPP
+#endif // RP_GUI_WIDGET_HPP

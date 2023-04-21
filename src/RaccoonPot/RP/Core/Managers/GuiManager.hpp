@@ -1,29 +1,30 @@
-#ifndef GUI_MANAGER_HPP
-#define GUI_MANAGER_HPP
+#ifndef RP_GUI_MANAGER_HPP
+#define RP_GUI_MANAGER_HPP
 
 #include <memory>
 #include <vector>
 
 #include "EventManager.hpp"
-#include "../../Gui/GuiWidget.hpp"
+#include "../Types.hpp"
 
 namespace RP {
 
     class GuiManager {
     public:
-        void RegisterEventManager(const std::shared_ptr<EventManager>& eventManager);
+        void RegisterEventManager(const EventManagerPtr& eventManager);
         template<class T> void RegisterRenderFunctionForWidget(std::function<void(std::shared_ptr<T>)> function);
         void RegisterClickEvent(int event) const;
         template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(Args&&... args);
         void Render() const;
 
     private:
-        class IWidgetFunction {
+        class IWidgetFunction { 
         public:
             virtual ~IWidgetFunction() = default;
             virtual void RenderWidgets() const = 0;
-            std::vector<std::shared_ptr<GuiWidget>> Widgets{};
+            std::vector<GuiWidgetPtr> Widgets{};
         };
+        typedef std::shared_ptr<IWidgetFunction> IWidgetFunctionPtr;
 
         template<class T>
         class WidgetFunction final : public IWidgetFunction {
@@ -35,12 +36,12 @@ namespace RP {
 
         void checkForClickOnWidgetButton(int x, int y) const;
 
-        std::shared_ptr<EventManager> eventManager = nullptr;
-        std::unordered_map<const char*, std::shared_ptr<IWidgetFunction>> mapWidgets;
+        EventManagerPtr eventManager = nullptr;
+        std::unordered_map<const char*, IWidgetFunctionPtr> mapWidgets;
     };
 
 }
 
 #include "GuiManager.inl"
 
-#endif // GUI_MANAGER_HPP
+#endif // RP_GUI_MANAGER_HPP

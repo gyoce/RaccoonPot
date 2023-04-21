@@ -1,5 +1,5 @@
-#ifndef COMPONENT_ARRAY_HPP
-#define COMPONENT_ARRAY_HPP
+#ifndef RP_COMPONENT_ARRAY_HPP
+#define RP_COMPONENT_ARRAY_HPP
 
 #include <array>
 #include <unordered_map>
@@ -13,6 +13,7 @@ namespace RP {
         virtual ~IComponentArray() = default;
         virtual void EntityDestroyed(Entity entity) = 0;
     };
+    typedef std::shared_ptr<IComponentArray> IComponentArrayPtr;
 
     template<class T>
     class ComponentArray final : public IComponentArray {
@@ -37,4 +38,4 @@ namespace RP {
 
 #include "ComponentArray.inl"
 
-#endif // COMPONENT_ARRAY_HPP
+#endif // RP_COMPONENT_ARRAY_HPP

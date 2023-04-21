@@ -1,5 +1,5 @@
-#ifndef TRANSFORM_HPP
-#define TRANSFORM_HPP
+#ifndef RP_TRANSFORM2_HPP
+#define RP_TRANSFORM2_HPP
 
 #include "../../Math/Vector2.hpp"
 
@@ -12,4 +12,4 @@ namespace RP {
 
 }
 
-#endif // TRANSFORM_HPP
+#endif // RP_TRANSFORM2_HPP

@@ -1,10 +1,9 @@
-#ifndef SYSTEM_MANAGER_HPP
-#define SYSTEM_MANAGER_HPP
+#ifndef RP_SYSTEM_MANAGER_HPP
+#define RP_SYSTEM_MANAGER_HPP
 
 #include <unordered_map>
 #include <memory>
 
-#include "../Systems/System.hpp"
 #include "../Types.hpp"
 
 namespace RP {
@@ -17,7 +16,7 @@ namespace RP {
         void EntitySignatureChanged(Entity entity, Signature entitySignature);
 
     private:
-        std::unordered_map<const char*, std::shared_ptr<System>> systems{};
+        std::unordered_map<const char*, SystemPtr> systems{};
         std::unordered_map<const char*, Signature> signatures{};
     };
 
@@ -25,4 +24,4 @@ namespace RP {
 
 #include "SystemManager.inl"
 
-#endif // SYSTEM_MANAGER_HPP
+#endif // RP_SYSTEM_MANAGER_HPP

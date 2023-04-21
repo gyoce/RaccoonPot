@@ -3,6 +3,7 @@
 #include <CommonTypes.hpp>
 
 #include <RP/RP.hpp>
+#include <RP/Core/Managers/SystemManager.hpp>
 
 using namespace RP;
 

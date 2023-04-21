@@ -1,5 +1,5 @@
-#ifndef LOG_HPP
-#define LOG_HPP
+#ifndef RP_LOG_HPP
+#define RP_LOG_HPP
 
 namespace RP {
 
@@ -8,4 +8,4 @@ namespace RP {
         
 }
 
-#endif // LOG_HPP
+#endif // RP_LOG_HPP

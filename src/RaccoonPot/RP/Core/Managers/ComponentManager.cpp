@@ -3,8 +3,7 @@
 using namespace RP;
 
 void ComponentManager::EntityDestroyed(const Entity entity) const {
-    for (const std::pair<const char*, const std::shared_ptr<IComponentArray>> pair : mapComponentArrays) {
-        const std::shared_ptr<IComponentArray>& component = pair.second;
-        component->EntityDestroyed(entity);
+    for (const std::pair<const char*, const IComponentArrayPtr> pair : mapComponentArrays) {
+        pair.second->EntityDestroyed(entity);
     }
 }

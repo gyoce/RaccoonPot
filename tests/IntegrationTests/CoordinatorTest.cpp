@@ -9,7 +9,7 @@ using namespace RP;
 class CoordinatorTest : public ::testing::Test {
 protected:
     Coordinator coordinator{};
-    std::shared_ptr<SystemTest> system = nullptr;
+    SystemPtr system = nullptr;
 
     void SetUp() override {
         coordinator.RegisterComponent<ComponentTest>();

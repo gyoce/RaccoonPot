@@ -21,7 +21,7 @@ std::shared_ptr<T> RP::GuiManager::CreateWidget(Args&&... args) {
 
 template<class T>
 void RP::GuiManager::WidgetFunction<T>::RenderWidgets() const {
-    for (const std::shared_ptr<GuiWidget>& widget : Widgets) {
+    for (const GuiWidgetPtr& widget : Widgets) {
         RenderFunction(std::static_pointer_cast<T>(widget));
     }
 }
