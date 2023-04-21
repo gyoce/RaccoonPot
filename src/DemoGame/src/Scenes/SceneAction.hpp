@@ -3,7 +3,8 @@
 
 enum SceneAction {
     SaQuit,
-    SaMenu
+    SaMenu,
+    SaGame
 };
 
 #endif // SCENE_ACTION_HPP

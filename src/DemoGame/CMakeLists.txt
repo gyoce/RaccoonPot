@@ -9,9 +9,8 @@ add_executable(${DEMO_GAME_EXEC_NAME}
     Main.cpp
     src/Game.cpp
     src/Utils.cpp
-    src/Scenes/MenuScene.cpp
-    src/Gui/GuiButtonTexture.cpp
-)
+    src/Scenes/Scene.cpp src/Scenes/MenuScene.cpp src/Scenes/GameScene.cpp
+    src/Gui/GuiButtonTexture.cpp)
 
 find_package(SDL2 CONFIG REQUIRED)
 target_link_libraries(${DEMO_GAME_EXEC_NAME} 

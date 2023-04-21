@@ -13,17 +13,18 @@ public:
 
 private:
     bool initUi();
-    bool initGameEngine();
 
     static bool initSdl();
     bool initWindow();
     bool initRenderer();
 
-    bool initScenes();
+    void initScenes();
+    bool initSpriteSheet();
 
     bool init = false;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
+    SDL_Texture* spriteSheet = nullptr;
     std::unique_ptr<RP::SceneManager> sceneManager = nullptr;
 };
 

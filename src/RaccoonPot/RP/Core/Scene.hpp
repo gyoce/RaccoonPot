@@ -1,5 +1,5 @@
-#ifndef SCENE_HPP
-#define SCENE_HPP
+#ifndef RP_SCENE_HPP
+#define RP_SCENE_HPP
 
 namespace RP {
 
@@ -11,4 +11,4 @@ namespace RP {
 
 }
 
-#endif // SCENE_HPP
+#endif // RP_SCENE_HPP
