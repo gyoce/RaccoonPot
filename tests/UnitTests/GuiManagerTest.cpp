@@ -24,9 +24,10 @@ protected:
 };
 
 TEST_F(GuiManagerTest, CallRenderFunction) {
-    std::shared_ptr<WidgetTest> widget = guiManager.CreateWidget<WidgetTest>();
+    std::shared_ptr<WidgetTest> widget = guiManager.CreateWidget<WidgetTest>(10);
     guiManager.Render();
     EXPECT_TRUE(widget->CallRenderFunction);
+    EXPECT_EQ(widget->value, 10);
 }
 
 TEST_F(GuiManagerTest, CallClickEvent) {

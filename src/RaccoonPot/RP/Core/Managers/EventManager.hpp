@@ -10,7 +10,7 @@ namespace RP {
     class EventManager {
     public:
         template<typename T> void Bind(int event, const std::function<T>& callback);
-        template<typename T, class... Args> void Dispatch(int event, Args... args);
+        template<typename T, class... Args> void Dispatch(int event, Args&&... args);
 
     private:
         class IEventFunction {

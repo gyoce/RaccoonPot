@@ -14,7 +14,7 @@ namespace RP {
         void RegisterEventManager(const std::shared_ptr<EventManager>& eventManager);
         template<class T> void RegisterRenderFunctionForWidget(std::function<void(std::shared_ptr<T>)> function);
         void RegisterClickEvent(int event) const;
-        template<class T> std::shared_ptr<T> CreateWidget();
+        template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(Args&&... args);
         void Render() const;
 
     private:

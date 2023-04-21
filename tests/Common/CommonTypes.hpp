@@ -43,8 +43,12 @@ private:
 
 class WidgetTest : public RP::GuiButton {
 public:
+    WidgetTest() = default;
+    WidgetTest(int value) : value(value) {  }
+
     bool CallRenderFunction = false;
     bool CallClickFunction = false;
+    int value = 0;
 
     void Click() override {
         CallClickFunction = true;
