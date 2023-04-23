@@ -1,4 +1,4 @@
-#include "ComponentManager.hpp"
+#include "RP/Core/Managers/ComponentManager.hpp"
 
 using namespace RP;
 

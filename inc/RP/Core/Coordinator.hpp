@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Types.hpp"
+#include <RP/Types.hpp>
 
 namespace RP {
 
@@ -31,6 +31,6 @@ namespace RP {
 
 }
 
-#include "Coordinator.inl"
+#include <RP/Core/Coordinator.inl>
 
 #endif // RP_COORDINATOR_HPP

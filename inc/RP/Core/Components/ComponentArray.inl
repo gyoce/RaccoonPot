@@ -1,5 +1,3 @@
-#include "ComponentArray.hpp"
-
 #include <cassert>
 
 template<class T>

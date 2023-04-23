@@ -1,8 +1,8 @@
-#include "Coordinator.hpp"
+#include "RP/Core/Coordinator.hpp"
 
-#include "Managers/ComponentManager.hpp"
-#include "Managers/EntityManager.hpp"
-#include "Managers/SystemManager.hpp"
+#include "RP/Core/Managers/ComponentManager.hpp"
+#include "RP/Core/Managers/EntityManager.hpp"
+#include "RP/Core/Managers/SystemManager.hpp"
 
 using namespace RP;
 

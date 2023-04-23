@@ -1,7 +1,7 @@
 #ifndef RP_TRANSFORM2_HPP
 #define RP_TRANSFORM2_HPP
 
-#include "../../Math/Vector2.hpp"
+#include <RP/Math/Vector2.hpp>
 
 namespace RP {
 

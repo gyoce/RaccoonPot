@@ -1,5 +1,3 @@
-#include "GuiManager.hpp"
-
 template<class T>
 void RP::GuiManager::RegisterRenderFunctionForWidget(std::function<void(std::shared_ptr<T>)> function) {
     const char* type = typeid(T).name();

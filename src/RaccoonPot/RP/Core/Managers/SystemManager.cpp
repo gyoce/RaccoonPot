@@ -1,6 +1,6 @@
-#include "SystemManager.hpp"
+#include "RP/Core/Managers/SystemManager.hpp"
 
-#include "../Systems/System.hpp"
+#include "RP/Core/Systems/System.hpp"
 
 using namespace RP;
 

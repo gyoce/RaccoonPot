@@ -4,7 +4,7 @@
 #include <queue>
 #include <array>
 
-#include "../Types.hpp"
+#include <RP/Types.hpp>
 
 namespace RP {
 

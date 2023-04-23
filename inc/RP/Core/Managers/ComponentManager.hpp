@@ -4,8 +4,8 @@
 #include <unordered_map>
 #include <memory>
 
-#include "../Types.hpp"
-#include "../Components/ComponentArray.hpp"
+#include <RP/Types.hpp>
+#include <RP/Core/Components/ComponentArray.hpp>
 
 namespace RP {
 
@@ -29,6 +29,6 @@ namespace RP {
 
 }
 
-#include "ComponentManager.inl"
+#include <RP/Core/Managers/ComponentManager.inl>
 
 #endif // RP_COMPONENT_MANAGER_HPP

@@ -1,5 +1,3 @@
-#include "EventManager.hpp"
-
 #include <cassert>
 
 template<typename T>

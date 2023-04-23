@@ -1,4 +1,4 @@
-#include "EntityManager.hpp"
+#include "RP/Core/Managers/EntityManager.hpp"
 
 #include <cassert>
 

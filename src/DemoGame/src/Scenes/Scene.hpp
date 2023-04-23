@@ -15,7 +15,6 @@ protected:
     virtual void Event();
     virtual void Draw();
 
-
     bool run = false;
     SceneAction action{};
     SDL_Renderer* renderer = nullptr;

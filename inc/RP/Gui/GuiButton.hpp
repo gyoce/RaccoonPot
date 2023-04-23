@@ -1,7 +1,7 @@
 #ifndef RP_GUI_BUTTON_HPP
 #define RP_GUI_BUTTON_HPP
 
-#include "GuiWidget.hpp"
+#include <RP/Gui/GuiWidget.hpp>
 
 namespace RP {
 

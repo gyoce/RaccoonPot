@@ -4,7 +4,7 @@
 #include <array>
 #include <unordered_map>
 
-#include "../Types.hpp"
+#include <RP/Types.hpp>
 
 namespace RP {
 
@@ -36,6 +36,6 @@ namespace RP {
 
 }
 
-#include "ComponentArray.inl"
+#include <RP/Core/Components/ComponentArray.inl>
 
 #endif // RP_COMPONENT_ARRAY_HPP

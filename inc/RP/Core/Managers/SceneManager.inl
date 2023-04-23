@@ -1,5 +1,3 @@
-#include "SceneManager.hpp"
-
 #include <algorithm>
 #include <cassert>
 

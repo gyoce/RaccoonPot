@@ -4,8 +4,8 @@
 #include <memory>
 #include <vector>
 
-#include "EventManager.hpp"
-#include "../Types.hpp"
+#include <RP/Core/Managers/EventManager.hpp>
+#include <RP/Types.hpp>
 
 namespace RP {
 
@@ -42,6 +42,6 @@ namespace RP {
 
 }
 
-#include "GuiManager.inl"
+#include <RP/Core/Managers/GuiManager.inl>
 
 #endif // RP_GUI_MANAGER_HPP

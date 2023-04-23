@@ -1,5 +1,3 @@
-#include "SystemManager.hpp"
-
 #include <cassert>
 
 template<class T>

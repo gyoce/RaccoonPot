@@ -1,6 +1,6 @@
-#include "GuiManager.hpp"
+#include "RP/Core/Managers/GuiManager.hpp"
 
-#include "../../Gui/GuiButton.hpp"
+#include "RP/Gui/GuiButton.hpp"
 
 using namespace RP;
 

@@ -30,6 +30,6 @@ namespace RP {
 
 }
 
-#include "EventManager.inl"
+#include <RP/Core/Managers/EventManager.inl>
 
 #endif // RP_EVENT_MANAGER_HPP

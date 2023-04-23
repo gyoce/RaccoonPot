@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 
-#include "../Types.hpp"
+#include <RP/Types.hpp>
 
 namespace RP {
 
@@ -23,6 +23,6 @@ namespace RP {
 
 }
 
-#include "SceneManager.inl"
+#include <RP/Core/Managers/SceneManager.inl>
 
 #endif // RP_SCENE_MANAGER_HPP

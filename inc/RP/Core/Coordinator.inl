@@ -1,8 +1,6 @@
-#include "Coordinator.hpp"
-
-#include "Managers/EntityManager.hpp"
-#include "Managers/SystemManager.hpp"
-#include "Managers/ComponentManager.hpp"
+#include <RP/Core/Managers/EntityManager.hpp>
+#include <RP/Core/Managers/SystemManager.hpp>
+#include <RP/Core/Managers/ComponentManager.hpp>
 
 template<class T>
 void RP::Coordinator::RegisterComponent() const {

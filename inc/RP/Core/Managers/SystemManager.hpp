@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <memory>
 
-#include "../Types.hpp"
+#include <RP/Types.hpp>
 
 namespace RP {
 
@@ -22,6 +22,6 @@ namespace RP {
 
 }
 
-#include "SystemManager.inl"
+#include <RP/Core/Managers/SystemManager.inl>
 
 #endif // RP_SYSTEM_MANAGER_HPP

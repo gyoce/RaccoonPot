@@ -1,6 +1,6 @@
-#include "SceneManager.hpp"
+#include "RP/Core/Managers/SceneManager.hpp"
 
-#include "../Scene.hpp"
+#include "RP/Core/Scene.hpp"
 
 using namespace RP;
 
