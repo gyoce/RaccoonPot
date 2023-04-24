@@ -1,8 +1,19 @@
 #include "RP/Core/Managers/GuiManager.hpp"
 
+#include <stack>
+
+#include "RP/Core/Managers/EventManager.hpp"
 #include "RP/Gui/GuiButton.hpp"
+#include "RP/Gui/GuiPanel.hpp"
 
 using namespace RP;
+
+GuiManager::GuiManager(const int width, const int height, IGuiRenderSystemPtr renderSystem)
+    : renderSystem(std::move(renderSystem)) {
+    mainPanel = std::make_shared<GuiPanel>();
+    mainPanel->Width = width;
+    mainPanel->Height = height;
+}
 
 void GuiManager::RegisterEventManager(const EventManagerPtr& eventManager) {
     this->eventManager = eventManager;
@@ -13,23 +24,48 @@ void GuiManager::RegisterClickEvent(const int event) const {
     eventManager->Bind<void(int, int)>(event, [this](const int x, const int y) { checkForClickOnWidgetButton(x, y); });
 }
 
+void GuiManager::RegisterWindowResizeEvent(const int event) const {
+    assert(eventManager != nullptr && "Event Manager not registered.");
+    eventManager->Bind<void(int, int)>(event, [this](const int width, const int height) { windowResized(width, height); });
+}
+
 void GuiManager::Render() const {
-    for (const std::pair<const char*, IWidgetFunctionPtr> pair : mapWidgets) {
-        pair.second->RenderWidgets();
+    std::stack<GuiWidgetPtr> stackOfWidgets{};
+    stackOfWidgets.push(mainPanel);
+    while (!stackOfWidgets.empty()) {
+        const GuiWidgetPtr widget = stackOfWidgets.top();
+        stackOfWidgets.pop();
+        widget->Draw(renderSystem);
+        for (const GuiWidgetPtr& subWidget : widget->Children) {
+            stackOfWidgets.push(subWidget);
+        }
     }
 }
 
 void GuiManager::checkForClickOnWidgetButton(const int x, const int y) const {
-    for (const std::pair<const char*, IWidgetFunctionPtr> pair : mapWidgets) {
-        for (const GuiWidgetPtr& widget : pair.second->Widgets) {
-            GuiButtonPtr button = std::dynamic_pointer_cast<GuiButton>(widget);
-            if (button == nullptr) {
-                continue;
-            }
+    std::stack<GuiWidgetPtr> stackOfWidgets{};
+    stackOfWidgets.push(mainPanel);
+    while (!stackOfWidgets.empty()) {
+        const GuiWidgetPtr widget = stackOfWidgets.top();
+        stackOfWidgets.pop();
 
-            if (x >= button->x && x <= button->x + button->Width && y >= button->y && y <= button->y + button->Height) {
+        if (GuiButtonPtr button = std::dynamic_pointer_cast<GuiButton>(widget); button != nullptr) {
+            if (clickIsInsideButton(x, y, button)) {
                 button->Click();
             }
         }
+
+        for (const GuiWidgetPtr& subWidget : widget->Children) {
+            stackOfWidgets.push(subWidget);
+        }
     }
+}
+
+bool GuiManager::clickIsInsideButton(const int x, const int y, const GuiButtonPtr& button) {
+    return x >= button->Position.x && x <= button->Position.y + button->Width && y >= button->Position.x && y <= button->Position.y + button->Height;
+}
+
+void GuiManager::windowResized(const int width, const int height) const {
+    mainPanel->Width = width;
+    mainPanel->Height = height;
 }

@@ -7,7 +7,7 @@
 
 class GameScene final : public Scene {
 public:
-    explicit GameScene(SDL_Renderer* renderer, SDL_Texture* spriteSheet);
+    explicit GameScene(SDL_Renderer* renderer, SDL_Texture* spriteSheet, const std::shared_ptr<SdlGuiRenderSystem>& renderSystem);
     void Init();
 
 private:

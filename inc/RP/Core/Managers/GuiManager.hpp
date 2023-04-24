@@ -2,42 +2,29 @@
 #define RP_GUI_MANAGER_HPP
 
 #include <memory>
-#include <vector>
 
-#include <RP/Core/Managers/EventManager.hpp>
 #include <RP/Types.hpp>
 
 namespace RP {
 
     class GuiManager {
     public:
+        explicit GuiManager(int width, int height, IGuiRenderSystemPtr renderSystem);
         void RegisterEventManager(const EventManagerPtr& eventManager);
-        template<class T> void RegisterRenderFunctionForWidget(std::function<void(std::shared_ptr<T>)> function);
         void RegisterClickEvent(int event) const;
+        void RegisterWindowResizeEvent(int event) const;
         template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(Args&&... args);
+        //template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(const GuiWidgetPtr& parent, Args&&... args);
         void Render() const;
 
     private:
-        class IWidgetFunction { 
-        public:
-            virtual ~IWidgetFunction() = default;
-            virtual void RenderWidgets() const = 0;
-            std::vector<GuiWidgetPtr> Widgets{};
-        };
-        typedef std::shared_ptr<IWidgetFunction> IWidgetFunctionPtr;
-
-        template<class T>
-        class WidgetFunction final : public IWidgetFunction {
-        public:
-            void RenderWidgets() const override;
-
-            std::function<void(std::shared_ptr<T>)> RenderFunction;
-        };
-
+        static bool clickIsInsideButton(int x, int y, const GuiButtonPtr& button);
         void checkForClickOnWidgetButton(int x, int y) const;
-
+        void windowResized(int width, int height) const;
+         
         EventManagerPtr eventManager = nullptr;
-        std::unordered_map<const char*, IWidgetFunctionPtr> mapWidgets;
+        GuiPanelPtr mainPanel = nullptr;
+        IGuiRenderSystemPtr renderSystem = nullptr;
     };
 
 }

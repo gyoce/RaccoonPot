@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <RP/RP.hpp>
 
+#include "SdlGuiRenderSystem.hpp"
+
 class Game {
 public:
     ~Game();
@@ -25,6 +27,7 @@ private:
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
     SDL_Texture* spriteSheet = nullptr;
+    std::shared_ptr<SdlGuiRenderSystem> renderSystem = nullptr;
     std::unique_ptr<RP::SceneManager> sceneManager = nullptr;
 };
 

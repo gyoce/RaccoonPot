@@ -5,10 +5,11 @@
 #include <RP/RP.hpp>
 
 #include "SceneAction.hpp"
+#include "../SdlGuiRenderSystem.hpp"
 
 class Scene : public RP::Scene {
 public:
-    explicit Scene(SDL_Renderer* renderer, SDL_Texture* spriteSheet);
+    explicit Scene(SDL_Renderer* renderer, SDL_Texture* spriteSheet, const std::shared_ptr<SdlGuiRenderSystem>& renderSystem);
 
 protected:
     int Loop() override;

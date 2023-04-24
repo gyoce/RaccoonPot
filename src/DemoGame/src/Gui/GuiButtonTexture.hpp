@@ -4,11 +4,12 @@
 #include <SDL2/SDL.h>
 #include <RP/RP.hpp>
 
-class GuiButtonTexture : public RP::GuiButton {
+class GuiButtonTexture final : public RP::GuiButton {
 public:
     explicit GuiButtonTexture(std::function<void()> callback);
     ~GuiButtonTexture() override;
     void Click() override;
+    void Draw(const RP::IGuiRenderSystemPtr& renderSystem) override;
 
     SDL_Texture* Texture = nullptr;
 

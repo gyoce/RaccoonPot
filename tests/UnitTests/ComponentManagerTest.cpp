@@ -2,8 +2,6 @@
 
 #include <CommonTypes.hpp>
 
-#include <RP/RP.hpp>
-
 using namespace RP;
 
 TEST(ComponentManager, GetComponentType) {

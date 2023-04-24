@@ -16,6 +16,7 @@ target_sources(${RACCOON_POT_LIBRARY} PRIVATE
     RP/Core/Managers/ComponentManager.cpp RP/Core/Managers/SystemManager.cpp RP/Core/Managers/EntityManager.cpp 
         RP/Core/Managers/SceneManager.cpp RP/Core/Managers/GuiManager.cpp
     RP/Core/Coordinator.cpp     
-    RP/Math/Vector2.cpp
+    RP/Math/Vector2.cpp RP/Math/Vector3Int.cpp
     RP/Logs/Log.cpp
-)
+    RP/Gui/GuiWidget.cpp
+ "RP/Gui/GuiPanel.cpp")

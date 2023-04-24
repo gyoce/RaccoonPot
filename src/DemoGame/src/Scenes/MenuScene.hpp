@@ -7,7 +7,7 @@
 
 class MenuScene final : public Scene {
 public:
-    explicit MenuScene(SDL_Renderer* renderer, SDL_Texture* spriteSheet);
+    explicit MenuScene(SDL_Renderer* renderer, SDL_Texture* spriteSheet, const std::shared_ptr<SdlGuiRenderSystem>& renderSystem);
     void Init();
 
 private:

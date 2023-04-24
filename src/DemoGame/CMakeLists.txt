@@ -7,8 +7,7 @@ include_directories(
 
 add_executable(${DEMO_GAME_EXEC_NAME} 
     Main.cpp
-    src/Game.cpp
-    src/Utils.cpp
+    src/Game.cpp src/Utils.cpp src/SdlGuiRenderSystem.cpp
     src/Scenes/Scene.cpp src/Scenes/MenuScene.cpp src/Scenes/GameScene.cpp
     src/Gui/GuiButtonTexture.cpp)
 

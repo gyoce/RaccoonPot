@@ -15,6 +15,7 @@ Game::~Game() {
 
 void Game::Init() {
     init = initUi() && initSpriteSheet();
+    renderSystem = std::make_shared<SdlGuiRenderSystem>(renderer);
     initScenes();
 }
 
@@ -37,7 +38,7 @@ bool Game::initSdl() {
 
 bool Game::initWindow() {
     RP::Log("Initializing Window");
-    window = SDL_CreateWindow("DemoGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+    window = SDL_CreateWindow("DemoGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         RP::LogError("Error while initializing Window : %s", SDL_GetError());
         return false;
@@ -57,8 +58,8 @@ bool Game::initRenderer() {
 
 void Game::initScenes() {
     sceneManager = std::make_unique<RP::SceneManager>(SaMenu);
-    sceneManager->RegisterScene<MenuScene>(SaMenu, renderer, spriteSheet)->Init();
-    sceneManager->RegisterScene<GameScene>(SaGame, renderer, spriteSheet)->Init();
+    sceneManager->RegisterScene<MenuScene>(SaMenu, renderer, spriteSheet, renderSystem)->Init();
+    sceneManager->RegisterScene<GameScene>(SaGame, renderer, spriteSheet, renderSystem)->Init();
 }
 
 bool Game::initSpriteSheet() {

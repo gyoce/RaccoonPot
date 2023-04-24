@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <RP/RP.hpp>
+#include <CommonTypes.hpp>
 
 using namespace RP;
 

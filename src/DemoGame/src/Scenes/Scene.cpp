@@ -3,17 +3,13 @@
 #include "../Events.hpp"
 #include "../Gui/GuiButtonTexture.hpp"
 
-Scene::Scene(SDL_Renderer* renderer, SDL_Texture* spriteSheet)
+Scene::Scene(SDL_Renderer* renderer, SDL_Texture* spriteSheet, const std::shared_ptr<SdlGuiRenderSystem>& renderSystem)
     : renderer(renderer), spriteSheet(spriteSheet) {
     eventManager = std::make_shared<RP::EventManager>();
     eventManager->Bind<void()>(EQuit, [this] { run = false; action = SaQuit; });
-    guiManager = std::make_shared<RP::GuiManager>();
+    guiManager = std::make_shared<RP::GuiManager>(1280, 720, renderSystem);
     guiManager->RegisterEventManager(eventManager);
     guiManager->RegisterClickEvent(EClick);
-    guiManager->RegisterRenderFunctionForWidget<GuiButtonTexture>([this](const std::shared_ptr<GuiButtonTexture>& button) {
-        const SDL_Rect rect = { button->x, button->y, button->Width, button->Height };
-        SDL_RenderCopy(this->renderer, button->Texture, nullptr, &rect);
-    });
 }
 
 int Scene::Loop() {
