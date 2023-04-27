@@ -8,7 +8,7 @@ class GuiManagerTest : public ::testing::Test {
 protected:
     void SetUp() override {
         eventManager = std::make_shared<EventManager>();
-        guiManager = std::make_shared<GuiManager>(1280, 720);
+        guiManager = std::make_shared<GuiManager>();
         guiManager->RegisterEventManager(eventManager);
         guiManager->RegisterClickEvent(1);
         guiManager->RegisterWindowResizeEvent(2);
@@ -54,7 +54,7 @@ TEST_F(GuiManagerTest, ResizeWindow) {
 #ifndef NDEBUG
 
 TEST(GuiManagerDeath, RegisterClickEventBeforeRegisterEventManager) {
-    GuiManager guiManager{1280, 720};
+    GuiManager guiManager{};
     ASSERT_DEATH({
         guiManager.RegisterClickEvent(1);
     }, "");

@@ -18,7 +18,7 @@ namespace RP {
         void SetBaseAction(int baseAction);
     
     private:
-        SDL_Renderer* renderer;
+        SDL_Renderer* renderer = nullptr;
         int baseAction{};
         std::unordered_map<int, ScenePtr> scenes{};
         std::vector<const char*> sceneNames{};

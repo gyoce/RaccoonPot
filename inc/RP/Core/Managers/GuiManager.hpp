@@ -10,7 +10,7 @@ namespace RP {
 
     class GuiManager {
     public:
-        explicit GuiManager(int width, int height);
+        GuiManager();
         void RegisterEventManager(const EventManagerPtr& eventManager);
         void RegisterClickEvent(int event) const;
         void RegisterWindowResizeEvent(int event) const;

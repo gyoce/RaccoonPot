@@ -3,7 +3,7 @@
 
 class WidgetTest: public RP::GuiButton {
 public:
-    WidgetTest() : RP::GuiButton(nullptr) {  };
+    WidgetTest() : RP::GuiButton(nullptr) {  }
     WidgetTest(int value) : RP::GuiButton(nullptr), ValueByConstructor(value) {  }
 
     bool CallClickFunction = false;

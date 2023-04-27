@@ -9,10 +9,8 @@
 
 using namespace RP;
 
-GuiManager::GuiManager(const int width, const int height) {
+GuiManager::GuiManager() {
     mainPanel = std::make_shared<GuiPanel>();
-    mainPanel->Width = width;
-    mainPanel->Height = height;
 }
 
 void GuiManager::RegisterEventManager(const EventManagerPtr& eventManager) {

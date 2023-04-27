@@ -11,13 +11,17 @@ Scene::Scene() {
     eventManager->Bind<void()>(SDL_QUIT, [this] { run = false; action = -1; });
     eventManager->Bind<void(int, int)>(SDL_MOUSEBUTTONDOWN, [](const int x, const int y) { Log("Click @[%d, %d]", x, y); });
 
-    guiManager = std::make_shared<GuiManager>(1280, 720);
+    guiManager = std::make_shared<GuiManager>();
     guiManager->RegisterEventManager(eventManager);
     guiManager->RegisterClickEvent(SDL_MOUSEBUTTONDOWN);
+    guiManager->RegisterWindowResizeEvent(SDL_WINDOWEVENT_RESIZED);
 }
 
 void Scene::SetRenderer(SDL_Renderer* renderer) {
     this->renderer = renderer;
+    int width, height;
+    SDL_GetRendererOutputSize(renderer, &width, &height);
+    eventManager->Dispatch<void(int, int)>(SDL_WINDOWEVENT_RESIZED, width, height);
 }
 
 int Scene::Loop() {
@@ -46,6 +50,12 @@ void Scene::Event() {
         case SDL_MOUSEBUTTONDOWN:
             eventManager->Dispatch<void(int, int)>(SDL_MOUSEBUTTONDOWN, event.motion.x, event.motion.y);
             break;
+        case SDL_WINDOWEVENT:
+            switch (event.window.event) {
+            case SDL_WINDOWEVENT_RESIZED:
+                eventManager->Dispatch<void(int, int)>(SDL_WINDOWEVENT_RESIZED, event.window.data1, event.window.data2);
+                break;
+            }
         }
     }
 }
