@@ -15,6 +15,7 @@ namespace RP {
 
         virtual void AddChild(const GuiWidgetPtr& widget);
         virtual void Draw(SDL_Renderer* renderer) = 0;
+        virtual void SetPosition(int x, int y);
 
         int Width{}, Height{};
         Vector3Int Position{};

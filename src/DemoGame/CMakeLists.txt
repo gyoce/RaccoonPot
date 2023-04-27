@@ -7,8 +7,6 @@ include_directories(
 
 add_executable(${DEMO_GAME_EXEC_NAME} 
     Main.cpp
-    src/DemoGame.cpp
-    src/Scenes/GameScene.cpp src/Scenes/MenuScene.cpp
 )
 
 target_link_libraries(${DEMO_GAME_EXEC_NAME} PRIVATE ${RACCOON_POT_LIBRARY})
