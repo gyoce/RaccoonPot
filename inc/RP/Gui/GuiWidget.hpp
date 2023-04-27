@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include <SDL2/SDL.h>
 #include <RP/Types.hpp>
 #include <RP/Math/Vector3Int.hpp>
 
@@ -13,9 +14,9 @@ namespace RP {
         virtual ~GuiWidget() = default;
 
         virtual void AddChild(const GuiWidgetPtr& widget);
-        virtual void Draw(const IGuiRenderSystemPtr& renderSystem) = 0;
+        virtual void Draw(SDL_Renderer* renderer) = 0;
 
-        int Width, Height;
+        int Width{}, Height{};
         Vector3Int Position{};
         Vector3Int LocalPosition{};
         std::vector<GuiWidgetPtr> Children{};

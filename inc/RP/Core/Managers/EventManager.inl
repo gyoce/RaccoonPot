@@ -1,5 +1,3 @@
-#include <cassert>
-
 template<typename T>
 void RP::EventManager::Bind(int event, const std::function<T>& callback) {
     if (const auto iterator = eventFunctions.find(event); iterator == eventFunctions.end()) {
@@ -14,7 +12,9 @@ void RP::EventManager::Bind(int event, const std::function<T>& callback) {
 
 template<typename T, class... Args>
 void RP::EventManager::Dispatch(const int event, Args&&... args) {
-    assert(eventFunctions.find(event) != eventFunctions.end() && "Event didn't bind.");
+    if (eventFunctions.find(event) == eventFunctions.end()) {
+        return;
+    }
     std::shared_ptr<EventFunction<T>> eventFunction = std::static_pointer_cast<EventFunction<T>>(eventFunctions[event]);
     std::vector<std::function<T>>& functions = eventFunction->Functions;
     for (const auto& callback : functions) {

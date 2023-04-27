@@ -3,19 +3,19 @@
 
 #include <memory>
 
+#include <SDL2/SDL.h>
 #include <RP/Types.hpp>
 
 namespace RP {
 
     class GuiManager {
     public:
-        explicit GuiManager(int width, int height, IGuiRenderSystemPtr renderSystem);
+        explicit GuiManager(int width, int height);
         void RegisterEventManager(const EventManagerPtr& eventManager);
         void RegisterClickEvent(int event) const;
         void RegisterWindowResizeEvent(int event) const;
         template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(Args&&... args);
-        //template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(const GuiWidgetPtr& parent, Args&&... args);
-        void Render() const;
+        void Render(SDL_Renderer* renderer) const;
 
     private:
         static bool clickIsInsideButton(int x, int y, const GuiButtonPtr& button);
@@ -24,7 +24,6 @@ namespace RP {
          
         EventManagerPtr eventManager = nullptr;
         GuiPanelPtr mainPanel = nullptr;
-        IGuiRenderSystemPtr renderSystem = nullptr;
     };
 
 }

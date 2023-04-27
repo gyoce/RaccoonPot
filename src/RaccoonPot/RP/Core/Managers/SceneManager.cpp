@@ -4,8 +4,8 @@
 
 using namespace RP;
 
-SceneManager::SceneManager(const int baseAction) 
-    : baseAction(baseAction) {  }
+SceneManager::SceneManager(SDL_Renderer* renderer)
+    : renderer(renderer) {  }
 
 int SceneManager::Loop() {
     assert(scenes.find(baseAction) != scenes.end() && "Scene with base action not present.");
@@ -16,4 +16,8 @@ int SceneManager::Loop() {
         loopRes = actualScene->Loop();
     }
     return loopRes;
+}
+
+void SceneManager::SetBaseAction(const int baseAction) {
+    this->baseAction = baseAction;
 }

@@ -3,8 +3,8 @@
 
 class WidgetTest: public RP::GuiButton {
 public:
-    WidgetTest() = default;
-    WidgetTest(int value) : ValueByConstructor(value) {  }
+    WidgetTest() : RP::GuiButton(nullptr) {  };
+    WidgetTest(int value) : RP::GuiButton(nullptr), ValueByConstructor(value) {  }
 
     bool CallClickFunction = false;
     bool CallDrawFunction = false;
@@ -14,13 +14,9 @@ public:
         CallClickFunction = true;
     }
 
-    void Draw(const RP::IGuiRenderSystemPtr& renderSystem) override {
+    void Draw(SDL_Renderer* renderer) override {
         CallDrawFunction = true;
     }
-};
-
-class GuiRenderSystemTest final : public RP::IGuiRenderSystem {
-
 };
 
 #endif // TESTS_COMMON_GUI_HPP

@@ -39,17 +39,23 @@ namespace RP {
     class GuiWidget;
     typedef std::shared_ptr<GuiWidget> GuiWidgetPtr;
 
-    class IGuiRenderSystem;
-    typedef std::shared_ptr<IGuiRenderSystem> IGuiRenderSystemPtr;
-
     class Scene;
     typedef std::shared_ptr<Scene> ScenePtr;
+
+    class SceneManager;
+    typedef std::shared_ptr<SceneManager> SceneManagerPtr;
+
+    class SpriteManager;
+    typedef std::shared_ptr<SpriteManager> SpriteManagerPtr;
 
     class System;
     typedef std::shared_ptr<System> SystemPtr;
 
     class SystemManager;
     typedef std::shared_ptr<SystemManager> SystemManagerPtr;
+
+    class WindowManager;
+    typedef std::shared_ptr<WindowManager> WindowManagerPtr;
 }
 
 #endif // RP_TYPES_HPP

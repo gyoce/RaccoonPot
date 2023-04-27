@@ -1,6 +1,7 @@
 #include "RP/Core/Managers/GuiManager.hpp"
 
 #include <stack>
+#include <cassert>
 
 #include "RP/Core/Managers/EventManager.hpp"
 #include "RP/Gui/GuiButton.hpp"
@@ -8,8 +9,7 @@
 
 using namespace RP;
 
-GuiManager::GuiManager(const int width, const int height, IGuiRenderSystemPtr renderSystem)
-    : renderSystem(std::move(renderSystem)) {
+GuiManager::GuiManager(const int width, const int height) {
     mainPanel = std::make_shared<GuiPanel>();
     mainPanel->Width = width;
     mainPanel->Height = height;
@@ -29,13 +29,13 @@ void GuiManager::RegisterWindowResizeEvent(const int event) const {
     eventManager->Bind<void(int, int)>(event, [this](const int width, const int height) { windowResized(width, height); });
 }
 
-void GuiManager::Render() const {
+void GuiManager::Render(SDL_Renderer* renderer) const {
     std::stack<GuiWidgetPtr> stackOfWidgets{};
     stackOfWidgets.push(mainPanel);
     while (!stackOfWidgets.empty()) {
         const GuiWidgetPtr widget = stackOfWidgets.top();
         stackOfWidgets.pop();
-        widget->Draw(renderSystem);
+        widget->Draw(renderer);
         for (const GuiWidgetPtr& subWidget : widget->Children) {
             stackOfWidgets.push(subWidget);
         }

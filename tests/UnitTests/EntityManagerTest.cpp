@@ -31,6 +31,8 @@ TEST(EntityManager, DestroyEntity) {
     EXPECT_NE(signature, signatureGet);
 }
 
+#ifndef NDEBUG
+
 TEST(EntityManagerDeath, TooManyEntities) {
     EntityManager em{};
     for (int i = 0; i < MAX_ENTITIES; i++) {
@@ -54,3 +56,5 @@ TEST(EntityManagerDeath, EntityOutOfRange) {
         em.SetSignature(entity, Signature{});
     }, "");
 }
+
+#endif // NDEBUG

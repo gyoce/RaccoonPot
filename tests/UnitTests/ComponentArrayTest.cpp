@@ -12,6 +12,8 @@ TEST(ComponentArray, AssociateDataForComponent) {
     EXPECT_EQ(ct.x, 5);
 }
 
+#ifndef NDEBUG
+
 TEST(ComponentArrayDeath, RemoveDataNotInserted) {
     Entity entity = 0;
     ComponentArray<ComponentTest> ca{};
@@ -38,3 +40,5 @@ TEST(ComponentArrayDeath, GetComponentAfterEntityDestroyed) {
         ca.GetData(entity);
     }, "");
 }
+
+#endif // NDEBUG

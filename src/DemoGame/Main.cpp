@@ -1,11 +1,9 @@
 #define SDL_MAIN_HANDLED
-#include <iostream>
 
-#include "Game.hpp"
+#include "DemoGame.hpp"
 
 int main() {
-    std::cout << "Hello World!\n";
-    Game game{};
+    DemoGame game{};
     game.Init();
     return game.Run();
-}   
+}

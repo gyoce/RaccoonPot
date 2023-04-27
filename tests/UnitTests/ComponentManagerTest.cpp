@@ -21,6 +21,8 @@ TEST(ComponentManager, AssociateComponentCorrectly) {
     EXPECT_EQ(ct.x, 5);
 }
 
+#ifndef NDEBUG
+
 TEST(ComponentManagerDeath, GetComponentAfterRemove) {
     Entity entity = 0;
     ComponentManager cm{};
@@ -73,3 +75,5 @@ TEST(ComponentManagerDeath, RemoveComponentNotRegistered) {
         cm.RemoveComponent<ComponentTest>(entity);
     }, "");
 }
+
+#endif // NDEBUG

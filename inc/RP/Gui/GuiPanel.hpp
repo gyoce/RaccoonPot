@@ -7,7 +7,7 @@ namespace RP {
 
     class GuiPanel: public GuiWidget {
     public:
-        void Draw(const IGuiRenderSystemPtr& renderSystem) override;
+        void Draw(SDL_Renderer* renderer) override;
     };
 
 }

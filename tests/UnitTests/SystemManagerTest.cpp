@@ -24,6 +24,8 @@ TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
     EXPECT_EQ(system->Entities.size(), 0);
 }
 
+#ifndef NDEBUG
+
 TEST(SystemManagerDeath, RegisterSystemTwice) {
     SystemManager sm{};
     std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
@@ -39,3 +41,5 @@ TEST(SystemManagerDeath, SetSignatureBeforeRegistered) {
         sm.SetSignature<SystemTest>(signature);
     }, "");
 }
+
+#endif // NDEBUG

@@ -33,10 +33,3 @@ TEST_F(EventManagerTest, AddAndDispatchComplexEvent) {
     eventManager.Dispatch<void(int)>(2, 19);
     EXPECT_TRUE(x == 19);
 }
-
-TEST(EventManagerDeath, DipatchUnknownEvent) {
-    EventManager em{};
-    ASSERT_DEATH({
-        em.Dispatch<void()>(1);
-    }, "");
-}

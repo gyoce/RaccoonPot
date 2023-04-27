@@ -1,7 +1,10 @@
 #ifndef RP_HPP
 #define RP_HPP
 
+#include <SDL2/SDL.h>
+
 #include <RP/Types.hpp>
+#include <RP/Game.hpp>
 
 // CORE
 #include <RP/Core/Coordinator.hpp>
@@ -19,7 +22,6 @@
 #include <RP/Gui/GuiButton.hpp>
 #include <RP/Gui/GuiWidget.hpp>
 #include <RP/Gui/GuiPanel.hpp>
-#include <RP/Gui/IGuiRenderSystem.hpp>
 
 // LOGS
 #include <RP/Logs/Log.hpp>

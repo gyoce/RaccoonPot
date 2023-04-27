@@ -2,6 +2,6 @@
 
 using namespace RP;
 
-void GuiPanel::Draw(const IGuiRenderSystemPtr& renderSystem) {
+void GuiPanel::Draw(SDL_Renderer* renderer) {
     // Do nothing
 }

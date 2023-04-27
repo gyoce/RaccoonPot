@@ -8,8 +8,7 @@ class GuiManagerTest : public ::testing::Test {
 protected:
     void SetUp() override {
         eventManager = std::make_shared<EventManager>();
-        renderSystem = std::make_shared<GuiRenderSystemTest>();
-        guiManager = std::make_shared<GuiManager>(1280, 720, renderSystem);
+        guiManager = std::make_shared<GuiManager>(1280, 720);
         guiManager->RegisterEventManager(eventManager);
         guiManager->RegisterClickEvent(1);
         guiManager->RegisterWindowResizeEvent(2);
@@ -17,13 +16,12 @@ protected:
     
     EventManagerPtr eventManager = nullptr;
     GuiManagerPtr guiManager = nullptr;
-    IGuiRenderSystemPtr renderSystem = nullptr;
 };
 
 TEST_F(GuiManagerTest, CallRenderFunction) {
     std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     EXPECT_FALSE(widget->CallDrawFunction);
-    guiManager->Render();
+    guiManager->Render(nullptr);
     EXPECT_TRUE(widget->CallDrawFunction);
 }
 
@@ -53,9 +51,13 @@ TEST_F(GuiManagerTest, ResizeWindow) {
     EXPECT_TRUE(widget->Parent->Width == 1920 && widget->Parent->Height == 1080);
 }
 
+#ifndef NDEBUG
+
 TEST(GuiManagerDeath, RegisterClickEventBeforeRegisterEventManager) {
-    GuiManager guiManager{1280,720, nullptr};
+    GuiManager guiManager{1280, 720};
     ASSERT_DEATH({
         guiManager.RegisterClickEvent(1);
     }, "");
 }
+
+#endif // NDEBUG
