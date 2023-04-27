@@ -5,6 +5,7 @@
 
 #include <RP/Types.hpp>
 #include <RP/Game.hpp>
+#include <RP/GameOptions.hpp>
 
 // CORE
 #include <RP/Core/Coordinator.hpp>

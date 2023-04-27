@@ -5,7 +5,8 @@
 
 using namespace RP;
 
-Game::Game() {
+Game::Game(GameOptions options)
+    : options(std::move(options)) {
     init();
     sceneManager = std::make_shared<SceneManager>(renderer);
 }
@@ -35,7 +36,7 @@ bool Game::initSdl() {
 
 bool Game::initWindow() {
     Log("Initializing Window");
-    window = SDL_CreateWindow("DemoGame", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow(options.Title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, options.Width, options.Height, SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         LogError("Error while initializing Window : %s", SDL_GetError());
         return false;
@@ -45,10 +46,18 @@ bool Game::initWindow() {
 
 bool Game::initRenderer() {
     Log("Initializing Renderer");
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    renderer = SDL_CreateRenderer(window, -1, getFlagsForRenderer());
     if (renderer == nullptr) {
         LogError("Error while initializing Renderer : %s", SDL_GetError());
         return false;
     }
     return true;
+}
+
+int Game::getFlagsForRenderer() const {
+    int flags = SDL_RENDERER_ACCELERATED;
+    if (options.VSync) {
+        flags |= SDL_RENDERER_PRESENTVSYNC;
+    }
+    return flags;
 }

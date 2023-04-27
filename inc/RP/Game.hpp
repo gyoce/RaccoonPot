@@ -3,12 +3,13 @@
 
 #include <SDL2/SDL.h>
 #include <RP/Types.hpp>
+#include <RP/GameOptions.hpp>
 
 namespace RP {
 
     class Game {
     public:
-        Game();
+        explicit Game(GameOptions options = {});
         virtual ~Game();
         int Run() const;
 
@@ -23,6 +24,9 @@ namespace RP {
         bool initWindow();
         bool initRenderer();
 
+        int getFlagsForRenderer() const;
+
+        GameOptions options;
         bool isInitialized = false;
     };
 

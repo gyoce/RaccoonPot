@@ -26,7 +26,7 @@ public:
 
 class DemoGame final: public RP::Game {
 public:
-    DemoGame() {
+    explicit DemoGame(const RP::GameOptions& options): Game(options) {
         sceneManager->SetBaseAction(SaMenu);
         sceneManager->RegisterScene<MenuScene>(SaMenu);
         sceneManager->RegisterScene<GameScene>(SaGame);
@@ -34,6 +34,12 @@ public:
 };
 
 int main() {
-    const DemoGame game{};
+    const RP::GameOptions options{
+        .VSync = true,
+        .Width = 1920,
+        .Height = 1080,
+        .Title = "DemoGame"
+    };
+    const DemoGame game{options};
     return game.Run();
 }
