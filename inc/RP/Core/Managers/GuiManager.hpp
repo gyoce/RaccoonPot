@@ -15,6 +15,7 @@ namespace RP {
         void RegisterClickEvent(int event) const;
         void RegisterWindowResizeEvent(int event) const;
         template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(Args&&... args);
+        void AddToMainPanel(const GuiWidgetPtr& widget) const;
         void Render(SDL_Renderer* renderer) const;
 
     private:
@@ -22,8 +23,8 @@ namespace RP {
         void checkForClickOnWidgetButton(int x, int y) const;
         void windowResized(int width, int height) const;
          
+        GuiWidgetPtr mainPanel = nullptr;
         EventManagerPtr eventManager = nullptr;
-        GuiPanelPtr mainPanel = nullptr;
     };
 
 }

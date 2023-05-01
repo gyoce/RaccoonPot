@@ -33,9 +33,6 @@ namespace RP {
     class GuiManager;
     typedef std::shared_ptr<GuiManager> GuiManagerPtr;
 
-    class GuiPanel;
-    typedef std::shared_ptr<GuiPanel> GuiPanelPtr;
-
     class GuiWidget;
     typedef std::shared_ptr<GuiWidget> GuiWidgetPtr;
 

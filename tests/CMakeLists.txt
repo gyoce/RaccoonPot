@@ -14,6 +14,7 @@ add_executable(${TEST_EXEC_NAME}
     UnitTests/LogTest.cpp
     UnitTests/SceneManagerTest.cpp
     UnitTests/SystemManagerTest.cpp
+    UnitTests/GuiWidgetTest.cpp
 
     IntegrationTests/CoordinatorTest.cpp
 )

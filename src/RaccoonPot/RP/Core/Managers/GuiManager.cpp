@@ -5,12 +5,11 @@
 
 #include "RP/Core/Managers/EventManager.hpp"
 #include "RP/Gui/GuiButton.hpp"
-#include "RP/Gui/GuiPanel.hpp"
 
 using namespace RP;
 
 GuiManager::GuiManager() {
-    mainPanel = std::make_shared<GuiPanel>();
+    mainPanel = std::make_shared<GuiWidget>();
 }
 
 void GuiManager::RegisterEventManager(const EventManagerPtr& eventManager) {
@@ -25,6 +24,10 @@ void GuiManager::RegisterClickEvent(const int event) const {
 void GuiManager::RegisterWindowResizeEvent(const int event) const {
     assert(eventManager != nullptr && "Event Manager not registered.");
     eventManager->Bind<void(int, int)>(event, [this](const int width, const int height) { windowResized(width, height); });
+}
+
+void GuiManager::AddToMainPanel(const GuiWidgetPtr& widget) const {
+    mainPanel->AddChild(widget);
 }
 
 void GuiManager::Render(SDL_Renderer* renderer) const {

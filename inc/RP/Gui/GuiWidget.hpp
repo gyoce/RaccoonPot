@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 #include <RP/Types.hpp>
 #include <RP/Math/Vector3Int.hpp>
+#include <RP/Gui/Anchors.hpp>
 
 namespace RP {
 
@@ -14,14 +15,24 @@ namespace RP {
         virtual ~GuiWidget() = default;
 
         virtual void AddChild(const GuiWidgetPtr& widget);
-        virtual void Draw(SDL_Renderer* renderer) = 0;
+        virtual void Draw(SDL_Renderer* renderer);
         virtual void SetPosition(int x, int y);
+        virtual void SetAnchor(HorizontalAnchor horizontalAnchor, VerticalAnchor verticalAnchor);
 
         int Width{}, Height{};
         Vector3Int Position{};
         Vector3Int LocalPosition{};
         std::vector<GuiWidgetPtr> Children{};
         GuiWidget* Parent = nullptr;
+
+    protected:
+        void UpdateChildrenPositions();
+
+        HorizontalAnchor horizontalAnchor = HorizontalAnchor::None;
+        VerticalAnchor verticalAnchor = VerticalAnchor::None;
+
+    private:
+        int getCorrectiveHeight(int indexOfChild) const;
     };
 
 }

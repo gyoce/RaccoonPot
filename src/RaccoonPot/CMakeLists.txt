@@ -32,5 +32,5 @@ target_sources(${RACCOON_POT_LIBRARY} PRIVATE
     RP/Core/Coordinator.cpp RP/Core/Scene.cpp
     RP/Math/Vector2.cpp RP/Math/Vector3Int.cpp
     RP/Logs/Log.cpp
-    RP/Gui/GuiWidget.cpp RP/Gui/GuiPanel.cpp RP/Gui/GuiButton.cpp
+    RP/Gui/GuiWidget.cpp RP/Gui/GuiButton.cpp
 )

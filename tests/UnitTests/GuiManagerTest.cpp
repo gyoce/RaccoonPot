@@ -20,6 +20,7 @@ protected:
 
 TEST_F(GuiManagerTest, CallRenderFunction) {
     std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    guiManager->AddToMainPanel(widget);
     EXPECT_FALSE(widget->CallDrawFunction);
     guiManager->Render(nullptr);
     EXPECT_TRUE(widget->CallDrawFunction);
@@ -27,12 +28,13 @@ TEST_F(GuiManagerTest, CallRenderFunction) {
 
 TEST_F(GuiManagerTest, CallConstructor) {
     std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>(10);
-    EXPECT_TRUE(widget->ValueByConstructor == 10);
+    EXPECT_EQ(widget->ValueByConstructor, 10);
 }
 
 TEST_F(GuiManagerTest, CallClickEvent) {
     std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     widget->Position.x = 100; widget->Position.y = 100; widget->Width = 10; widget->Height = 10;
+    guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(1, 10, 10); // Click missed
     EXPECT_FALSE(widget->CallClickFunction);
     eventManager->Dispatch<void(int, int)>(1, 101, 101); // Click inside
@@ -41,14 +43,15 @@ TEST_F(GuiManagerTest, CallClickEvent) {
 
 TEST_F(GuiManagerTest, WidgetCreateWithAParent) {
     std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    guiManager->AddToMainPanel(widget);
     EXPECT_TRUE(widget->Parent != nullptr);
 }
 
 TEST_F(GuiManagerTest, ResizeWindow) {
     std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
-    EXPECT_TRUE(widget->Parent->Width == 1280 && widget->Parent->Height == 720);
+    guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(2, 1920, 1080);
-    EXPECT_TRUE(widget->Parent->Width == 1920 && widget->Parent->Height == 1080);
+    EXPECT_EQ(widget->Parent->Width, 1920); EXPECT_EQ(widget->Parent->Height, 1080);
 }
 
 #ifndef NDEBUG

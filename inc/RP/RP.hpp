@@ -22,7 +22,7 @@
 // GUI
 #include <RP/Gui/GuiButton.hpp>
 #include <RP/Gui/GuiWidget.hpp>
-#include <RP/Gui/GuiPanel.hpp>
+#include <RP/Gui/Anchors.hpp>
 
 // LOGS
 #include <RP/Logs/Log.hpp>
