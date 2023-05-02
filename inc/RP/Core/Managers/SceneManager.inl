@@ -3,11 +3,10 @@
 
 template<class T, typename ...Args>
 std::shared_ptr<T> RP::SceneManager::RegisterScene(int action, Args&&... args) {
-    assert(std::find(sceneNames.begin(), sceneNames.end(), typeid(T).name()) == sceneNames.end() && "Scene already present.");
-    assert(scenes.find(action) == scenes.end() && "Scene action already present.");
-    std::shared_ptr<T> scene = std::make_shared<T>(std::forward<Args>(args)...);
-    scene->SetRenderer(renderer);
-    scenes.insert({ action, scene });
-    sceneNames.push_back(typeid(T).name());
+    const char* sceneName = typeid(T).name();
+    assert(!sceneAlreadyPresent(sceneName) && "Scene already present.");
+    assert(!scenes.contains(action) && "Scene action already present.");
+    std::shared_ptr<T> scene = std::make_shared<T>(renderer, std::forward<Args>(args)...);
+    scenes.insert({ action, std::make_tuple(sceneName, scene) });
     return scene;
 }

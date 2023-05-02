@@ -17,6 +17,7 @@ namespace RP {
         virtual void AddChild(const GuiWidgetPtr& widget);
         virtual void Draw(SDL_Renderer* renderer);
         virtual void SetPosition(int x, int y);
+        virtual void SetSize(int width, int height);
         virtual void SetAnchor(HorizontalAnchor horizontalAnchor, VerticalAnchor verticalAnchor);
 
         int Width{}, Height{};
@@ -26,7 +27,7 @@ namespace RP {
         GuiWidget* Parent = nullptr;
 
     protected:
-        void UpdateChildrenPositions();
+        void UpdateChildrenPositions() const;
 
         HorizontalAnchor horizontalAnchor = HorizontalAnchor::None;
         VerticalAnchor verticalAnchor = VerticalAnchor::None;

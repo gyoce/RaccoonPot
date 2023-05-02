@@ -15,6 +15,12 @@ void GuiWidget::SetPosition(const int x, const int y) {
     Position.y = y;
 }
 
+void GuiWidget::SetSize(const int width, const int height) {
+    Width = width;
+    Height = height;
+    UpdateChildrenPositions();
+}
+
 void GuiWidget::SetAnchor(const HorizontalAnchor horizontalAnchor, const VerticalAnchor verticalAnchor) {
     this->horizontalAnchor = horizontalAnchor;
     this->verticalAnchor = verticalAnchor;
@@ -24,7 +30,7 @@ void GuiWidget::Draw(SDL_Renderer* renderer) {
     // Do nothing
 }
 
-void GuiWidget::UpdateChildrenPositions() {
+void GuiWidget::UpdateChildrenPositions() const {
     const int numberOfChildren = static_cast<int>(Children.size());
     int fullHeight{};
     for (const GuiWidgetPtr& child : Children) {

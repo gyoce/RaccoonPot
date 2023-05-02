@@ -2,7 +2,6 @@
 #define RP_SCENE_MANAGER_HPP
 
 #include <unordered_map>
-#include <vector>
 #include <memory>
 
 #include <SDL2/SDL.h>
@@ -18,10 +17,11 @@ namespace RP {
         void SetBaseAction(int baseAction);
     
     private:
+        bool sceneAlreadyPresent(const char* sceneName) const;
+
         SDL_Renderer* renderer = nullptr;
         int baseAction{};
-        std::unordered_map<int, ScenePtr> scenes{};
-        std::vector<const char*> sceneNames{};
+        std::unordered_map<int, std::tuple<const char*, ScenePtr>> scenes{};
     };
 
 }

@@ -6,7 +6,8 @@
 
 using namespace RP;
 
-Scene::Scene() {
+Scene::Scene(SDL_Renderer* renderer)
+    : renderer(renderer) {
     eventManager = std::make_shared<EventManager>();
     eventManager->Bind<void()>(SDL_QUIT, [this] { run = false; action = -1; });
     eventManager->Bind<void(int, int)>(SDL_MOUSEBUTTONDOWN, [](const int x, const int y) { Log("Click @[%d, %d]", x, y); });
@@ -15,10 +16,7 @@ Scene::Scene() {
     guiManager->RegisterEventManager(eventManager);
     guiManager->RegisterClickEvent(SDL_MOUSEBUTTONDOWN);
     guiManager->RegisterWindowResizeEvent(SDL_WINDOWEVENT_RESIZED);
-}
 
-void Scene::SetRenderer(SDL_Renderer* renderer) {
-    this->renderer = renderer;
     int width, height;
     SDL_GetRendererOutputSize(renderer, &width, &height);
     eventManager->Dispatch<void(int, int)>(SDL_WINDOWEVENT_RESIZED, width, height);

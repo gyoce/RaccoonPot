@@ -63,10 +63,9 @@ void GuiManager::checkForClickOnWidgetButton(const int x, const int y) const {
 }
 
 bool GuiManager::clickIsInsideButton(const int x, const int y, const GuiButtonPtr& button) {
-    return x >= button->Position.x && x <= button->Position.y + button->Width && y >= button->Position.x && y <= button->Position.y + button->Height;
+    return x >= button->Position.x && x <= button->Position.x + button->Width && y >= button->Position.y && y <= button->Position.y + button->Height;
 }
 
 void GuiManager::windowResized(const int width, const int height) const {
-    mainPanel->Width = width;
-    mainPanel->Height = height;
+    mainPanel->SetSize(width, height);
 }

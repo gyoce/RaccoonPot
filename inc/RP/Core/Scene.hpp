@@ -8,10 +8,9 @@ namespace RP {
 
     class Scene {
     public:
-        Scene();
+        explicit Scene(SDL_Renderer* renderer);
         virtual ~Scene() = default;
         virtual int Loop();
-        void SetRenderer(SDL_Renderer* renderer);
 
     protected:
         virtual void Event();
@@ -26,5 +25,7 @@ namespace RP {
     };
 
 }
+
+#define RP_SCENE_CONSTRUCTOR(SceneName) explicit SceneName(SDL_Renderer* renderer): Scene(renderer)
 
 #endif // RP_SCENE_HPP

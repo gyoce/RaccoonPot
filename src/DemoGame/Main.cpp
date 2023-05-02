@@ -10,17 +10,23 @@ enum SceneAction {
 
 class MenuScene final: public RP::Scene {
 public:
-    MenuScene() {
+    RP_SCENE_CONSTRUCTOR(MenuScene) {
         const RP::GuiButtonPtr button = guiManager->CreateWidget<RP::GuiButton>([this] { run = false; action = SaGame; });
-        button->SetPosition(10, 10); button->Width = 100; button->Height = 100;
+        button->SetSize(100, 100);
+        button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+        guiManager->AddToMainPanel(button);
+        RP::Log("Position of button in MenuScene : [%d, %d]", button->Position.x, button->Position.y);
     }
 };
 
 class GameScene final: public RP::Scene {
 public:
-    GameScene() {
+    RP_SCENE_CONSTRUCTOR(GameScene) {
         const RP::GuiButtonPtr button = guiManager->CreateWidget<RP::GuiButton>([this] { run = false; action = SaMenu; });
-        button->SetPosition(200, 200); button->Width = 100; button->Height = 100;
+        button->SetSize(200, 200);
+        button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+        guiManager->AddToMainPanel(button);
+        RP::Log("Position of button in GameScene : [%d, %d]", button->Position.x, button->Position.y);
     }
 };
 

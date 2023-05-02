@@ -17,7 +17,7 @@ protected:
 
 TEST_F(GuiWidgetTest, CenterOneObject) {
     GuiButtonPtr button = std::make_shared<GuiButton>(nullptr);
-    button->Width = 100; button->Height = 100;
+    button->SetSize(100, 100);
     button->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
     panel->AddChild(button);
     EXPECT_EQ(button->Position.x, 590); EXPECT_EQ(button->Position.y, 310);
@@ -25,13 +25,13 @@ TEST_F(GuiWidgetTest, CenterOneObject) {
 
 TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
     GuiButtonPtr button1 = std::make_shared<GuiButton>(nullptr);
-    button1->Width = 100; button1->Height = 100;
+    button1->SetSize(100, 100);
     button1->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
     GuiButtonPtr button2 = std::make_shared<GuiButton>(nullptr);
-    button2->Width = 75; button2->Height = 75;
+    button2->SetSize(75, 75);
     button2->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
     GuiButtonPtr button3 = std::make_shared<GuiButton>(nullptr);
-    button3->Width = 50; button3->Height = 50;
+    button3->SetSize(50, 50);
     button3->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
     
     panel->AddChild(button1);
@@ -41,4 +41,13 @@ TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
     EXPECT_EQ(button1->Position.x, 590); EXPECT_EQ(button1->Position.y, 248);
     EXPECT_EQ(button2->Position.x, 603); EXPECT_EQ(button2->Position.y, 348);
     EXPECT_EQ(button3->Position.x, 615); EXPECT_EQ(button3->Position.y, 423);
+}
+
+TEST_F(GuiWidgetTest, ResizeChildrenWhenResizeWidget) {
+    GuiButtonPtr button = std::make_shared<GuiButton>(nullptr);
+    button->SetSize(100, 100);
+    button->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
+    panel->AddChild(button);
+    panel->SetSize(1920, 1080);
+    EXPECT_EQ(button->Position.x, 910); EXPECT_EQ(button->Position.y, 490);
 }
