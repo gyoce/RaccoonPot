@@ -10,7 +10,7 @@ Scene::Scene(SDL_Renderer* renderer)
     : renderer(renderer) {
     eventManager = std::make_shared<EventManager>();
     eventManager->Bind<void()>(SDL_QUIT, [this] { run = false; action = -1; });
-    eventManager->Bind<void(int, int)>(SDL_MOUSEBUTTONDOWN, [](const int x, const int y) { Log("Click @[%d, %d]", x, y); });
+    eventManager->Bind<void(int, int)>(SDL_MOUSEBUTTONDOWN, [](const int x, const int y) { Log("Click @[{}, {}]", x, y); });
 
     guiManager = std::make_shared<GuiManager>();
     guiManager->RegisterEventManager(eventManager);

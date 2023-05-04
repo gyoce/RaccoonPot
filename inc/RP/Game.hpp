@@ -21,10 +21,12 @@ namespace RP {
     private:
         void init();
         static bool initSdl();
+        static bool initTtf();
+        static bool initSdlImage();
         bool initWindow();
         bool initRenderer();
 
-        int getFlagsForRenderer() const;
+        int getRendererFlags() const;
 
         GameOptions options;
         bool isInitialized = false;

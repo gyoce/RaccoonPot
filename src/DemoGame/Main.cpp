@@ -15,7 +15,6 @@ public:
         button->SetSize(100, 100);
         button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
         guiManager->AddToMainPanel(button);
-        RP::Log("Position of button in MenuScene : [%d, %d]", button->Position.x, button->Position.y);
     }
 };
 
@@ -26,7 +25,6 @@ public:
         button->SetSize(200, 200);
         button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
         guiManager->AddToMainPanel(button);
-        RP::Log("Position of button in GameScene : [%d, %d]", button->Position.x, button->Position.y);
     }
 };
 

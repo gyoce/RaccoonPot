@@ -25,6 +25,12 @@ target_link_libraries(${RACCOON_POT_LIBRARY}
     $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>
 )
 
+find_package(SDL2_ttf CONFIG REQUIRED)
+target_link_libraries(${RACCOON_POT_LIBRARY} 
+    PUBLIC
+    $<IF:$<TARGET_EXISTS:SDL2_ttf::SDL2_ttf>,SDL2_ttf::SDL2_ttf,SDL2_ttf::SDL2_ttf-static>
+)
+
 target_sources(${RACCOON_POT_LIBRARY} PRIVATE
     RP/Game.cpp
     RP/Core/Managers/ComponentManager.cpp RP/Core/Managers/SystemManager.cpp RP/Core/Managers/EntityManager.cpp

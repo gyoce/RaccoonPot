@@ -27,7 +27,9 @@ TEST(Log, ShouldFormatCorrectly) {
     std::stringstream buffer;
     std::streambuf* sbuf = std::cout.rdbuf();
     std::cout.rdbuf(buffer.rdbuf());
-    RP::Log("Hello %d %s %c", 5, "World", 'a');
+    std::string myString = "myString";
+    RP::Log("Hello {} {} {} | {}", 5, "World", 'a', myString);
     std::cout.rdbuf(sbuf);
-    EXPECT_THAT(buffer.str(), MatchesRegex("\\[.+\\]: Hello 5 World a\n"));
+    std::string bufferStr = buffer.str();
+    EXPECT_THAT(buffer.str(), MatchesRegex("\\[.+\\]: Hello 5 World a \\| myString\n"));
 }
