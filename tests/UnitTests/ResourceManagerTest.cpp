@@ -2,8 +2,6 @@
 
 #include <CommonTypes.hpp>
 
-using namespace RP;
-
 const std::string ValidPathOfFont = "res/orange_kid.ttf";
 const std::string ValidPathOfSpriteSheet = "res/SpriteSheet.png";
 
@@ -19,31 +17,31 @@ protected:
     void SetUp() override {
         TTF_Init();
         SDL_CreateWindowAndRenderer(32, 32, SDL_WINDOW_HIDDEN, &window, &renderer);
-        resourceManager = std::make_shared<ResourceManager>();
+        resourceManager = std::make_shared<RP::ResourceManager>();
     }
 
-    ResourceManagerPtr resourceManager = nullptr;
+    RP::ResourceManagerPtr resourceManager = nullptr;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
 };
 
 TEST_F(ResourceManagerTest, UnknownFontPath) {
-    FontPtr font = resourceManager->LoadFont("UnknownPath.to.file", "MyFont", 18);
+    RP::FontPtr font = resourceManager->LoadFont("UnknownPath.to.file", "MyFont", 18);
     EXPECT_TRUE(font == nullptr);
 }
 
 TEST_F(ResourceManagerTest, UnknownSpriteSheetPath) {
-    SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("UnknownPath.to.file", "MySpriteSheet", renderer);
+    RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("UnknownPath.to.file", "MySpriteSheet", renderer);
     EXPECT_TRUE(spriteSheet == nullptr);
 }
 
 TEST_F(ResourceManagerTest, KnownFont) {
-    FontPtr font = resourceManager->LoadFont(ValidPathOfFont, "MyFont", 18);
+    RP::FontPtr font = resourceManager->LoadFont(ValidPathOfFont, "MyFont", 18);
     EXPECT_TRUE(font != nullptr);
 }
 
 TEST_F(ResourceManagerTest, KnownSpriteSheet) {
-    SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
+    RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
     EXPECT_TRUE(spriteSheet != nullptr);
 }
 
@@ -55,7 +53,7 @@ TEST(ResourceManagerDeath, SameNameForFont) {
     // the TTF_Quit which cause to have a segmentation fault because the resources associated
     // with the SDL_TTF are released
     {
-        ResourceManager rm{};
+        RP::ResourceManager rm{};
         rm.LoadFont(ValidPathOfFont, "MyFont", 18);
         ASSERT_DEATH({
             rm.LoadFont(ValidPathOfFont, "MyFont", 18);
@@ -68,7 +66,7 @@ TEST(ResourceManagerDeath, SameNameForSpriteSheet) {
     SDL_Renderer* renderer = nullptr;
     SDL_Window* window = nullptr;
     SDL_CreateWindowAndRenderer(32, 32, SDL_WINDOW_HIDDEN, &window, &renderer);
-    ResourceManager rm{};
+    RP::ResourceManager rm{};
     rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
     ASSERT_DEATH({
         rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);

@@ -2,7 +2,8 @@
 
 #include "RP/Core/Systems/System.hpp"
 
-using namespace RP;
+namespace RP
+{
 
 void SystemManager::EntityDestroyed(const Entity entity) const {
     for (const std::pair<const char* const, SystemPtr>& pair : systems) {
@@ -23,4 +24,6 @@ void SystemManager::EntitySignatureChanged(const Entity entity, const Signature 
             system->Entities.erase(entity);
         }
     }
+}
+
 }

@@ -8,7 +8,8 @@
 #include "RP/Core/Resources/Font.hpp"
 #include "RP/Core/Resources/SpriteSheet.hpp"
 
-using namespace RP;
+namespace RP
+{
 
 FontPtr ResourceManager::LoadFont(const std::string& path, const std::string& name, const int ptSize) {
     assert(!fonts.contains(name) && "Font name already exist in the ResourceManager.");
@@ -43,4 +44,6 @@ SpriteSheetPtr ResourceManager::LoadSpriteSheet(const std::string& path, const s
     SpriteSheetPtr spriteSheet = std::make_shared<SpriteSheet>(texture);
     spriteSheets.insert({ name, spriteSheet });
     return spriteSheet;
+}
+
 }

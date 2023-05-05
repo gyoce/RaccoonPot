@@ -2,19 +2,17 @@
 
 #include <CommonTypes.hpp>
 
-using namespace RP;
-
 TEST(ComponentManager, GetComponentType) {
-    Entity entity = 0;
-    ComponentManager cm{};
+    RP::Entity entity = 0;
+    RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
-    ComponentType component = cm.GetComponentType<ComponentTest>();
+    RP::ComponentType component = cm.GetComponentType<ComponentTest>();
     EXPECT_EQ(component, entity);
 }
 
 TEST(ComponentManager, AssociateComponentCorrectly) {
-    Entity entity = 0;
-    ComponentManager cm{};
+    RP::Entity entity = 0;
+    RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     cm.AddComponent(entity, ComponentTest{ 5 });
     ComponentTest ct = cm.GetComponent<ComponentTest>(entity);
@@ -24,8 +22,8 @@ TEST(ComponentManager, AssociateComponentCorrectly) {
 #ifndef NDEBUG
 
 TEST(ComponentManagerDeath, GetComponentAfterRemove) {
-    Entity entity = 0;
-    ComponentManager cm{};
+    RP::Entity entity = 0;
+    RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     cm.AddComponent(entity, ComponentTest{});
     cm.RemoveComponent<ComponentTest>(entity);
@@ -35,8 +33,8 @@ TEST(ComponentManagerDeath, GetComponentAfterRemove) {
 }
 
 TEST(ComponentManagerDeath, GetComponentAfterEntityDestroyed) {
-    Entity entity = 0;
-    ComponentManager cm{};
+    RP::Entity entity = 0;
+    RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     cm.AddComponent(entity, ComponentTest{});
     cm.EntityDestroyed(entity);
@@ -46,7 +44,7 @@ TEST(ComponentManagerDeath, GetComponentAfterEntityDestroyed) {
 }
 
 TEST(ComponentManagerDeath, RegisterComponentTwice) {
-    ComponentManager cm{};
+    RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     ASSERT_DEATH({
         cm.RegisterComponent<ComponentTest>();
@@ -54,23 +52,23 @@ TEST(ComponentManagerDeath, RegisterComponentTwice) {
 }
 
 TEST(ComponentManagerDeath, GetComponentTypeNotRegistered) {
-    ComponentManager cm{};
+    RP::ComponentManager cm{};
     ASSERT_DEATH({
         cm.GetComponentType<ComponentTest>();
     }, "");
 }
 
 TEST(ComponentManagerDeath, AddComponentNotRegistered) {
-    Entity entity = 0;
-    ComponentManager cm{};
+    RP::Entity entity = 0;
+    RP::ComponentManager cm{};
     ASSERT_DEATH({
         cm.AddComponent(entity, ComponentTest{});
     }, "");
 }
 
 TEST(ComponentManagerDeath, RemoveComponentNotRegistered) {
-    Entity entity = 0;
-    ComponentManager cm{};
+    RP::Entity entity = 0;
+    RP::ComponentManager cm{};
     ASSERT_DEATH({
         cm.RemoveComponent<ComponentTest>(entity);
     }, "");

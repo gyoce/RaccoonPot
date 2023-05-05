@@ -6,7 +6,8 @@
 #include "RP/Logs/Log.hpp"
 #include "RP/Core/Managers/SceneManager.hpp"
 
-using namespace RP;
+namespace RP
+{
 
 Game::Game(GameOptions options)
     : options(std::move(options)) {
@@ -83,4 +84,6 @@ int Game::getRendererFlags() const {
         flags |= SDL_RENDERER_PRESENTVSYNC;
     }
     return flags;
+}
+
 }

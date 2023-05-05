@@ -2,20 +2,18 @@
 
 #include <CommonTypes.hpp>
 
-using namespace RP;
-
 class GuiManagerTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        eventManager = std::make_shared<EventManager>();
-        guiManager = std::make_shared<GuiManager>();
+        eventManager = std::make_shared<RP::EventManager>();
+        guiManager = std::make_shared<RP::GuiManager>();
         guiManager->RegisterEventManager(eventManager);
         guiManager->RegisterClickEvent(1);
         guiManager->RegisterWindowResizeEvent(2);
     }
     
-    EventManagerPtr eventManager = nullptr;
-    GuiManagerPtr guiManager = nullptr;
+    RP::EventManagerPtr eventManager = nullptr;
+    RP::GuiManagerPtr guiManager = nullptr;
 };
 
 TEST_F(GuiManagerTest, CallRenderFunction) {
@@ -57,7 +55,7 @@ TEST_F(GuiManagerTest, ResizeWindow) {
 #ifndef NDEBUG
 
 TEST(GuiManagerDeath, RegisterClickEventBeforeRegisterEventManager) {
-    GuiManager guiManager{};
+    RP::GuiManager guiManager{};
     ASSERT_DEATH({
         guiManager.RegisterClickEvent(1);
     }, "");

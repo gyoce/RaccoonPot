@@ -4,18 +4,16 @@
 
 #include <RP/Core/Managers/SystemManager.hpp>
 
-using namespace RP;
-
 TEST(SystemManager, RegisterSystem) {
-    SystemManager sm{};
+    RP::SystemManager sm{};
     std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     EXPECT_TRUE(system != nullptr);
 }
 
 TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
-    Entity entity{ 0 };
-    Signature signature{ 0b0100 };
-    SystemManager sm{};
+    RP::Entity entity{ 0 };
+    RP::Signature signature{ 0b0100 };
+    RP::SystemManager sm{};
     std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     sm.SetSignature<SystemTest>(signature);
     sm.EntitySignatureChanged(entity, signature);
@@ -27,7 +25,7 @@ TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
 #ifndef NDEBUG
 
 TEST(SystemManagerDeath, RegisterSystemTwice) {
-    SystemManager sm{};
+    RP::SystemManager sm{};
     std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     ASSERT_DEATH({
         sm.RegisterSystem<SystemTest>();
@@ -35,8 +33,8 @@ TEST(SystemManagerDeath, RegisterSystemTwice) {
 }
 
 TEST(SystemManagerDeath, SetSignatureBeforeRegistered) {
-    SystemManager sm{};
-    Signature signature{};
+    RP::SystemManager sm{};
+    RP::Signature signature{};
     ASSERT_DEATH({
         sm.SetSignature<SystemTest>(signature);
     }, "");

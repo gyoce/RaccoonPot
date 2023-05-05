@@ -4,7 +4,8 @@
 #include "RP/Core/Managers/EventManager.hpp"
 #include "RP/Core/Managers/GuiManager.hpp"
 
-using namespace RP;
+namespace RP
+{
 
 Scene::Scene(SDL_Renderer* renderer)
     : renderer(renderer) {
@@ -59,9 +60,11 @@ void Scene::Event() {
 }
 
 void Scene::Update(const double dt) {
-    
+
 }
 
 void Scene::Draw() {
     guiManager->Render(renderer);
+}
+
 }

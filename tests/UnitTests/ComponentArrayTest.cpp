@@ -2,11 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-using namespace RP;
-
 TEST(ComponentArray, AssociateDataForComponent) {
-    Entity entity = 0;
-    ComponentArray<ComponentTest> ca{};
+    RP::Entity entity = 0;
+    RP::ComponentArray<ComponentTest> ca{};
     ca.InsertData(entity, ComponentTest{ 5 });
     ComponentTest ct = ca.GetData(0);
     EXPECT_EQ(ct.x, 5);
@@ -15,16 +13,16 @@ TEST(ComponentArray, AssociateDataForComponent) {
 #ifndef NDEBUG
 
 TEST(ComponentArrayDeath, RemoveDataNotInserted) {
-    Entity entity = 0;
-    ComponentArray<ComponentTest> ca{};
+    RP::Entity entity = 0;
+    RP::ComponentArray<ComponentTest> ca{};
     ASSERT_DEATH({
         ca.RemoveData(entity);
     }, "");
 }
 
 TEST(ComponentArrayDeath, AddComponentTwice) {
-    Entity entity = 0;
-    ComponentArray<ComponentTest> ca{};
+    RP::Entity entity = 0;
+    RP::ComponentArray<ComponentTest> ca{};
     ca.InsertData(entity, ComponentTest{});
     ASSERT_DEATH({
         ca.InsertData(entity, ComponentTest{});
@@ -32,8 +30,8 @@ TEST(ComponentArrayDeath, AddComponentTwice) {
 }
 
 TEST(ComponentArrayDeath, GetComponentAfterEntityDestroyed) {
-    Entity entity = 0;
-    ComponentArray<ComponentTest> ca{};
+    RP::Entity entity = 0;
+    RP::ComponentArray<ComponentTest> ca{};
     ca.InsertData(entity, ComponentTest{});
     ca.EntityDestroyed(entity);
     ASSERT_DEATH({

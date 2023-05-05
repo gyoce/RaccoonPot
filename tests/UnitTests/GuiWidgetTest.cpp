@@ -2,37 +2,35 @@
 
 #include <CommonTypes.hpp>
 
-using namespace RP;
-
 class GuiWidgetTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        panel = std::make_shared<GuiWidget>();
+        panel = std::make_shared<RP::GuiWidget>();
         panel->SetPosition(0, 0);
         panel->Width = 1280;
         panel->Height = 720;
     }
-    GuiWidgetPtr panel;
+    RP::GuiWidgetPtr panel;
 };
 
 TEST_F(GuiWidgetTest, CenterOneObject) {
-    GuiButtonPtr button = std::make_shared<GuiButton>(nullptr);
+    RP::GuiButtonPtr button = std::make_shared<RP::GuiButton>(nullptr);
     button->SetSize(100, 100);
-    button->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
+    button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     panel->AddChild(button);
     EXPECT_EQ(button->Position.x, 590); EXPECT_EQ(button->Position.y, 310);
 }
 
 TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
-    GuiButtonPtr button1 = std::make_shared<GuiButton>(nullptr);
+    RP::GuiButtonPtr button1 = std::make_shared<RP::GuiButton>(nullptr);
     button1->SetSize(100, 100);
-    button1->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
-    GuiButtonPtr button2 = std::make_shared<GuiButton>(nullptr);
+    button1->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+    RP::GuiButtonPtr button2 = std::make_shared<RP::GuiButton>(nullptr);
     button2->SetSize(75, 75);
-    button2->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
-    GuiButtonPtr button3 = std::make_shared<GuiButton>(nullptr);
+    button2->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+    RP::GuiButtonPtr button3 = std::make_shared<RP::GuiButton>(nullptr);
     button3->SetSize(50, 50);
-    button3->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
+    button3->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     
     panel->AddChild(button1);
     panel->AddChild(button2);
@@ -44,9 +42,9 @@ TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
 }
 
 TEST_F(GuiWidgetTest, ResizeChildrenWhenResizeWidget) {
-    GuiButtonPtr button = std::make_shared<GuiButton>(nullptr);
+    RP::GuiButtonPtr button = std::make_shared<RP::GuiButton>(nullptr);
     button->SetSize(100, 100);
-    button->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
+    button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     panel->AddChild(button);
     panel->SetSize(1920, 1080);
     EXPECT_EQ(button->Position.x, 910); EXPECT_EQ(button->Position.y, 490);

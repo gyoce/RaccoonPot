@@ -4,7 +4,8 @@
 #include "RP/Core/Managers/EntityManager.hpp"
 #include "RP/Core/Managers/SystemManager.hpp"
 
-using namespace RP;
+namespace RP
+{
 
 Coordinator::Coordinator() {
     componentManager = std::make_shared<ComponentManager>();
@@ -20,4 +21,6 @@ void Coordinator::DestroyEntity(const Entity entity) const {
     entityManager->DestroyEntity(entity);
     componentManager->EntityDestroyed(entity);
     systemManager->EntityDestroyed(entity);
+}
+
 }

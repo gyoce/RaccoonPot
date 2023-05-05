@@ -3,7 +3,8 @@
 #include "RP/Core/Scene.hpp"
 #include "RP/Logs/Log.hpp"
 
-using namespace RP;
+namespace RP
+{
 
 SceneManager::SceneManager(SDL_Renderer* renderer)
     : renderer(renderer) {  }
@@ -34,4 +35,6 @@ bool SceneManager::sceneAlreadyPresent(const char* sceneName) const {
         }
     }
     return false;
+}
+
 }

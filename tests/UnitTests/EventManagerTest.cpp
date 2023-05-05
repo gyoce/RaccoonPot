@@ -2,11 +2,9 @@
 
 #include <CommonTypes.hpp>
 
-using namespace RP;
-
 class EventManagerTest : public ::testing::Test {
 protected:
-    EventManager eventManager{};
+    RP::EventManager eventManager{};
     bool setValueCalled = false;
     int x = 0;
 

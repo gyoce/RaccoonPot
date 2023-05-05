@@ -6,8 +6,9 @@
 #include "RP/Core/Managers/EventManager.hpp"
 #include "RP/Gui/GuiButton.hpp"
 
-using namespace RP;
-
+namespace RP
+{
+    
 GuiManager::GuiManager() {
     mainPanel = std::make_shared<GuiWidget>();
 }
@@ -68,4 +69,6 @@ bool GuiManager::clickIsInsideButton(const int x, const int y, const GuiButtonPt
 
 void GuiManager::windowResized(const int width, const int height) const {
     mainPanel->SetSize(width, height);
+}
+
 }

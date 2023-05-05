@@ -2,8 +2,9 @@
 
 #include <cassert>
 
-using namespace RP;
-
+namespace RP
+{
+ 
 EntityManager::EntityManager() {
     for (Entity entity = 0; entity < MAX_ENTITIES; entity++) {
         availableEntities.push(entity);
@@ -33,4 +34,6 @@ void EntityManager::SetSignature(const Entity entity, const Signature signature)
 Signature EntityManager::GetSignature(const Entity entity) const {
     assert(entity < MAX_ENTITIES && "Entity out of range.");
     return signatures[entity];
+}
+
 }
