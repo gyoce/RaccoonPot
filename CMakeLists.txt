@@ -18,4 +18,5 @@ add_subdirectory(tests)
 add_subdirectory(src)
 
 add_custom_target(copy_res COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_ROOT_DIR}/res ${CMAKE_BINARY_DIR}/res)
-add_dependencies(${DEMO_GAME_EXEC_NAME} copy_res)
+add_custom_target(copy_res_tests COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_ROOT_DIR}/res ${CMAKE_BINARY_DIR}/tests/res)
+add_dependencies(${DEMO_GAME_EXEC_NAME} copy_res copy_res_tests)
