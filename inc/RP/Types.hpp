@@ -13,46 +13,50 @@ namespace RP {
     using ComponentType = std::uint8_t;
     using Signature = std::bitset<MAX_COMPONENTS>;
 
-    // #################### TYPEDEF #################### //
-
     class ComponentManager;
-    typedef std::shared_ptr<ComponentManager> ComponentManagerPtr;
+    using ComponentManagerPtr = std::shared_ptr<ComponentManager>;
 
     class Coordinator;
-    typedef std::shared_ptr<Coordinator> CoordinatorPtr;
+    using CoordinatorPtr = std::shared_ptr<Coordinator>;
 
     class EntityManager;
-    typedef std::shared_ptr<EntityManager> EntityManagerPtr;
+    using EntityManagerPtr = std::shared_ptr<EntityManager>;
 
     class EventManager;
-    typedef std::shared_ptr<EventManager> EventManagerPtr;
+    using EventManagerPtr = std::shared_ptr<EventManager>;
+
+    class Font;
+    using FontPtr = std::shared_ptr<Font>;
 
     class GuiButton;
-    typedef std::shared_ptr<GuiButton> GuiButtonPtr;
+    using GuiButtonPtr = std::shared_ptr<GuiButton>;
 
     class GuiManager;
-    typedef std::shared_ptr<GuiManager> GuiManagerPtr;
+    using GuiManagerPtr = std::shared_ptr<GuiManager>;
 
     class GuiWidget;
-    typedef std::shared_ptr<GuiWidget> GuiWidgetPtr;
+    using GuiWidgetPtr = std::shared_ptr<GuiWidget>;
+
+    class ResourceManager;
+    using ResourceManagerPtr = std::shared_ptr<ResourceManager>;
 
     class Scene;
-    typedef std::shared_ptr<Scene> ScenePtr;
+    using ScenePtr = std::shared_ptr<Scene>;
 
     class SceneManager;
-    typedef std::shared_ptr<SceneManager> SceneManagerPtr;
+    using SceneManagerPtr = std::shared_ptr<SceneManager>;
 
-    class SpriteManager;
-    typedef std::shared_ptr<SpriteManager> SpriteManagerPtr;
+    class SpriteSheet;
+    using SpriteSheetPtr = std::shared_ptr<SpriteSheet>;
 
     class System;
-    typedef std::shared_ptr<System> SystemPtr;
+    using SystemPtr = std::shared_ptr<System>;
 
     class SystemManager;
-    typedef std::shared_ptr<SystemManager> SystemManagerPtr;
+    using SystemManagerPtr = std::shared_ptr<SystemManager>;
 
     class WindowManager;
-    typedef std::shared_ptr<WindowManager> WindowManagerPtr;
+    using WindowManagerPtr = std::shared_ptr<WindowManager>;
 }
 
 #endif // RP_TYPES_HPP

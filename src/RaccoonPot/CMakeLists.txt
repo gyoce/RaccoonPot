@@ -34,8 +34,9 @@ target_link_libraries(${RACCOON_POT_LIBRARY}
 target_sources(${RACCOON_POT_LIBRARY} PRIVATE
     RP/Game.cpp
     RP/Core/Managers/ComponentManager.cpp RP/Core/Managers/SystemManager.cpp RP/Core/Managers/EntityManager.cpp
-        RP/Core/Managers/SceneManager.cpp RP/Core/Managers/GuiManager.cpp
+        RP/Core/Managers/SceneManager.cpp RP/Core/Managers/GuiManager.cpp RP/Core/Managers/ResourceManager.cpp
     RP/Core/Coordinator.cpp RP/Core/Scene.cpp
+    RP/Core/Resources/Font.cpp RP/Core/Resources/SpriteSheet.cpp
     RP/Math/Vector2.cpp RP/Math/Vector3Int.cpp
     RP/Logs/Log.cpp
     RP/Gui/GuiWidget.cpp RP/Gui/GuiButton.cpp

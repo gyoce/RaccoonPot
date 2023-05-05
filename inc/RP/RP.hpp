@@ -3,9 +3,10 @@
 
 #include <SDL2/SDL.h>
 
-#include <RP/Types.hpp>
 #include <RP/Game.hpp>
 #include <RP/GameOptions.hpp>
+#include <RP/RPMacros.hpp>
+#include <RP/Types.hpp>
 
 // CORE
 #include <RP/Core/Coordinator.hpp>
@@ -13,16 +14,20 @@
 
 #include <RP/Core/Components/Transform2.hpp>
 
-#include <RP/Core/Managers/GuiManager.hpp>
 #include <RP/Core/Managers/EventManager.hpp>
+#include <RP/Core/Managers/GuiManager.hpp>
+#include <RP/Core/Managers/ResourceManager.hpp>
 #include <RP/Core/Managers/SceneManager.hpp>
+
+#include <RP/Core/Resources/Font.hpp>
+#include <RP/Core/Resources/SpriteSheet.hpp>
 
 #include <RP/Core/Systems/System.hpp>
 
 // GUI
+#include <RP/Gui/Anchors.hpp>
 #include <RP/Gui/GuiButton.hpp>
 #include <RP/Gui/GuiWidget.hpp>
-#include <RP/Gui/Anchors.hpp>
 
 // LOGS
 #include <RP/Logs/Log.hpp>

@@ -26,6 +26,4 @@ namespace RP {
 
 }
 
-#define RP_SCENE_CONSTRUCTOR(SceneName) explicit SceneName(SDL_Renderer* renderer): Scene(renderer)
-
 #endif // RP_SCENE_HPP
