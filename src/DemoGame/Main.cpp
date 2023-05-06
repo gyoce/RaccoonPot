@@ -2,6 +2,11 @@
 
 #include <RP/RP.hpp>
 
+const std::vector<std::pair<std::string, SDL_Rect>> SpriteSheetInfos{
+    { "ButtonMenu", { 0, 0, 192, 64 }},
+    { "ButtonGame", { 0, 64, 192, 64 }}
+};
+
 enum SceneAction {
     SaQuit,
     SaMenu,
@@ -34,6 +39,7 @@ public:
         sceneManager->SetBaseAction(SaMenu);
         sceneManager->RegisterScene<MenuScene>(SaMenu);
         sceneManager->RegisterScene<GameScene>(SaGame);
+        resourceManager->LoadSpriteSheet("res/SpriteSheet.png", "MainSpriteSheet", SpriteSheetInfos);
     }
 };
 

@@ -6,6 +6,8 @@ include_directories(
 )
 
 add_executable(${TEST_EXEC_NAME}
+    Main.cpp
+
     UnitTests/ComponentArrayTest.cpp
     UnitTests/ComponentManagerTest.cpp
     UnitTests/EntityManagerTest.cpp
@@ -15,12 +17,13 @@ add_executable(${TEST_EXEC_NAME}
     UnitTests/LogTest.cpp
     UnitTests/ResourceManagerTest.cpp
     UnitTests/SceneManagerTest.cpp
+    UnitTests/SpriteSheetTest.cpp
     UnitTests/SystemManagerTest.cpp
 
     IntegrationTests/CoordinatorTest.cpp
 )
 
 find_package(GTest CONFIG REQUIRED)
-target_link_libraries(${TEST_EXEC_NAME} ${RACCOON_POT_LIBRARY} GTest::gtest_main GTest::gtest)
+target_link_libraries(${TEST_EXEC_NAME} ${RACCOON_POT_LIBRARY} GTest::gtest)
 include(GoogleTest)
 gtest_discover_tests(${TEST_EXEC_NAME})

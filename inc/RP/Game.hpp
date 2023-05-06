@@ -19,6 +19,7 @@ namespace RP {
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
         SceneManagerPtr sceneManager = nullptr;
+        ResourceManagerPtr resourceManager = nullptr;
 
     private:
         void init();

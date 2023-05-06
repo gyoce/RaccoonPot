@@ -2,30 +2,14 @@
 
 #include <CommonTypes.hpp>
 
-const std::string ValidPathOfFont = "res/orange_kid.ttf";
-const std::string ValidPathOfSpriteSheet = "res/SpriteSheet.png";
-
 class ResourceManagerTest: public testing::Test {
-protected:
-    ResourceManagerTest() = default;
-    ~ResourceManagerTest() override {
-        resourceManager.reset();
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        TTF_Quit();
-    }
-
-    RP_DELETE_MISC_CONSTRUCTORS(ResourceManagerTest)
-    
+protected:    
     void SetUp() override {
-        TTF_Init();
-        SDL_CreateWindowAndRenderer(32, 32, SDL_WINDOW_HIDDEN, &window, &renderer);
-        resourceManager = std::make_shared<RP::ResourceManager>();
+        const CommonTestDataPtr commonTestData = CommonTestData::GetInstance();
+        resourceManager = std::make_shared<RP::ResourceManager>(commonTestData->Renderer);
     }
 
     RP::ResourceManagerPtr resourceManager = nullptr;
-    SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
 };
 
 TEST_F(ResourceManagerTest, UnknownFontPath) {
@@ -34,7 +18,8 @@ TEST_F(ResourceManagerTest, UnknownFontPath) {
 }
 
 TEST_F(ResourceManagerTest, UnknownSpriteSheetPath) {
-    const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("UnknownPath.to.file", "MySpriteSheet", renderer);
+    const std::vector<std::pair<std::string, SDL_Rect>> vector{};
+    const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("UnknownPath.to.file", "MySpriteSheet", vector);
     EXPECT_TRUE(spriteSheet == nullptr);
 }
 
@@ -44,35 +29,29 @@ TEST_F(ResourceManagerTest, KnownFont) {
 }
 
 TEST_F(ResourceManagerTest, KnownSpriteSheet) {
-    const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
+    const std::vector<std::pair<std::string, SDL_Rect>> vector{};
+    const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", vector);
     EXPECT_TRUE(spriteSheet != nullptr);
 }
 
 #ifndef NDEBUG
 
 TEST(ResourceManagerDeath, SameNameForFont) {
-    TTF_Init();
-    // Have to early release ResourceManager because the destructor of font is called after
-    // the TTF_Quit which cause to have a segmentation fault because the resources associated
-    // with the SDL_TTF are released
-    {
-        RP::ResourceManager rm{};
+    const CommonTestDataPtr commonTestData = CommonTestData::GetInstance();
+    RP::ResourceManager rm{ commonTestData->Renderer };
+    rm.LoadFont(ValidPathOfFont, "MyFont", 18);
+    ASSERT_DEATH({
         rm.LoadFont(ValidPathOfFont, "MyFont", 18);
-        ASSERT_DEATH({
-            rm.LoadFont(ValidPathOfFont, "MyFont", 18);
-        }, "");
-    }
-    TTF_Quit();
+    }, "");
 }
 
 TEST(ResourceManagerDeath, SameNameForSpriteSheet) {
-    SDL_Renderer* renderer = nullptr;
-    SDL_Window* window = nullptr;
-    SDL_CreateWindowAndRenderer(32, 32, SDL_WINDOW_HIDDEN, &window, &renderer);
-    RP::ResourceManager rm{};
-    rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
+    const std::vector<std::pair<std::string, SDL_Rect>> vector{};
+    const CommonTestDataPtr commonTestData = CommonTestData::GetInstance();
+    RP::ResourceManager rm{ commonTestData->Renderer };
+    rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", vector);
     ASSERT_DEATH({
-        rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
+        rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", vector);
     }, "");
 }
 

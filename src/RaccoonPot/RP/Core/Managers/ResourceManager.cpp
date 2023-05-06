@@ -11,6 +11,9 @@
 namespace RP
 {
 
+ResourceManager::ResourceManager(SDL_Renderer* renderer)
+    : renderer(renderer) {  }
+
 FontPtr ResourceManager::LoadFont(const std::string& path, const std::string& name, const int ptSize) {
     assert(!fonts.contains(name) && "Font name already exist in the ResourceManager.");
 
@@ -25,7 +28,7 @@ FontPtr ResourceManager::LoadFont(const std::string& path, const std::string& na
     return font;
 }
 
-SpriteSheetPtr ResourceManager::LoadSpriteSheet(const std::string& path, const std::string& name, SDL_Renderer* renderer) {
+SpriteSheetPtr ResourceManager::LoadSpriteSheet(const std::string& path, const std::string& name, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos) {
     assert(!spriteSheets.contains(name) && "SpriteSheet name already exist in the ResourceManager.");
 
     SDL_Surface* surface = IMG_Load(path.c_str());
@@ -41,7 +44,7 @@ SpriteSheetPtr ResourceManager::LoadSpriteSheet(const std::string& path, const s
         return nullptr;
     }
 
-    SpriteSheetPtr spriteSheet = std::make_shared<SpriteSheet>(texture);
+    SpriteSheetPtr spriteSheet = std::make_shared<SpriteSheet>(texture, renderer, spriteSheetInfos);
     spriteSheets.insert({ name, spriteSheet });
     return spriteSheet;
 }

@@ -1,13 +1,30 @@
 #include "RP/Core/Resources/SpriteSheet.hpp"
 
+#include <cassert>
+
+#include "RP/Utils/Utils.hpp"
+
 namespace RP
 {
 
-SpriteSheet::SpriteSheet(SDL_Texture* texture)
-    : texture(texture) {  }
+SpriteSheet::SpriteSheet(SDL_Texture* texture, SDL_Renderer* renderer, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos)
+    : mainTexture(texture) {
+    initTextures(renderer, spriteSheetInfos);
+}
 
 SpriteSheet::~SpriteSheet() {
-    if (texture != nullptr) { SDL_DestroyTexture(texture); }
+    if (mainTexture != nullptr) { SDL_DestroyTexture(mainTexture); }
+    for (const auto& [first, second] : textures) {
+        SDL_DestroyTexture(second);
+    }
+}
+
+void SpriteSheet::initTextures(SDL_Renderer* renderer, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos) {
+    for(const auto& [first, second] : spriteSheetInfos) {
+        assert(!textures.contains(first) && "Name for sprite texture already used.");
+        SDL_Texture* texture = Utils::ExtractTextureFromSource(second, renderer, mainTexture);
+        textures.insert({ first, texture });
+    }
 }
 
 }

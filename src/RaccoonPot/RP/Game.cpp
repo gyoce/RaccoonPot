@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "RP/Logs/Log.hpp"
+#include "RP/Core/Managers/ResourceManager.hpp"
 #include "RP/Core/Managers/SceneManager.hpp"
 
 namespace RP
@@ -13,6 +14,7 @@ Game::Game(GameOptions options)
     : options(std::move(options)) {
     init();
     sceneManager = std::make_shared<SceneManager>(renderer);
+    resourceManager = std::make_shared<ResourceManager>(renderer);
 }
 
 Game::~Game() {
