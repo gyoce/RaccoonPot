@@ -4,12 +4,14 @@
 #include <SDL2/SDL.h>
 #include <RP/Types.hpp>
 #include <RP/GameOptions.hpp>
+#include <RP/RPMacros.hpp>
 
 namespace RP {
 
     class Game {
     public:
         explicit Game(GameOptions options = {});
+        RP_DELETE_MISC_CONSTRUCTORS(Game)
         virtual ~Game();
         int Run() const;
 

@@ -5,6 +5,8 @@
 #include <vector>
 #include <functional>
 
+#include <RP/RPMacros.hpp>
+
 namespace RP {
 
     class EventManager {
@@ -15,7 +17,9 @@ namespace RP {
     private:
         class IEventFunction {
         public:
+            IEventFunction() = default;
             virtual ~IEventFunction() = default;
+            RP_DELETE_MISC_CONSTRUCTORS(IEventFunction)
         };
         typedef std::shared_ptr<IEventFunction> IEventFunctionPtr;
 

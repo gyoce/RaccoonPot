@@ -5,12 +5,15 @@
 #include <unordered_map>
 
 #include <RP/Types.hpp>
+#include <RP/RPMacros.hpp>
 
 namespace RP {
 
     class IComponentArray {
     public:
+        IComponentArray() = default;
         virtual ~IComponentArray() = default;
+        RP_DELETE_MISC_CONSTRUCTORS(IComponentArray)
         virtual void EntityDestroyed(Entity entity) = 0;
     };
     typedef std::shared_ptr<IComponentArray> IComponentArrayPtr;

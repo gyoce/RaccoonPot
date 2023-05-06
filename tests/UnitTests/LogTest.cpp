@@ -6,7 +6,7 @@
 using ::testing::MatchesRegex;
 
 TEST(Log, ShouldLogInCout) {
-    std::stringstream buffer;
+    const std::stringstream buffer;
     std::streambuf* sbuf = std::cout.rdbuf();
     std::cout.rdbuf(buffer.rdbuf());
     RP::Log("Hello");
@@ -15,7 +15,7 @@ TEST(Log, ShouldLogInCout) {
 }
 
 TEST(Log, ShoudLogInCerr) {
-    std::stringstream buffer;
+    const std::stringstream buffer;
     std::streambuf* sbuf = std::cout.rdbuf();
     std::cerr.rdbuf(buffer.rdbuf());
     RP::LogError("Hello");
@@ -24,7 +24,7 @@ TEST(Log, ShoudLogInCerr) {
 }
 
 TEST(Log, ShouldFormatCorrectly) {
-    std::stringstream buffer;
+    const std::stringstream buffer;
     std::streambuf* sbuf = std::cout.rdbuf();
     std::cout.rdbuf(buffer.rdbuf());
     std::string myString = "myString";

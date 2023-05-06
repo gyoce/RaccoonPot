@@ -12,7 +12,7 @@ void RP::EventManager::Bind(int event, const std::function<T>& callback) {
 
 template<typename T, class... Args>
 void RP::EventManager::Dispatch(const int event, Args&&... args) {
-    if (eventFunctions.find(event) == eventFunctions.end()) {
+    if (!eventFunctions.contains(event)) {
         return;
     }
     std::shared_ptr<EventFunction<T>> eventFunction = std::static_pointer_cast<EventFunction<T>>(eventFunctions[event]);

@@ -3,26 +3,26 @@
 #include <CommonTypes.hpp>
 
 TEST(ComponentManager, GetComponentType) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
-    RP::ComponentType component = cm.GetComponentType<ComponentTest>();
+    const RP::ComponentType component = cm.GetComponentType<ComponentTest>();
     EXPECT_EQ(component, entity);
 }
 
 TEST(ComponentManager, AssociateComponentCorrectly) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     cm.AddComponent(entity, ComponentTest{ 5 });
-    ComponentTest ct = cm.GetComponent<ComponentTest>(entity);
+    const ComponentTest ct = cm.GetComponent<ComponentTest>(entity);
     EXPECT_EQ(ct.x, 5);
 }
 
 #ifndef NDEBUG
 
 TEST(ComponentManagerDeath, GetComponentAfterRemove) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     cm.AddComponent(entity, ComponentTest{});
@@ -33,7 +33,7 @@ TEST(ComponentManagerDeath, GetComponentAfterRemove) {
 }
 
 TEST(ComponentManagerDeath, GetComponentAfterEntityDestroyed) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentManager cm{};
     cm.RegisterComponent<ComponentTest>();
     cm.AddComponent(entity, ComponentTest{});
@@ -59,7 +59,7 @@ TEST(ComponentManagerDeath, GetComponentTypeNotRegistered) {
 }
 
 TEST(ComponentManagerDeath, AddComponentNotRegistered) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentManager cm{};
     ASSERT_DEATH({
         cm.AddComponent(entity, ComponentTest{});
@@ -67,7 +67,7 @@ TEST(ComponentManagerDeath, AddComponentNotRegistered) {
 }
 
 TEST(ComponentManagerDeath, RemoveComponentNotRegistered) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentManager cm{};
     ASSERT_DEATH({
         cm.RemoveComponent<ComponentTest>(entity);

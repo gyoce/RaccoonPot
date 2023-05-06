@@ -17,7 +17,7 @@ protected:
 };
 
 TEST_F(GuiManagerTest, CallRenderFunction) {
-    std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     guiManager->AddToMainPanel(widget);
     EXPECT_FALSE(widget->CallDrawFunction);
     guiManager->Render(nullptr);
@@ -25,12 +25,12 @@ TEST_F(GuiManagerTest, CallRenderFunction) {
 }
 
 TEST_F(GuiManagerTest, CallConstructor) {
-    std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>(10);
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>(10);
     EXPECT_EQ(widget->ValueByConstructor, 10);
 }
 
 TEST_F(GuiManagerTest, CallClickEvent) {
-    std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     widget->Position.x = 100; widget->Position.y = 100; widget->Width = 10; widget->Height = 10;
     guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(1, 10, 10); // Click missed
@@ -40,13 +40,13 @@ TEST_F(GuiManagerTest, CallClickEvent) {
 }
 
 TEST_F(GuiManagerTest, WidgetCreateWithAParent) {
-    std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     guiManager->AddToMainPanel(widget);
     EXPECT_TRUE(widget->Parent != nullptr);
 }
 
 TEST_F(GuiManagerTest, ResizeWindow) {
-    std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(2, 1920, 1080);
     EXPECT_EQ(widget->Parent->Width, 1920); EXPECT_EQ(widget->Parent->Height, 1080);
@@ -55,7 +55,7 @@ TEST_F(GuiManagerTest, ResizeWindow) {
 #ifndef NDEBUG
 
 TEST(GuiManagerDeath, RegisterClickEventBeforeRegisterEventManager) {
-    RP::GuiManager guiManager{};
+    const RP::GuiManager guiManager{};
     ASSERT_DEATH({
         guiManager.RegisterClickEvent(1);
     }, "");

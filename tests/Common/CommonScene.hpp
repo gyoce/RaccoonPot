@@ -1,7 +1,7 @@
 #ifndef TESTS_COMMON_SCENE_HPP
 #define TESTS_COMMON_SCENE_HPP
 
-class SceneTest: public RP::Scene {
+class SceneTest final : public RP::Scene {
 public:
     RP_SCENE_CONSTRUCTOR(SceneTest) {  }
 
@@ -17,7 +17,7 @@ private:
     int loopReturn = 0;
 };
 
-class SceneTest2: public RP::Scene {
+class SceneTest2 final : public RP::Scene {
 public:
     RP_SCENE_CONSTRUCTOR(SceneTest2) {  }
 

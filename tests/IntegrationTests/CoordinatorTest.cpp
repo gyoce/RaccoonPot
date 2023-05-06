@@ -19,16 +19,16 @@ protected:
 };
 
 TEST_F(CoordinatorTest, EntityWithComponent) {
-    RP::Entity entity = coordinator.CreateEntity();
+    const RP::Entity entity = coordinator.CreateEntity();
     coordinator.AddComponent<ComponentTest>(entity, ComponentTest{ 5 });
-    ComponentTest ct = coordinator.GetComponent<ComponentTest>(entity);
+    const ComponentTest ct = coordinator.GetComponent<ComponentTest>(entity);
     EXPECT_EQ(ct.x, 5);
-    RP::ComponentType componentType = coordinator.GetComponentType<ComponentTest>();
+    const RP::ComponentType componentType = coordinator.GetComponentType<ComponentTest>();
     EXPECT_EQ(componentType, 0);
 }
 
 TEST_F(CoordinatorTest, EntityInSystem) {
-    RP::Entity entity = coordinator.CreateEntity();
+    const RP::Entity entity = coordinator.CreateEntity();
     coordinator.AddComponent<ComponentTest>(entity, ComponentTest{ 5 });
     EXPECT_EQ(system->Entities.size(), 1);
     coordinator.RemoveComponent<ComponentTest>(entity);
@@ -36,7 +36,7 @@ TEST_F(CoordinatorTest, EntityInSystem) {
 }
 
 TEST_F(CoordinatorTest, EntityDestroyed) {
-    RP::Entity entity = coordinator.CreateEntity();
+    const RP::Entity entity = coordinator.CreateEntity();
     coordinator.AddComponent<ComponentTest>(entity, ComponentTest{ 5 });
     EXPECT_EQ(system->Entities.size(), 1);
     coordinator.DestroyEntity(entity);

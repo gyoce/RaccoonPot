@@ -4,28 +4,28 @@
 
 TEST(EntityManager, CreateEntity) {
     RP::EntityManager em{};
-    RP::Entity entity1 = em.CreateEntity();
+    const RP::Entity entity1 = em.CreateEntity();
     EXPECT_EQ(entity1, 0);
-    RP::Entity entity2 = em.CreateEntity();
+    const RP::Entity entity2 = em.CreateEntity();
     EXPECT_EQ(entity2, 1);
 }
 
 TEST(EntityManager, GetSignature) {
     RP::EntityManager em{};
-    RP::Signature signature{ 0b0101 };
-    RP::Entity entity = em.CreateEntity();
+    constexpr RP::Signature signature{ 0b0101 };
+    const RP::Entity entity = em.CreateEntity();
     em.SetSignature(entity, signature);
-    RP::Signature signatureGet = em.GetSignature(entity);
+    const RP::Signature signatureGet = em.GetSignature(entity);
     EXPECT_EQ(signature, signatureGet);
 }
 
 TEST(EntityManager, DestroyEntity) {
     RP::EntityManager em{};
-    RP::Signature signature{ 0b1100 };
-    RP::Entity entity = em.CreateEntity();
+    constexpr RP::Signature signature{ 0b1100 };
+    const RP::Entity entity = em.CreateEntity();
     em.SetSignature(entity, signature);
     em.DestroyEntity(entity);
-    RP::Signature signatureGet = em.GetSignature(entity);
+    const RP::Signature signatureGet = em.GetSignature(entity);
     EXPECT_NE(signature, signatureGet);
 }
 
@@ -43,7 +43,7 @@ TEST(EntityManagerDeath, TooManyEntities) {
 
 TEST(EntityManagerDeath, EntityOutOfRange) {
     RP::EntityManager em{};
-    RP::Entity entity = RP::MAX_ENTITIES + 1;
+    constexpr RP::Entity entity = RP::MAX_ENTITIES + 1;
     ASSERT_DEATH({
         em.DestroyEntity(entity);
     }, "");

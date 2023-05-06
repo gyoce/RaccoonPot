@@ -6,15 +6,15 @@
 
 TEST(SystemManager, RegisterSystem) {
     RP::SystemManager sm{};
-    std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
+    const std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     EXPECT_TRUE(system != nullptr);
 }
 
 TEST(SystemManager, EntitySignatureChangedAndEntityDestroyed) {
-    RP::Entity entity{ 0 };
-    RP::Signature signature{ 0b0100 };
+    constexpr RP::Entity entity{ 0 };
+    constexpr RP::Signature signature{ 0b0100 };
     RP::SystemManager sm{};
-    std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
+    const std::shared_ptr<SystemTest> system = sm.RegisterSystem<SystemTest>();
     sm.SetSignature<SystemTest>(signature);
     sm.EntitySignatureChanged(entity, signature);
     EXPECT_EQ(system->Entities.size(), 1);
@@ -34,7 +34,7 @@ TEST(SystemManagerDeath, RegisterSystemTwice) {
 
 TEST(SystemManagerDeath, SetSignatureBeforeRegistered) {
     RP::SystemManager sm{};
-    RP::Signature signature{};
+    const RP::Signature signature{};
     ASSERT_DEATH({
         sm.SetSignature<SystemTest>(signature);
     }, "");

@@ -3,17 +3,17 @@
 #include <CommonTypes.hpp>
 
 TEST(ComponentArray, AssociateDataForComponent) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentArray<ComponentTest> ca{};
     ca.InsertData(entity, ComponentTest{ 5 });
-    ComponentTest ct = ca.GetData(0);
+    const ComponentTest ct = ca.GetData(0);
     EXPECT_EQ(ct.x, 5);
 }
 
 #ifndef NDEBUG
 
 TEST(ComponentArrayDeath, RemoveDataNotInserted) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentArray<ComponentTest> ca{};
     ASSERT_DEATH({
         ca.RemoveData(entity);
@@ -21,7 +21,7 @@ TEST(ComponentArrayDeath, RemoveDataNotInserted) {
 }
 
 TEST(ComponentArrayDeath, AddComponentTwice) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentArray<ComponentTest> ca{};
     ca.InsertData(entity, ComponentTest{});
     ASSERT_DEATH({
@@ -30,7 +30,7 @@ TEST(ComponentArrayDeath, AddComponentTwice) {
 }
 
 TEST(ComponentArrayDeath, GetComponentAfterEntityDestroyed) {
-    RP::Entity entity = 0;
+    constexpr RP::Entity entity = 0;
     RP::ComponentArray<ComponentTest> ca{};
     ca.InsertData(entity, ComponentTest{});
     ca.EntityDestroyed(entity);

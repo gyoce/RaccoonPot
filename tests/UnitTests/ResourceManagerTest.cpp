@@ -13,7 +13,7 @@ protected:
         SDL_DestroyWindow(window);
         TTF_Quit();
     }
-
+    
     void SetUp() override {
         TTF_Init();
         SDL_CreateWindowAndRenderer(32, 32, SDL_WINDOW_HIDDEN, &window, &renderer);
@@ -26,22 +26,22 @@ protected:
 };
 
 TEST_F(ResourceManagerTest, UnknownFontPath) {
-    RP::FontPtr font = resourceManager->LoadFont("UnknownPath.to.file", "MyFont", 18);
+    const RP::FontPtr font = resourceManager->LoadFont("UnknownPath.to.file", "MyFont", 18);
     EXPECT_TRUE(font == nullptr);
 }
 
 TEST_F(ResourceManagerTest, UnknownSpriteSheetPath) {
-    RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("UnknownPath.to.file", "MySpriteSheet", renderer);
+    const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("UnknownPath.to.file", "MySpriteSheet", renderer);
     EXPECT_TRUE(spriteSheet == nullptr);
 }
 
 TEST_F(ResourceManagerTest, KnownFont) {
-    RP::FontPtr font = resourceManager->LoadFont(ValidPathOfFont, "MyFont", 18);
+    const RP::FontPtr font = resourceManager->LoadFont(ValidPathOfFont, "MyFont", 18);
     EXPECT_TRUE(font != nullptr);
 }
 
 TEST_F(ResourceManagerTest, KnownSpriteSheet) {
-    RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
+    const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", renderer);
     EXPECT_TRUE(spriteSheet != nullptr);
 }
 

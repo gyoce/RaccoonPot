@@ -8,12 +8,11 @@ protected:
     bool setValueCalled = false;
     int x = 0;
 
-public:
     void SetValue() {
         setValueCalled = true;
     }
 
-    void SetValue(int x) {
+    void SetValue(const int x) {
         this->x = x;
     }
 };

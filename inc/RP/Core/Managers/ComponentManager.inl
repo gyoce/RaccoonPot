@@ -3,7 +3,7 @@
 template<class T>
 void RP::ComponentManager::RegisterComponent() {
     const char* typeName = typeid(T).name();
-    assert(mapComponentTypes.find(typeName) == mapComponentTypes.end() && "Registering component type more than once");
+    assert(!mapComponentTypes.contains(typeName) && "Registering component type more than once");
     mapComponentTypes.insert({ typeName, nextComponentType++ });
     mapComponentArrays.insert({ typeName, std::make_shared<ComponentArray<T>>() });
 }
@@ -11,7 +11,7 @@ void RP::ComponentManager::RegisterComponent() {
 template<class T>
 RP::ComponentType RP::ComponentManager::GetComponentType() {
     const char* typeName = typeid(T).name();
-    assert(mapComponentTypes.find(typeName) != mapComponentTypes.end() && "Component not registered before use");
+    assert(mapComponentTypes.contains(typeName) && "Component not registered before use");
     return mapComponentTypes[typeName];
 }
 
@@ -33,6 +33,6 @@ T& RP::ComponentManager::GetComponent(Entity entity) {
 template<class T>
 std::shared_ptr<RP::ComponentArray<T>> RP::ComponentManager::getComponentArray() {
     const char* typeName = typeid(T).name();
-    assert(mapComponentTypes.find(typeName) != mapComponentTypes.end() && "Component not registered before use");
+    assert(mapComponentTypes.contains(typeName) && "Component not registered before use");
     return std::static_pointer_cast<ComponentArray<T>>(mapComponentArrays[typeName]);
 }

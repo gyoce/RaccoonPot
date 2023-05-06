@@ -3,7 +3,7 @@
 
 struct ComponentTest {
     ComponentTest() = default;
-    explicit ComponentTest(int x) : x(x) {  }
+    explicit ComponentTest(const int x) : x(x) {  }
     int x;
 };
 
