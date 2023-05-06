@@ -33,7 +33,7 @@ namespace RP {
         VerticalAnchor verticalAnchor = VerticalAnchor::None;
 
     private:
-        int getCorrectiveHeight(int indexOfChild) const;
+        [[nodiscard]] int getCorrectiveHeight(int indexOfChild) const;
     };
 
 }

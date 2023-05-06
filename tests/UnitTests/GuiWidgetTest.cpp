@@ -2,7 +2,7 @@
 
 #include <CommonTypes.hpp>
 
-class GuiWidgetTest : public ::testing::Test {
+class GuiWidgetTest : public testing::Test {
 protected:
     void SetUp() override {
         panel = std::make_shared<RP::GuiWidget>();

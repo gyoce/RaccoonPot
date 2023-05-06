@@ -2,7 +2,7 @@
 
 #include <CommonTypes.hpp>
 
-class EventManagerTest : public ::testing::Test {
+class EventManagerTest : public testing::Test {
 protected:
     RP::EventManager eventManager{};
     bool setValueCalled = false;
@@ -25,7 +25,7 @@ TEST_F(EventManagerTest, AddAndDispatchSimpleEvent) {
 }
 
 TEST_F(EventManagerTest, AddAndDispatchComplexEvent) {
-    eventManager.Bind<void(int)>(2, [this](int a) { SetValue(a); });
+    eventManager.Bind<void(int)>(2, [this](const int a) { SetValue(a); });
     EXPECT_TRUE(x == 0);
     eventManager.Dispatch<void(int)>(2, 19);
     EXPECT_TRUE(x == 19);

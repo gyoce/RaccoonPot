@@ -14,11 +14,11 @@ namespace RP {
         Entity CreateEntity();
         void DestroyEntity(Entity entity);
         void SetSignature(Entity entity, Signature signature);
-        Signature GetSignature(Entity entity) const;
+        [[nodiscard]] Signature GetSignature(Entity entity) const;
 
     private:
         std::queue<Entity> availableEntities{};
-        std::array<Signature, MAX_ENTITIES> signatures{};
+        std::array<Signature, MaxEntities> signatures{};
         std::uint32_t livingEntityCount{};
     };
 

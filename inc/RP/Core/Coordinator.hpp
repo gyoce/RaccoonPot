@@ -11,14 +11,14 @@ namespace RP {
     public:
         Coordinator();
 
-        Entity CreateEntity() const;
+        [[nodiscard]] Entity CreateEntity() const;
         void DestroyEntity(Entity entity) const;
 
         template<class T> void RegisterComponent() const;
         template<class T> void AddComponent(Entity entity, T component);
         template<class T> void RemoveComponent(Entity entity) const;
         template<class T> T& GetComponent(Entity entity);
-        template<class T> ComponentType GetComponentType() const;
+        template<class T> [[nodiscard]] ComponentType GetComponentType() const;
 
         template<class T> std::shared_ptr<T> RegisterSystem();
         template<class T> void SetSystemSignature(Signature signature) const;

@@ -2,7 +2,7 @@
 
 #include <CommonTypes.hpp>
 
-class GuiManagerTest : public ::testing::Test {
+class GuiManagerTest : public testing::Test {
 protected:
     void SetUp() override {
         eventManager = std::make_shared<RP::EventManager>();

@@ -5,14 +5,17 @@
 const std::string ValidPathOfFont = "res/orange_kid.ttf";
 const std::string ValidPathOfSpriteSheet = "res/SpriteSheet.png";
 
-class ResourceManagerTest: public ::testing::Test {
+class ResourceManagerTest: public testing::Test {
 protected:
+    ResourceManagerTest() = default;
     ~ResourceManagerTest() override {
         resourceManager.reset();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         TTF_Quit();
     }
+
+    RP_DELETE_MISC_CONSTRUCTORS(ResourceManagerTest)
     
     void SetUp() override {
         TTF_Init();

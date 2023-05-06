@@ -6,12 +6,12 @@
 #include <memory>
 
 namespace RP {
-    constexpr std::uint16_t MAX_ENTITIES = 5000;
-    constexpr std::uint8_t MAX_COMPONENTS = 32;
+    constexpr std::uint16_t MaxEntities = 5000;
+    constexpr std::uint8_t MaxComponents = 32;
 
     using Entity = std::uint32_t;
     using ComponentType = std::uint8_t;
-    using Signature = std::bitset<MAX_COMPONENTS>;
+    using Signature = std::bitset<MaxComponents>;
 
     class ComponentManager;
     using ComponentManagerPtr = std::shared_ptr<ComponentManager>;

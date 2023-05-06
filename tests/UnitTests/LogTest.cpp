@@ -3,7 +3,7 @@
 
 #include <CommonTypes.hpp>
 
-using ::testing::MatchesRegex;
+using testing::MatchesRegex;
 
 TEST(Log, ShouldLogInCout) {
     const std::stringstream buffer;

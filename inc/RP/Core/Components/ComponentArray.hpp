@@ -27,7 +27,7 @@ namespace RP {
         void EntityDestroyed(Entity entity) override;
 
     private:
-        std::array<T, MAX_ENTITIES> componentArray{};
+        std::array<T, MaxEntities> componentArray{};
         std::unordered_map<Entity, size_t> entityToIndexMap{};
         std::unordered_map<size_t, Entity> indexToEntityMap{};
         size_t size{};

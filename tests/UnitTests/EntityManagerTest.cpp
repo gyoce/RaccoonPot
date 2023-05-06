@@ -33,7 +33,7 @@ TEST(EntityManager, DestroyEntity) {
 
 TEST(EntityManagerDeath, TooManyEntities) {
     RP::EntityManager em{};
-    for (int i = 0; i < RP::MAX_ENTITIES; i++) {
+    for (int i = 0; i < RP::MaxEntities; i++) {
         em.CreateEntity();
     }
     ASSERT_DEATH({
@@ -43,12 +43,12 @@ TEST(EntityManagerDeath, TooManyEntities) {
 
 TEST(EntityManagerDeath, EntityOutOfRange) {
     RP::EntityManager em{};
-    constexpr RP::Entity entity = RP::MAX_ENTITIES + 1;
+    constexpr RP::Entity entity = RP::MaxEntities + 1;
     ASSERT_DEATH({
         em.DestroyEntity(entity);
     }, "");
     ASSERT_DEATH({
-        em.GetSignature(entity);
+        const RP::Signature _ = em.GetSignature(entity);
     }, "");
     ASSERT_DEATH({
         em.SetSignature(entity, RP::Signature{});

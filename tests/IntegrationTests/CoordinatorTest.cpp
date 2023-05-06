@@ -4,7 +4,7 @@
 
 #include <RP/RP.hpp>
 
-class CoordinatorTest : public ::testing::Test {
+class CoordinatorTest : public testing::Test {
 protected:
     RP::Coordinator coordinator{};
     RP::SystemPtr system = nullptr;

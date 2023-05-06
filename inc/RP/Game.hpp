@@ -13,7 +13,7 @@ namespace RP {
         explicit Game(GameOptions options = {});
         RP_DELETE_MISC_CONSTRUCTORS(Game)
         virtual ~Game();
-        int Run() const;
+        [[nodiscard]] int Run() const;
 
     protected:
         SDL_Window* window = nullptr;
@@ -28,7 +28,7 @@ namespace RP {
         bool initWindow();
         bool initRenderer();
 
-        int getRendererFlags() const;
+        [[nodiscard]] int getRendererFlags() const;
 
         GameOptions options;
         bool isInitialized = false;
