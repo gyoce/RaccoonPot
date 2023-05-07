@@ -23,4 +23,4 @@ void Coordinator::DestroyEntity(const Entity entity) const {
     systemManager->EntityDestroyed(entity);
 }
 
-}
+} // namespace RP

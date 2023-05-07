@@ -9,7 +9,8 @@ namespace RP {
     template<class... Args> void LogError(const char* format, Args&&... args);
 
     std::string GetLocalTimeStr();
-}
+
+} // namespace RP
 
 #include <RP/Logs/Log.inl>
 

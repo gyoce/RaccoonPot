@@ -11,6 +11,6 @@ namespace RP {
         float x, y;
     };
 
-}
+} // namespace RP
 
 #endif // RP_VECTOR2_HPP

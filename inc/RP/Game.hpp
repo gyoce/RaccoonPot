@@ -35,6 +35,6 @@ namespace RP {
         bool isInitialized = false;
     };
 
-}
+} // namespace RP
 
 #endif // RP_GAME_HPP

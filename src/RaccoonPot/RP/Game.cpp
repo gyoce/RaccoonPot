@@ -88,4 +88,4 @@ int Game::getRendererFlags() const {
     return flags;
 }
 
-}
+} // namespace RP

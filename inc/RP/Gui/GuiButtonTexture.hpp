@@ -15,6 +15,6 @@ namespace RP {
         SDL_Texture* texture = nullptr;
     };
 
-}
+} // namespace RP
 
 #endif // RP_GUI_BUTTON_TEXTURE_HPP

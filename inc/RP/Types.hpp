@@ -6,6 +6,7 @@
 #include <memory>
 
 namespace RP {
+
     constexpr std::uint16_t MaxEntities = 5000;
     constexpr std::uint8_t MaxComponents = 32;
 
@@ -60,6 +61,7 @@ namespace RP {
 
     class WindowManager;
     using WindowManagerPtr = std::shared_ptr<WindowManager>;
-}
+
+} // namespace RP
 
 #endif // RP_TYPES_HPP

@@ -59,4 +59,4 @@ SpriteSheetPtr ResourceManager::GetSpriteSheetByName(const std::string& name) {
     return spriteSheets[name];
 }
 
-}
+} // namespace RP

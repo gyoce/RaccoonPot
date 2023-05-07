@@ -11,4 +11,4 @@ void GuiButtonTexture::Draw(SDL_Renderer* renderer) {
     SDL_RenderCopy(renderer, texture, nullptr, &rect);
 }
 
-}
+} // namespace RP

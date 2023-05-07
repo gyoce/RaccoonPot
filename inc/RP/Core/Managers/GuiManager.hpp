@@ -27,7 +27,7 @@ namespace RP {
         EventManagerPtr eventManager = nullptr;
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Managers/GuiManager.inl>
 

@@ -10,4 +10,4 @@ Font::~Font() {
     TTF_CloseFont(font);
 }
 
-}
+} // namespace RP

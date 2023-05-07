@@ -27,7 +27,7 @@ namespace RP {
         ComponentType nextComponentType{};
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Managers/ComponentManager.inl>
 

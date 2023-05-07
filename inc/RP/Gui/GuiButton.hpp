@@ -17,6 +17,6 @@ namespace RP {
         std::function<void()> callback;
     };
 
-}
+} // namespace RP
 
 #endif // RP_GUI_BUTTON_HPP

@@ -32,7 +32,7 @@ namespace RP {
         std::unordered_map<int, IEventFunctionPtr> eventFunctions{};
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Managers/EventManager.inl>
 

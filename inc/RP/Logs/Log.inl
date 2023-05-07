@@ -26,7 +26,8 @@ namespace RP::Internal {
             .FormatSize = static_cast<int>(strlen(format))
         };
     }
-}
+
+} // namespace RP::Internal 
 
 template <class... Args>
 void RP::Log(const char* format, Args&&... args) {

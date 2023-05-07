@@ -17,4 +17,4 @@ SDL_Texture* ExtractTextureFromSource(const SDL_Rect& rect, SDL_Renderer* render
     return result;
 }
 
-}
+} // namespace RP::Utils

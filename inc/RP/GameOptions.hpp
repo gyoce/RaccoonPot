@@ -12,6 +12,6 @@ namespace RP {
         std::string Title = "GameTitle";
     };
 
-}
+} // namespace RP
 
 #endif // RP_GAME_OPTIONS_HPP

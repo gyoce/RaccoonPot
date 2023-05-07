@@ -69,4 +69,4 @@ void GuiManager::windowResized(const int width, const int height) const {
     mainPanel->SetSize(width, height);
 }
 
-}
+} // namespace RP

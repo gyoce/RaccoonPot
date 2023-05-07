@@ -16,6 +16,6 @@ namespace RP {
         TTF_Font* font;
     };
 
-}
+} // namespace RP
 
 #endif // RP_FONT_HPP

@@ -12,6 +12,6 @@ namespace RP {
         std::set<Entity> Entities;
     };
 
-}
+} // namespace RP
 
 #endif // RP_SYSTEM_HPP

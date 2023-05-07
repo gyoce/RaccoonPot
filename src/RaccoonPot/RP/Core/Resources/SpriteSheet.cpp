@@ -32,4 +32,4 @@ void SpriteSheet::initTextures(SDL_Renderer* renderer, const std::vector<std::pa
     }
 }
 
-}
+} // namespace RP

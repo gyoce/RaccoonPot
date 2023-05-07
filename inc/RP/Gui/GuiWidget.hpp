@@ -36,6 +36,6 @@ namespace RP {
         [[nodiscard]] int getCorrectiveHeight(int indexOfChild) const;
     };
 
-}
+} // namespace RP
 
 #endif // RP_GUI_WIDGET_HPP

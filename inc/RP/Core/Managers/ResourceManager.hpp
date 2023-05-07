@@ -25,6 +25,6 @@ namespace RP {
         std::unordered_map<std::string, FontPtr> fonts{};
     };
 
-}
+} // namespace RP
 
 #endif // RP_RESOURCE_MANAGER_HPP

@@ -17,6 +17,6 @@ namespace RP {
         Bottom
     };
 
-}
+} // namespace RP
 
 #endif // RP_ANCHORS_HPP

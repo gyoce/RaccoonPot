@@ -24,7 +24,7 @@ namespace RP {
         std::unordered_map<int, std::tuple<const char*, ScenePtr>> scenes{};
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Managers/SceneManager.inl>
 

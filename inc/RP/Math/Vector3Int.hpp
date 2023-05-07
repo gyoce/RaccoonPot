@@ -11,6 +11,6 @@ namespace RP {
         int x, y, z;
     };
 
-}
+} // namespace RP
 
 #endif // RP_VECTOR3_HPP

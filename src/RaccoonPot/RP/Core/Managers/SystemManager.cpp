@@ -26,4 +26,4 @@ void SystemManager::EntitySignatureChanged(const Entity entity, const Signature 
     }
 }
 
-}
+} // namespace RP

@@ -24,6 +24,6 @@ namespace RP {
         GuiManagerPtr guiManager = nullptr;
     };
 
-}
+} // namespace RP
 
 #endif // RP_SCENE_HPP

@@ -10,6 +10,6 @@ namespace RP {
         Vector2 Scale;
     };
 
-}
+} // namespace RP
 
 #endif // RP_TRANSFORM2_HPP

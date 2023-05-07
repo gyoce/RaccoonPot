@@ -67,4 +67,4 @@ void Scene::Draw() {
     guiManager->Render(renderer);
 }
 
-}
+} // namespace RP

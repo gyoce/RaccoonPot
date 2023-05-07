@@ -29,7 +29,7 @@ namespace RP {
         SystemManagerPtr systemManager;
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Coordinator.inl>
 

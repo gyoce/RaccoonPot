@@ -36,4 +36,4 @@ Signature EntityManager::GetSignature(const Entity entity) const {
     return signatures[entity];
 }
 
-}
+} // namespace RP

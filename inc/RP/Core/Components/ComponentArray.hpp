@@ -37,7 +37,7 @@ namespace RP {
         void updateMapToMovedSpot(size_t indexOfRemovedEntity, size_t indexOfLastElement);
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Components/ComponentArray.inl>
 

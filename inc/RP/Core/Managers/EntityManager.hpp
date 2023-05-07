@@ -22,6 +22,6 @@ namespace RP {
         std::uint32_t livingEntityCount{};
     };
 
-}
+} // namespace RP
 
 #endif // RP_ENTITY_MANAGER_HPP

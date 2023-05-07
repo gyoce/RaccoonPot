@@ -20,7 +20,7 @@ namespace RP {
         std::unordered_map<const char*, Signature> signatures{};
     };
 
-}
+} // namespace RP
 
 #include <RP/Core/Managers/SystemManager.inl>
 

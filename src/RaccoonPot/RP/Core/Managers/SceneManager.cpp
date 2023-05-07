@@ -37,4 +37,4 @@ bool SceneManager::sceneAlreadyPresent(const char* sceneName) const {
     return false;
 }
 
-}
+} // namespace RP

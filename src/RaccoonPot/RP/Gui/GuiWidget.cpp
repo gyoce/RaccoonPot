@@ -67,4 +67,4 @@ int GuiWidget::getCorrectiveHeight(const int indexOfChild) const {
     return height;
 }
 
-}
+} // namespace RP

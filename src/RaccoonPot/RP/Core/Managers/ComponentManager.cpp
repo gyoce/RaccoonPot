@@ -9,4 +9,4 @@ void ComponentManager::EntityDestroyed(const Entity entity) const {
     }
 }
 
-}
+} // namespace RP

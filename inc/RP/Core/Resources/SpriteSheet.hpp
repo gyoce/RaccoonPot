@@ -25,6 +25,6 @@ namespace RP {
         SDL_Texture* mainTexture = nullptr;
     };
 
-}
+} // namespace RP
 
 #endif // RP_SPRITE_SHEET_HPP
