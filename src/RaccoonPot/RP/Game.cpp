@@ -18,8 +18,8 @@ Game::Game(GameOptions options)
 }
 
 Game::~Game() {
-    if (renderer != nullptr) { SDL_DestroyRenderer(renderer); }
-    if (window != nullptr) { SDL_DestroyWindow(window); }
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();

@@ -28,6 +28,11 @@ FontPtr ResourceManager::LoadFont(const std::string& path, const std::string& na
     return font;
 }
 
+FontPtr ResourceManager::GetFontByName(const std::string& name) {
+    assert(fonts.contains(name) && "Font not in resource manager.");
+    return fonts[name];
+}
+
 SpriteSheetPtr ResourceManager::LoadSpriteSheet(const std::string& path, const std::string& name, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos) {
     assert(!spriteSheets.contains(name) && "SpriteSheet name already exist in the ResourceManager.");
 
@@ -47,6 +52,11 @@ SpriteSheetPtr ResourceManager::LoadSpriteSheet(const std::string& path, const s
     SpriteSheetPtr spriteSheet = std::make_shared<SpriteSheet>(texture, renderer, spriteSheetInfos);
     spriteSheets.insert({ name, spriteSheet });
     return spriteSheet;
+}
+
+SpriteSheetPtr ResourceManager::GetSpriteSheetByName(const std::string& name) {
+    assert(spriteSheets.contains(name) && "SpriteSheet not in resource manager.");
+    return spriteSheets[name];
 }
 
 }

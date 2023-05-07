@@ -16,6 +16,8 @@ namespace RP {
         ~SpriteSheet();
         RP_DELETE_MISC_CONSTRUCTORS(SpriteSheet)
 
+        SDL_Texture* GetTextureByName(const std::string& name);
+
     private:
         void initTextures(SDL_Renderer* renderer, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos);
 

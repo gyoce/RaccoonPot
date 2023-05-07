@@ -13,10 +13,15 @@ SpriteSheet::SpriteSheet(SDL_Texture* texture, SDL_Renderer* renderer, const std
 }
 
 SpriteSheet::~SpriteSheet() {
-    if (mainTexture != nullptr) { SDL_DestroyTexture(mainTexture); }
+    SDL_DestroyTexture(mainTexture);
     for (const auto& [first, second] : textures) {
         SDL_DestroyTexture(second);
     }
+}
+
+SDL_Texture* SpriteSheet::GetTextureByName(const std::string& name) {
+    assert(textures.contains(name) && "Name not in sprite sheet.");
+    return textures[name];
 }
 
 void SpriteSheet::initTextures(SDL_Renderer* renderer, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos) {

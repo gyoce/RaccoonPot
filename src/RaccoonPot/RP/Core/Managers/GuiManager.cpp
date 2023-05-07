@@ -51,10 +51,8 @@ void GuiManager::checkForClickOnWidgetButton(const int x, const int y) const {
         const GuiWidgetPtr widget = stackOfWidgets.top();
         stackOfWidgets.pop();
 
-        if (GuiButtonPtr button = std::dynamic_pointer_cast<GuiButton>(widget); button != nullptr) {
-            if (clickIsInsideButton(x, y, button)) {
-                button->Click();
-            }
+        if (GuiButtonPtr button = std::dynamic_pointer_cast<GuiButton>(widget); button != nullptr && clickIsInsideButton(x, y, button)) {
+            button->Click();
         }
 
         for (const GuiWidgetPtr& subWidget : widget->Children) {

@@ -7,7 +7,7 @@ Font::Font(TTF_Font* font)
     : font(font) {  }
 
 Font::~Font() {
-    if (font != nullptr) { TTF_CloseFont(font); }
+    TTF_CloseFont(font);
 }
 
 }

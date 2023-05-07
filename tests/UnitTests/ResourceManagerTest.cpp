@@ -26,12 +26,16 @@ TEST_F(ResourceManagerTest, UnknownSpriteSheetPath) {
 TEST_F(ResourceManagerTest, KnownFont) {
     const RP::FontPtr font = resourceManager->LoadFont(ValidPathOfFont, "MyFont", 18);
     EXPECT_TRUE(font != nullptr);
+    const RP::FontPtr fontGet = resourceManager->GetFontByName("MyFont");
+    EXPECT_TRUE(font != nullptr);
 }
 
 TEST_F(ResourceManagerTest, KnownSpriteSheet) {
     const std::vector<std::pair<std::string, SDL_Rect>> vector{};
     const RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", vector);
     EXPECT_TRUE(spriteSheet != nullptr);
+    const RP::SpriteSheetPtr spriteSheetGet = resourceManager->GetSpriteSheetByName("MySpriteSheet");
+    EXPECT_TRUE(spriteSheetGet != nullptr);
 }
 
 #ifndef NDEBUG
@@ -45,6 +49,14 @@ TEST(ResourceManagerDeath, SameNameForFont) {
     }, "");
 }
 
+TEST(ResourceManagerDeath, UnknownFontName) {
+    const CommonTestDataPtr commonTestData = CommonTestData::GetInstance();
+    RP::ResourceManager rm{ commonTestData->Renderer };
+    ASSERT_DEATH({
+        rm.GetFontByName("UnknownFontName");
+    }, "");
+}
+
 TEST(ResourceManagerDeath, SameNameForSpriteSheet) {
     const std::vector<std::pair<std::string, SDL_Rect>> vector{};
     const CommonTestDataPtr commonTestData = CommonTestData::GetInstance();
@@ -52,6 +64,14 @@ TEST(ResourceManagerDeath, SameNameForSpriteSheet) {
     rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", vector);
     ASSERT_DEATH({
         rm.LoadSpriteSheet(ValidPathOfSpriteSheet, "MySpriteSheet", vector);
+    }, "");
+}
+
+TEST(ResourceManagerDeath, UnknownSpriteSheetName) {
+    const CommonTestDataPtr commonTestData = CommonTestData::GetInstance();
+    RP::ResourceManager rm{ commonTestData->Renderer };
+    ASSERT_DEATH({
+        rm.GetSpriteSheetByName("UnknownSpriteSheet");
     }, "");
 }
 

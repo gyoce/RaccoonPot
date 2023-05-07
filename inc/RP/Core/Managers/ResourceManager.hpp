@@ -15,7 +15,9 @@ namespace RP {
         explicit ResourceManager(SDL_Renderer* renderer);
 
         FontPtr LoadFont(const std::string& path, const std::string& name, int ptSize);
+        FontPtr GetFontByName(const std::string& name);
         SpriteSheetPtr LoadSpriteSheet(const std::string& path, const std::string& name, const std::vector<std::pair<std::string, SDL_Rect>>& spriteSheetInfos);
+        SpriteSheetPtr GetSpriteSheetByName(const std::string& name);
 
     private:
         SDL_Renderer* renderer = nullptr;
