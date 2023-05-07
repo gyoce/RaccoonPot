@@ -31,6 +31,9 @@ namespace RP {
     class GuiButton;
     using GuiButtonPtr = std::shared_ptr<GuiButton>;
 
+    class GuiButtonTexture;
+    using GuiButtonTexturePtr = std::shared_ptr<GuiButtonTexture>;
+
     class GuiManager;
     using GuiManagerPtr = std::shared_ptr<GuiManager>;
 

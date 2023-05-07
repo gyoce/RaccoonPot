@@ -29,6 +29,7 @@
 // GUI
 #include <RP/Gui/Anchors.hpp>
 #include <RP/Gui/GuiButton.hpp>
+#include <RP/Gui/GuiButtonTexture.hpp>
 #include <RP/Gui/GuiWidget.hpp>
 
 // LOGS

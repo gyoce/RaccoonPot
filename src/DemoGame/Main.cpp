@@ -17,16 +17,11 @@ class MenuScene final: public RP::Scene {
 public:
     MenuScene(SDL_Renderer* renderer, RP::SpriteSheetPtr spriteSheet)
         : Scene(renderer), spriteSheet(std::move(spriteSheet)) {
-        const RP::GuiButtonPtr button = guiManager->CreateWidget<RP::GuiButton>([this] { run = false; action = SaGame; });
-        button->SetSize(100, 100);
+        std::function callback = [this] { run = false; action = SaGame; };
+        const RP::GuiButtonTexturePtr button = guiManager->CreateWidget<RP::GuiButtonTexture>(callback, this->spriteSheet->GetTextureByName("ButtonMenu"));
+        button->SetSize(128, 64);
         button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
         guiManager->AddToMainPanel(button);
-    }
-
-    void Draw() override {
-        Scene::Draw();
-        constexpr SDL_Rect rect{250, 250, 128, 32};
-        SDL_RenderCopy(renderer, spriteSheet->GetTextureByName("ButtonMenu"), nullptr, &rect);
     }
 
 private:
@@ -37,8 +32,9 @@ class GameScene final: public RP::Scene {
 public:
     GameScene(SDL_Renderer* renderer, RP::SpriteSheetPtr spriteSheet)
         : Scene(renderer), spriteSheet(std::move(spriteSheet)) {
-        const RP::GuiButtonPtr button = guiManager->CreateWidget<RP::GuiButton>([this] { run = false; action = SaMenu; });
-        button->SetSize(200, 200);
+        std::function callback = [this] { run = false; action = SaMenu; };
+        const RP::GuiButtonTexturePtr button = guiManager->CreateWidget<RP::GuiButtonTexture>(callback, this->spriteSheet->GetTextureByName("ButtonGame"));
+        button->SetSize(256, 128);
         button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
         guiManager->AddToMainPanel(button);
     }
