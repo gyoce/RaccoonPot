@@ -1,5 +1,7 @@
 #include "RP/Gui/GuiWidget.hpp"
 
+#include <stack>
+
 namespace RP
 {
 
@@ -50,6 +52,24 @@ void GuiWidget::UpdateChildrenPositions() const {
             const int height = getCorrectiveHeight(indexOfChild);
             child->Position.y = this->Position.y + (this->Height / 2) - (fullHeight / 2) + height;
             break;
+        }
+    }
+    CallUpdatePositionForChildren();
+}
+
+void GuiWidget::CallUpdatePositionForChildren() const {
+    if (Children.empty()) {
+        return;
+    }
+
+    std::stack<GuiWidgetPtr> stackOfWidgets{};
+    stackOfWidgets.push(Children[0]);
+    while (!stackOfWidgets.empty()) {
+        const GuiWidgetPtr widget = stackOfWidgets.top();
+        stackOfWidgets.pop();
+        widget->UpdateChildrenPositions();
+        for (const GuiWidgetPtr& subWidget : widget->Children) {
+            stackOfWidgets.push(subWidget);
         }
     }
 }

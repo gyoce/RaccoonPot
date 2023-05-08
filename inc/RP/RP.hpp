@@ -30,6 +30,8 @@
 #include <RP/Gui/Anchors.hpp>
 #include <RP/Gui/GuiButton.hpp>
 #include <RP/Gui/GuiButtonTexture.hpp>
+#include <RP/Gui/GuiButtonTextureText.hpp>
+#include <RP/Gui/GuiText.hpp>
 #include <RP/Gui/GuiWidget.hpp>
 
 // LOGS

@@ -39,6 +39,6 @@ target_sources(${RACCOON_POT_LIBRARY} PRIVATE
     RP/Core/Resources/Font.cpp RP/Core/Resources/SpriteSheet.cpp
     RP/Math/Vector2.cpp RP/Math/Vector3Int.cpp
     RP/Logs/Log.cpp
-    RP/Gui/GuiWidget.cpp RP/Gui/GuiButton.cpp RP/Gui/GuiButtonTexture.cpp
+    RP/Gui/GuiWidget.cpp RP/Gui/GuiButton.cpp RP/Gui/GuiButtonTexture.cpp RP/Gui/GuiText.cpp RP/Gui/GuiButtonTextureText.cpp
     RP/Utils/Utils.cpp
 )

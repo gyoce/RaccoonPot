@@ -28,6 +28,7 @@ namespace RP {
 
     protected:
         void UpdateChildrenPositions() const;
+        void CallUpdatePositionForChildren() const;
 
         HorizontalAnchor horizontalAnchor = HorizontalAnchor::None;
         VerticalAnchor verticalAnchor = VerticalAnchor::None;

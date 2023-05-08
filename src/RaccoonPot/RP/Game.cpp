@@ -18,6 +18,8 @@ Game::Game(GameOptions options)
 }
 
 Game::~Game() {
+    sceneManager.reset();
+    resourceManager.reset();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

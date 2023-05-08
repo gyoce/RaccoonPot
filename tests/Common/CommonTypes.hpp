@@ -9,7 +9,7 @@
 #include "CommonSystem.hpp"
 #include "CommonTestData.hpp"
 
-const std::string ValidPathOfFont = "res/orange_kid.ttf";
+const std::string ValidPathOfFont = "res/Font.ttf";
 const std::string ValidPathOfSpriteSheet = "res/SpriteSheet.png";
 
 #endif // TESTS_COMMON_TYPES_HPP

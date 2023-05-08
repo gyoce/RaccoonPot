@@ -23,7 +23,7 @@ FontPtr ResourceManager::LoadFont(const std::string& path, const std::string& na
         return nullptr;
     }
 
-    FontPtr font = std::make_shared<Font>(ttfFont);
+    FontPtr font = std::make_shared<Font>(ttfFont, renderer);
     fonts.insert({ name, font });
     return font;
 }
