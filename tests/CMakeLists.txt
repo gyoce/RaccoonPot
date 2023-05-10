@@ -8,19 +8,18 @@ include_directories(
 add_executable(${TEST_EXEC_NAME}
     Main.cpp
 
-    UnitTests/ComponentArrayTest.cpp
-    UnitTests/ComponentManagerTest.cpp
-    UnitTests/EntityManagerTest.cpp
-    UnitTests/EventManagerTest.cpp
-    UnitTests/GuiManagerTest.cpp
-    UnitTests/GuiWidgetTest.cpp
-    UnitTests/LogTest.cpp
-    UnitTests/ResourceManagerTest.cpp
-    UnitTests/SceneManagerTest.cpp
-    UnitTests/SpriteSheetTest.cpp
-    UnitTests/SystemManagerTest.cpp
-
-    IntegrationTests/CoordinatorTest.cpp
+    tests/ComponentArrayTest.cpp
+    tests/ComponentManagerTest.cpp
+    tests/CoordinatorTest.cpp
+    tests/EntityManagerTest.cpp
+    tests/EventManagerTest.cpp
+    tests/GuiManagerTest.cpp
+    tests/GuiWidgetTest.cpp
+    tests/LogTest.cpp
+    tests/ResourceManagerTest.cpp
+    tests/SceneManagerTest.cpp
+    tests/SpriteSheetTest.cpp
+    tests/SystemManagerTest.cpp
 )
 
 find_package(GTest CONFIG REQUIRED)

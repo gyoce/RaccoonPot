@@ -4,15 +4,18 @@
 #include <vector>
 
 #include <SDL2/SDL.h>
+#include <RP/RPMacros.hpp>
 #include <RP/Types.hpp>
-#include <RP/Math/Vector3Int.hpp>
 #include <RP/Gui/Anchors.hpp>
+#include <RP/Math/Vector3Int.hpp>
 
 namespace RP {
 
     class GuiWidget {
     public:
+        GuiWidget() = default;
         virtual ~GuiWidget() = default;
+        RP_DELETE_MISC_CONSTRUCTORS(GuiWidget)
 
         virtual void AddChild(const GuiWidgetPtr& widget);
         virtual void Draw(SDL_Renderer* renderer);
@@ -27,7 +30,8 @@ namespace RP {
         GuiWidget* Parent = nullptr;
 
     protected:
-        void UpdateChildrenPositions() const;
+        void UpdateChildrenPosition() const;
+        void UpdateChildrenSize(float widthFactor, float heightFactor) const;
         void CallUpdatePositionForChildren() const;
 
         HorizontalAnchor horizontalAnchor = HorizontalAnchor::None;

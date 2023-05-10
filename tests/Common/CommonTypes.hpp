@@ -3,6 +3,7 @@
 
 #include <RP/RP.hpp>
 
+#include "CommonCheck.hpp"
 #include "CommonComponent.hpp"
 #include "CommonGui.hpp"
 #include "CommonScene.hpp"

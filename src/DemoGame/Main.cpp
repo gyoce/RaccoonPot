@@ -18,7 +18,7 @@ public:
     MenuScene(SDL_Renderer* renderer, RP::SpriteSheetPtr spriteSheet, RP::FontPtr font)
         : Scene(renderer), spriteSheet(std::move(spriteSheet)), font(std::move(font)) {
         initButtons();
-        //initTexts();
+        initTexts();
     }
 
 private:

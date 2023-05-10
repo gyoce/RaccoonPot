@@ -1,6 +1,7 @@
 #include "RP/Gui/GuiWidget.hpp"
 
 #include <stack>
+#include <cmath>
 
 namespace RP
 {
@@ -9,7 +10,7 @@ void GuiWidget::AddChild(const GuiWidgetPtr& widget) {
     Children.push_back(widget);
     widget->Parent = this;
     if (widget->horizontalAnchor != HorizontalAnchor::None || widget->verticalAnchor != VerticalAnchor::None) {
-        UpdateChildrenPositions();
+        UpdateChildrenPosition();
     }
 }
 
@@ -19,9 +20,12 @@ void GuiWidget::SetPosition(const int x, const int y) {
 }
 
 void GuiWidget::SetSize(const int width, const int height) {
+    const float widthFactor = static_cast<float>(width) / static_cast<float>(Width);
+    const float heightFactor = static_cast<float>(height) / static_cast<float>(Height);
     Width = width;
     Height = height;
-    UpdateChildrenPositions();
+    UpdateChildrenPosition();
+    UpdateChildrenSize(widthFactor, heightFactor);
 }
 
 void GuiWidget::SetAnchor(const HorizontalAnchor horizontalAnchor, const VerticalAnchor verticalAnchor) {
@@ -33,7 +37,7 @@ void GuiWidget::Draw(SDL_Renderer* renderer) {
     // Do nothing
 }
 
-void GuiWidget::UpdateChildrenPositions() const {
+void GuiWidget::UpdateChildrenPosition() const {
     const int numberOfChildren = static_cast<int>(Children.size());
     int fullHeight{};
     for (const GuiWidgetPtr& child : Children) {
@@ -57,6 +61,14 @@ void GuiWidget::UpdateChildrenPositions() const {
     CallUpdatePositionForChildren();
 }
 
+void GuiWidget::UpdateChildrenSize(const float widthFactor, const float heightFactor) const {
+    for (const GuiWidgetPtr& widget : Children) {
+        const int width = static_cast<int>(std::round(widthFactor * static_cast<float>(widget->Width)));
+        const int height = static_cast<int>(std::round(heightFactor * static_cast<float>(widget->Height)));
+        widget->SetSize(width, height);
+    }
+}
+
 void GuiWidget::CallUpdatePositionForChildren() const {
     if (Children.empty()) {
         return;
@@ -67,7 +79,7 @@ void GuiWidget::CallUpdatePositionForChildren() const {
     while (!stackOfWidgets.empty()) {
         const GuiWidgetPtr widget = stackOfWidgets.top();
         stackOfWidgets.pop();
-        widget->UpdateChildrenPositions();
+        widget->UpdateChildrenPosition();
         for (const GuiWidgetPtr& subWidget : widget->Children) {
             stackOfWidgets.push(subWidget);
         }

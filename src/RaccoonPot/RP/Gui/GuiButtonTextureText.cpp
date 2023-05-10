@@ -9,11 +9,7 @@ GuiButtonTextureText::GuiButtonTextureText(const std::function<void()>& callback
     : GuiButtonTexture(callback, texture) {
     guiText = std::make_shared<GuiText>(text, font);
     guiText->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
-    AddChild(guiText);
-}
-
-void GuiButtonTextureText::Draw(SDL_Renderer* renderer) {
-    GuiButtonTexture::Draw(renderer);
+    GuiWidget::AddChild(guiText);
 }
 
 void GuiButtonTextureText::SetSize(const int width, const int height) {

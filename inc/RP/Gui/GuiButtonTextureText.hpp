@@ -8,8 +8,7 @@ namespace RP {
     class GuiButtonTextureText: public GuiButtonTexture {
     public:
         explicit GuiButtonTextureText(const std::function<void()>& callback, SDL_Texture* texture, const std::string& text, const FontPtr& font);
-
-        void Draw(SDL_Renderer* renderer) override;
+        
         void SetSize(int width, int height) override;
 
     protected:
