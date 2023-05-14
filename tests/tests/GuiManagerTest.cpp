@@ -31,7 +31,8 @@ TEST_F(GuiManagerTest, CallConstructor) {
 
 TEST_F(GuiManagerTest, CallClickEvent) {
     const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
-    widget->Position.x = 100; widget->Position.y = 100; widget->Width = 10; widget->Height = 10;
+    widget->SetPosition(100, 100);
+    widget->SetSize(10, 10);
     guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(1, 10, 10); // Click missed
     EXPECT_FALSE(widget->CallClickFunction);
@@ -49,7 +50,7 @@ TEST_F(GuiManagerTest, ResizeWindow) {
     const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
     guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(2, 1920, 1080);
-    EXPECT_EQ(widget->Parent->Width, 1920); EXPECT_EQ(widget->Parent->Height, 1080);
+    RP_EXPECT_EQ_SIZE(widget->Parent->GetWidth(), widget->Parent->GetHeight(), 1920, 1080);
 }
 
 #ifndef NDEBUG

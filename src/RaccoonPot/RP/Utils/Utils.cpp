@@ -11,6 +11,7 @@ SDL_Texture* ExtractTextureFromSource(const SDL_Rect& rect, SDL_Renderer* render
         LogError("Error while extracting texture from source: {} ", SDL_GetError());
         return nullptr;
     }
+    SDL_SetTextureBlendMode(result, SDL_BLENDMODE_BLEND);
     SDL_SetRenderTarget(renderer, result);
     SDL_RenderCopy(renderer, source, &rect, nullptr);
     SDL_SetRenderTarget(renderer, nullptr);

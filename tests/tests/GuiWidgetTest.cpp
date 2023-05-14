@@ -5,11 +5,10 @@
 class GuiWidgetTest : public testing::Test {
 protected:
     void SetUp() override {
-        panel = std::make_shared<RP::GuiWidget>();
-        panel->Width = 1280;
-        panel->Height = 720;
+        panel = std::make_shared<RP::GuiPanel>();
+        panel->SetSize(1280, 720);
     }
-    RP::GuiWidgetPtr panel;
+    RP::GuiPanelPtr panel;
 };
 
 TEST_F(GuiWidgetTest, CenterOneObject) {
@@ -17,7 +16,7 @@ TEST_F(GuiWidgetTest, CenterOneObject) {
     button->SetSize(100, 100);
     button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     panel->AddChild(button);
-    RP_EXPECT_EQ(button->Position, 590, 310, 0);
+    RP_EXPECT_EQ_POSITION(button->GetPosition(), 590, 310, 0);
 }
 
 TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
@@ -35,9 +34,9 @@ TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
     panel->AddChild(button2);
     panel->AddChild(button3);
 
-    RP_EXPECT_EQ(button1->Position, 590, 248, 0);
-    RP_EXPECT_EQ(button2->Position, 603, 348, 0);
-    RP_EXPECT_EQ(button3->Position, 615, 423, 0);
+    RP_EXPECT_EQ_POSITION(button1->GetPosition(), 590, 248, 0);
+    RP_EXPECT_EQ_POSITION(button2->GetPosition(), 603, 348, 0);
+    RP_EXPECT_EQ_POSITION(button3->GetPosition(), 615, 423, 0);
 }
 
 TEST_F(GuiWidgetTest, RepositioningChildrenWhenResizeWidget) {
@@ -46,7 +45,7 @@ TEST_F(GuiWidgetTest, RepositioningChildrenWhenResizeWidget) {
     button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     panel->AddChild(button);
     panel->SetSize(1920, 1080);
-    RP_EXPECT_EQ(button->Position, 910, 490, 0);
+    RP_EXPECT_EQ_POSITION(button->GetPosition(), 910, 490, 0);
 }
 
 TEST_F(GuiWidgetTest, ResizeChildrenWhenResizeWidget) {
@@ -54,7 +53,23 @@ TEST_F(GuiWidgetTest, ResizeChildrenWhenResizeWidget) {
     button->SetSize(100, 25);
     panel->AddChild(button);
     panel->SetSize(1920, 1080);
-    EXPECT_EQ(button->Width, 150); EXPECT_EQ(button->Height, 38);
+    RP_EXPECT_EQ_SIZE(button->GetWidth(), button->GetHeight(), 150, 38);
     panel->SetSize(1280, 720);
-    EXPECT_EQ(button->Width, 100); EXPECT_EQ(button->Height, 25);
+    RP_EXPECT_EQ_SIZE(button->GetWidth(), button->GetHeight(), 100, 25);
+}
+
+TEST_F(GuiWidgetTest, AnchorLeftOneElement) {
+    const RP::GuiButtonPtr button = std::make_shared<RP::GuiButton>(nullptr);
+    button->SetSize(100, 80);
+    button->SetAnchor(RP::HorizontalAnchor::Left, RP::VerticalAnchor::Center);
+    panel->AddChild(button);
+    RP_EXPECT_EQ_POSITION(button->GetPosition(), 0, 320, 0);
+}
+
+TEST_F(GuiWidgetTest, AnchorRightOneElement) {
+    const RP::GuiButtonPtr button = std::make_shared<RP::GuiButton>(nullptr);
+    button->SetSize(100, 80);
+    button->SetAnchor(RP::HorizontalAnchor::Right, RP::VerticalAnchor::Center);
+    panel->AddChild(button);
+    RP_EXPECT_EQ_POSITION(button->GetPosition(), 1180, 320, 0);
 }

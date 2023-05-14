@@ -62,7 +62,7 @@ class DemoGame final: public RP::Game {
 public:
     explicit DemoGame(const RP::GameOptions& options): Game(options) {
         RP::SpriteSheetPtr spriteSheet = resourceManager->LoadSpriteSheet("res/SpriteSheet.png", "MainSpriteSheet", SpriteSheetInfos);
-        RP::FontPtr font = resourceManager->LoadFont("res/Font.ttf", "MainFont", 18);
+        RP::FontPtr font = resourceManager->LoadFont("res/Font.ttf", "MainFont", 14);
         sceneManager->SetBaseAction(SaMenu);
         sceneManager->RegisterScene<MenuScene>(SaMenu, spriteSheet, font);
         sceneManager->RegisterScene<GameScene>(SaGame, spriteSheet, font);
@@ -72,8 +72,8 @@ public:
 int main() {
     const RP::GameOptions options{
         .VSync = true,
-        .Width = 1920,
-        .Height = 1080,
+        .Width = 1280,
+        .Height = 720,
         .Title = "DemoGame"
     };
     const DemoGame game{options};

@@ -5,12 +5,13 @@
 
 #include "RP/Core/Managers/EventManager.hpp"
 #include "RP/Gui/GuiButton.hpp"
+#include "RP/Gui/GuiPanel.hpp"
 
 namespace RP
 {
     
 GuiManager::GuiManager() {
-    mainPanel = std::make_shared<GuiWidget>();
+    mainPanel = std::make_shared<GuiPanel>();
 }
 
 void GuiManager::RegisterEventManager(const EventManagerPtr& eventManager) {
@@ -62,7 +63,8 @@ void GuiManager::checkForClickOnWidgetButton(const int x, const int y) const {
 }
 
 bool GuiManager::clickIsInsideButton(const int x, const int y, const GuiButtonPtr& button) {
-    return x >= button->Position.x && x <= button->Position.x + button->Width && y >= button->Position.y && y <= button->Position.y + button->Height;
+    const Vector3Int& position = button->GetPosition();
+    return x >= position.x && x <= position.x + button->GetWidth() && y >= position.y && y <= position.y + button->GetHeight();
 }
 
 void GuiManager::windowResized(const int width, const int height) const {

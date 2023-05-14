@@ -13,9 +13,8 @@ GuiButtonTextureText::GuiButtonTextureText(const std::function<void()>& callback
 }
 
 void GuiButtonTextureText::SetSize(const int width, const int height) {
-    guiText->Width = width;
-    guiText->Height = height;
     GuiWidget::SetSize(width, height);
+    guiText->SetSize(width, height);
 }
 
 } // namespace PR

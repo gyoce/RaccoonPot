@@ -7,7 +7,7 @@ GuiButtonTexture::GuiButtonTexture(std::function<void()> callback, SDL_Texture* 
     : GuiButton(std::move(callback)), texture(texture) {  }
 
 void GuiButtonTexture::Draw(SDL_Renderer* renderer) {
-    const SDL_Rect rect = { Position.x, Position.y, Width, Height };
+    const SDL_Rect rect = { position.x, position.y, width, height };
     SDL_RenderCopy(renderer, texture, nullptr, &rect);
 }
 

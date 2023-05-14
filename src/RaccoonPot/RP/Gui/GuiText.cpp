@@ -11,7 +11,7 @@ GuiText::GuiText(std::string text, const FontPtr& font)
 }
 
 void GuiText::Draw(SDL_Renderer* renderer) {
-    const SDL_Rect rect = { Position.x, Position.y, Width, Height };
+    const SDL_Rect rect = { position.x, position.y, width, height };
     SDL_RenderCopy(renderer, textTexture, nullptr, &rect);
 }
 

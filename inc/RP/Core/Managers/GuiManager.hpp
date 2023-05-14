@@ -23,7 +23,7 @@ namespace RP {
         void checkForClickOnWidgetButton(int x, int y) const;
         void windowResized(int width, int height) const;
          
-        GuiWidgetPtr mainPanel = nullptr;
+        GuiPanelPtr mainPanel = nullptr;
         EventManagerPtr eventManager = nullptr;
     };
 

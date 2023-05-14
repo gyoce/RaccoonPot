@@ -18,14 +18,14 @@ namespace RP {
         RP_DELETE_MISC_CONSTRUCTORS(GuiWidget)
 
         virtual void AddChild(const GuiWidgetPtr& widget);
-        virtual void Draw(SDL_Renderer* renderer);
+        virtual void Draw(SDL_Renderer* renderer) = 0;
         virtual void SetPosition(int x, int y);
         virtual void SetSize(int width, int height);
         virtual void SetAnchor(HorizontalAnchor horizontalAnchor, VerticalAnchor verticalAnchor);
+        virtual Vector3Int& GetPosition();
+        virtual int GetWidth();
+        virtual int GetHeight();
 
-        int Width{}, Height{};
-        Vector3Int Position{};
-        Vector3Int LocalPosition{};
         std::vector<GuiWidgetPtr> Children{};
         GuiWidget* Parent = nullptr;
 
@@ -36,6 +36,8 @@ namespace RP {
 
         HorizontalAnchor horizontalAnchor = HorizontalAnchor::None;
         VerticalAnchor verticalAnchor = VerticalAnchor::None;
+        int width{}, height{};
+        Vector3Int position{};
 
     private:
         [[nodiscard]] int getCorrectiveHeight(int indexOfChild) const;

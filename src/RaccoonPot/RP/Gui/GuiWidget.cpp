@@ -2,6 +2,7 @@
 
 #include <stack>
 #include <cmath>
+#include <limits>
 
 namespace RP
 {
@@ -15,15 +16,17 @@ void GuiWidget::AddChild(const GuiWidgetPtr& widget) {
 }
 
 void GuiWidget::SetPosition(const int x, const int y) {
-    Position.x = x;
-    Position.y = y;
+    position.x = x;
+    position.y = y;
 }
 
 void GuiWidget::SetSize(const int width, const int height) {
-    const float widthFactor = static_cast<float>(width) / static_cast<float>(Width);
-    const float heightFactor = static_cast<float>(height) / static_cast<float>(Height);
-    Width = width;
-    Height = height;
+    float widthFactor = static_cast<float>(width) / static_cast<float>(this->width);
+    float heightFactor = static_cast<float>(height) / static_cast<float>(this->height);
+    widthFactor = widthFactor == std::numeric_limits<float>::infinity() ? 1.0f : widthFactor;
+    heightFactor = heightFactor == std::numeric_limits<float>::infinity() ? 1.0f : heightFactor;
+    this->width = width;
+    this->height = height;
     UpdateChildrenPosition();
     UpdateChildrenSize(widthFactor, heightFactor);
 }
@@ -33,38 +36,55 @@ void GuiWidget::SetAnchor(const HorizontalAnchor horizontalAnchor, const Vertica
     this->verticalAnchor = verticalAnchor;
 }
 
-void GuiWidget::Draw(SDL_Renderer* renderer) {
-    // Do nothing
+Vector3Int& GuiWidget::GetPosition() {
+    return position;
+}
+
+int GuiWidget::GetHeight() {
+    return height;
+}
+
+int GuiWidget::GetWidth() {
+    return width;
 }
 
 void GuiWidget::UpdateChildrenPosition() const {
     const int numberOfChildren = static_cast<int>(Children.size());
     int fullHeight{};
     for (const GuiWidgetPtr& child : Children) {
-        fullHeight += child->Height;
+        fullHeight += child->height;
     }
     for (int indexOfChild = 0; indexOfChild < numberOfChildren; indexOfChild++) {
         const GuiWidgetPtr& child = Children[indexOfChild];
+        int newX{}, newY{};
         switch (child->horizontalAnchor) {
         case HorizontalAnchor::Center:
-            child->Position.x = this->Position.x + (this->Width / 2) - (child->Width / 2);
+            newX = this->position.x + (this->width / 2) - (child->width / 2);
+            break;
+        case HorizontalAnchor::Left:
+            newX = this->position.x;
+            break;
+        case HorizontalAnchor::Right:
+            newX = this->position.x + this->width - child->width;
             break;
         }
 
         switch (child->verticalAnchor) {
         case VerticalAnchor::Center:
             const int height = getCorrectiveHeight(indexOfChild);
-            child->Position.y = this->Position.y + (this->Height / 2) - (fullHeight / 2) + height;
+            newY = this->position.y + (this->height / 2) - (fullHeight / 2) + height;
             break;
         }
+
+        child->SetPosition(newX, newY);
     }
     CallUpdatePositionForChildren();
 }
 
 void GuiWidget::UpdateChildrenSize(const float widthFactor, const float heightFactor) const {
     for (const GuiWidgetPtr& widget : Children) {
-        const int width = static_cast<int>(std::round(widthFactor * static_cast<float>(widget->Width)));
-        const int height = static_cast<int>(std::round(heightFactor * static_cast<float>(widget->Height)));
+        const int width = static_cast<int>(std::round(widthFactor * static_cast<float>(widget->width)));
+        const int height = static_cast<int>(std::round(heightFactor * static_cast<float>(widget->height)));
         widget->SetSize(width, height);
     }
 }
@@ -93,7 +113,7 @@ int GuiWidget::getCorrectiveHeight(const int indexOfChild) const {
     int child = 0;
     int height = 0;
     while (child < indexOfChild) {
-        height += Children[child]->Height;
+        height += Children[child]->height;
         child++;
     }
     return height;

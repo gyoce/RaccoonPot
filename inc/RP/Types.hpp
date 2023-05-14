@@ -41,6 +41,9 @@ namespace RP {
     class GuiManager;
     using GuiManagerPtr = std::shared_ptr<GuiManager>;
 
+    class GuiPanel;
+    using GuiPanelPtr = std::shared_ptr<GuiPanel>;
+
     class GuiText;
     using GuiTextPtr = std::shared_ptr<GuiText>;
 

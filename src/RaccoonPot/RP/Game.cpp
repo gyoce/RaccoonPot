@@ -64,7 +64,7 @@ bool Game::initSdlImage() {
 
 bool Game::initWindow() {
     Log("Initializing Window");
-    window = SDL_CreateWindow(options.Title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, options.Width, options.Height, SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow(options.Title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, options.Width, options.Height, SDL_WINDOW_SHOWN);
     if (window == nullptr) {
         LogError("Error while initializing Window : {}", SDL_GetError());
         return false;
@@ -79,6 +79,7 @@ bool Game::initRenderer() {
         LogError("Error while initializing Renderer : {}", SDL_GetError());
         return false;
     }
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     return true;
 }
 
