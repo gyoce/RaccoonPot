@@ -3,6 +3,7 @@
 
 #include <queue>
 #include <array>
+#include <memory>
 
 #include <RP/Types.hpp>
 
@@ -21,6 +22,7 @@ namespace RP {
         std::array<Signature, MaxEntities> signatures{};
         std::uint32_t livingEntityCount{};
     };
+    using EntityManagerPtr = std::shared_ptr<EntityManager>;
 
 } // namespace RP
 

@@ -1,12 +1,14 @@
 #ifndef RP_RESOURCE_MANAGER_HPP
 #define RP_RESOURCE_MANAGER_HPP
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include <SDL2/SDL.h>
-#include <RP/Types.hpp>
+#include <RP/Core/Resources/Font.hpp>
+#include <RP/Core/Resources/SpriteSheet.hpp>
 
 namespace RP {
 
@@ -24,6 +26,7 @@ namespace RP {
         std::unordered_map<std::string, SpriteSheetPtr> spriteSheets{};
         std::unordered_map<std::string, FontPtr> fonts{};
     };
+    using ResourceManagerPtr = std::shared_ptr<ResourceManager>;
 
 } // namespace RP
 

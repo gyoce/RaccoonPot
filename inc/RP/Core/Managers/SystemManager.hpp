@@ -5,6 +5,7 @@
 #include <memory>
 
 #include <RP/Types.hpp>
+#include <RP/Core/Systems/System.hpp>
 
 namespace RP {
 
@@ -19,6 +20,7 @@ namespace RP {
         std::unordered_map<const char*, SystemPtr> systems{};
         std::unordered_map<const char*, Signature> signatures{};
     };
+    using SystemManagerPtr = std::shared_ptr<SystemManager>;
 
 } // namespace RP
 

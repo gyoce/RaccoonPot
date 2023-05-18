@@ -31,6 +31,7 @@ namespace RP {
 
         std::unordered_map<int, IEventFunctionPtr> eventFunctions{};
     };
+    using EventManagerPtr = std::shared_ptr<EventManager>;
 
 } // namespace RP
 

@@ -2,6 +2,7 @@
 #define RP_GUI_BUTTON_HPP
 
 #include <functional>
+
 #include <RP/Gui/GuiWidget.hpp>
 
 namespace RP {
@@ -18,6 +19,7 @@ namespace RP {
         std::function<void()> callback;
         SDL_Color backgroundColor{};
     };
+    using GuiButtonPtr = std::shared_ptr<GuiButton>;
 
 } // namespace RP
 

@@ -16,7 +16,7 @@ namespace RP {
         RP_DELETE_MISC_CONSTRUCTORS(IComponentArray)
         virtual void EntityDestroyed(Entity entity) = 0;
     };
-    typedef std::shared_ptr<IComponentArray> IComponentArrayPtr;
+    using IComponentArrayPtr = std::shared_ptr<IComponentArray>;
 
     template<class T>
     class ComponentArray final : public IComponentArray {

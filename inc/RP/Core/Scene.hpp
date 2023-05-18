@@ -1,8 +1,11 @@
 #ifndef RP_SCENE_HPP
 #define RP_SCENE_HPP
 
+#include <memory>
+
 #include <SDL2/SDL.h>
-#include <RP/Types.hpp>
+#include <RP/Core/Managers/EventManager.hpp>
+#include <RP/Core/Managers/GuiManager.hpp>
 
 namespace RP {
 
@@ -23,6 +26,7 @@ namespace RP {
         EventManagerPtr eventManager = nullptr;
         GuiManagerPtr guiManager = nullptr;
     };
+    using ScenePtr = std::shared_ptr<Scene>;
 
 } // namespace RP
 

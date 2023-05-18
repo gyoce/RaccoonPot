@@ -2,9 +2,10 @@
 #define RP_GAME_HPP
 
 #include <SDL2/SDL.h>
-#include <RP/Types.hpp>
 #include <RP/GameOptions.hpp>
 #include <RP/RPMacros.hpp>
+#include <RP/Core/Managers/ResourceManager.hpp>
+#include <RP/Core/Managers/SceneManager.hpp>
 
 namespace RP {
 

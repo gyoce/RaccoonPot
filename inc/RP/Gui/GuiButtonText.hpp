@@ -2,6 +2,7 @@
 #define RP_GUI_BUTTON_TEXT_HPP
 
 #include <RP/Gui/GuiButton.hpp>
+#include <RP/Gui/GuiText.hpp>
 
 namespace RP {
 
@@ -17,6 +18,7 @@ namespace RP {
         GuiTextPtr guiText = nullptr;
         int paddingWithText{};
     };
+    using GuiButtonTextPtr = std::shared_ptr<GuiButtonText>;
 
 } // namespace RP
 

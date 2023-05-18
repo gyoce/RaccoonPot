@@ -14,6 +14,7 @@ namespace RP {
     protected:
         SDL_Texture* texture = nullptr;
     };
+    using GuiButtonTexturePtr = std::shared_ptr<GuiButtonTexture>;
 
 } // namespace RP
 

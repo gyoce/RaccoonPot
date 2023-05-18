@@ -4,7 +4,9 @@
 #include <memory>
 
 #include <SDL2/SDL.h>
-#include <RP/Types.hpp>
+#include <RP/Gui/GuiPanel.hpp>
+#include <RP/Gui/GuiButton.hpp>
+#include <RP/Core/Managers/EventManager.hpp>
 
 namespace RP {
 
@@ -26,6 +28,7 @@ namespace RP {
         GuiPanelPtr mainPanel = nullptr;
         EventManagerPtr eventManager = nullptr;
     };
+    using GuiManagerPtr = std::shared_ptr<GuiManager>;
 
 } // namespace RP
 

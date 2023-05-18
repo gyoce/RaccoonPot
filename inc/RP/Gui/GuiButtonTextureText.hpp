@@ -2,6 +2,7 @@
 #define RP_GUI_BUTTON_TEXTURE_TEXT_HPP
 
 #include <RP/Gui/GuiButtonTexture.hpp>
+#include <RP/Gui/GuiText.hpp>
 
 namespace RP {
 
@@ -14,6 +15,7 @@ namespace RP {
     protected:
         GuiTextPtr guiText = nullptr;
     };
+    using GuiButtonTextureTextPtr = std::shared_ptr<GuiButtonTextureText>;
 
 } // namespace RP
 

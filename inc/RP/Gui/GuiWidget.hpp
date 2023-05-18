@@ -1,16 +1,19 @@
 #ifndef RP_GUI_WIDGET_HPP
 #define RP_GUI_WIDGET_HPP
 
+#include <memory>
 #include <vector>
 
 #include <SDL2/SDL.h>
 #include <RP/RPMacros.hpp>
-#include <RP/Types.hpp>
 #include <RP/Gui/Anchors.hpp>
 #include <RP/Gui/AlignItems.hpp>
 #include <RP/Math/Vector3Int.hpp>
 
 namespace RP {
+
+    class GuiWidget;
+    using GuiWidgetPtr = std::shared_ptr<GuiWidget>;
 
     class GuiWidget {
     public:

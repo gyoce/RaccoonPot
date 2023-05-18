@@ -2,9 +2,10 @@
 #define GUI_TEXT_HPP
 
 #include <string>
+
 #include <SDL2/SDL.h>
 #include <RP/Gui/GuiWidget.hpp>
-#include <RP/Types.hpp>
+#include <RP/Core/Resources/Font.hpp>
 
 namespace RP {
 
@@ -18,6 +19,7 @@ namespace RP {
         SDL_Texture* textTexture = nullptr;
         std::string text;
     };
+    using GuiTextPtr = std::shared_ptr<GuiText>;
 
 } // namespace RP
 

@@ -5,7 +5,7 @@
 #include <memory>
 
 #include <SDL2/SDL.h>
-#include <RP/Types.hpp>
+#include <RP/Core/Scene.hpp>
 
 namespace RP {
 
@@ -23,6 +23,7 @@ namespace RP {
         int baseAction{};
         std::unordered_map<int, std::tuple<const char*, ScenePtr>> scenes{};
     };
+    using SceneManagerPtr = std::shared_ptr<SceneManager>;
 
 } // namespace RP
 

@@ -4,6 +4,9 @@
 #include <memory>
 
 #include <RP/Types.hpp>
+#include <RP/Core/Managers/ComponentManager.hpp>
+#include <RP/Core/Managers/EntityManager.hpp>
+#include <RP/Core/Managers/SystemManager.hpp>
 
 namespace RP {
 
@@ -28,6 +31,7 @@ namespace RP {
         EntityManagerPtr entityManager;
         SystemManagerPtr systemManager;
     };
+    using CoordinatorPtr = std::shared_ptr<Coordinator>;
 
 } // namespace RP
 

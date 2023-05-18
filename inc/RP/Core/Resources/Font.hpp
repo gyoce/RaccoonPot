@@ -1,7 +1,9 @@
 #ifndef RP_FONT_HPP
 #define RP_FONT_HPP
 
+#include <memory>
 #include <string>
+
 #include <SDL2/SDL_ttf.h>
 #include <RP/RPMacros.hpp>
 
@@ -19,6 +21,7 @@ namespace RP {
         TTF_Font* font = nullptr;
         SDL_Renderer* renderer = nullptr;
     };
+    using FontPtr = std::shared_ptr<Font>;
 
 } // namespace RP
 

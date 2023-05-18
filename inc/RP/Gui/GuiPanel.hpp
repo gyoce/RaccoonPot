@@ -14,6 +14,7 @@ namespace RP {
     protected:
         SDL_Color backgroundColor{};
     };
+    using GuiPanelPtr = std::shared_ptr<GuiPanel>;
 
 } // namespace RP
 

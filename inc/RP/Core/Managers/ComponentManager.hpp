@@ -26,6 +26,7 @@ namespace RP {
         std::unordered_map<const char*, IComponentArrayPtr> mapComponentArrays{};
         ComponentType nextComponentType{};
     };
+    using ComponentManagerPtr = std::shared_ptr<ComponentManager>;
 
 } // namespace RP
 

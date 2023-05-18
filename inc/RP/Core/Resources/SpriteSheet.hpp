@@ -1,6 +1,7 @@
 #ifndef RP_SPRITE_SHEET_HPP
 #define RP_SPRITE_SHEET_HPP
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -24,6 +25,7 @@ namespace RP {
         std::unordered_map<std::string, SDL_Texture*> textures{};
         SDL_Texture* mainTexture = nullptr;
     };
+    using SpriteSheetPtr = std::shared_ptr<SpriteSheet>;
 
 } // namespace RP
 
