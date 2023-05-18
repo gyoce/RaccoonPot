@@ -15,5 +15,4 @@ void GuiText::Draw(SDL_Renderer* renderer) {
     SDL_RenderCopy(renderer, textTexture, nullptr, &rect);
 }
 
-
 } // namespace RP

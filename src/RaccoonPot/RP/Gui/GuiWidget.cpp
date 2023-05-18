@@ -36,6 +36,22 @@ void GuiWidget::SetAnchor(const HorizontalAnchor horizontalAnchor, const Vertica
     this->verticalAnchor = verticalAnchor;
 }
 
+void GuiWidget::SetHorizontalAnchor(const HorizontalAnchor anchor) {
+    this->horizontalAnchor = anchor;
+}
+
+void GuiWidget::SetVerticalAnchor(const VerticalAnchor anchor) {
+    this->verticalAnchor = anchor;
+}
+
+void GuiWidget::SetAlignItems(const AlignItems alignItems) {
+    this->alignItems = alignItems;
+}
+
+void GuiWidget::SetPaddingBetweenChildren(const int padding) {
+    this->paddingBetweenChildren = padding;
+}
+
 Vector3Int& GuiWidget::GetPosition() {
     return position;
 }
@@ -50,33 +66,54 @@ int GuiWidget::GetWidth() {
 
 void GuiWidget::UpdateChildrenPosition() const {
     const int numberOfChildren = static_cast<int>(Children.size());
-    int fullHeight{};
+    int fullHeight{}, fullWidth{};
     for (const GuiWidgetPtr& child : Children) {
-        fullHeight += child->height;
+        fullHeight += child->height + paddingBetweenChildren;
+        fullWidth += child->width + paddingBetweenChildren;
     }
+    fullHeight -= paddingBetweenChildren; fullWidth -= paddingBetweenChildren;
     for (int indexOfChild = 0; indexOfChild < numberOfChildren; indexOfChild++) {
         const GuiWidgetPtr& child = Children[indexOfChild];
         int newX{}, newY{};
+        const int width = getCorrectiveWidth(indexOfChild);
         switch (child->horizontalAnchor) {
         case HorizontalAnchor::Center:
-            newX = this->position.x + (this->width / 2) - (child->width / 2);
-            break;
-        case HorizontalAnchor::Left:
-            newX = this->position.x;
+            if (alignItems == AlignItems::Row && child->verticalAnchor == VerticalAnchor::Center) {
+                newX = this->position.x + (this->width / 2) - (fullWidth / 2) + width;
+            } else {
+                newX = this->position.x + (this->width / 2) - (child->width / 2);
+            }
             break;
         case HorizontalAnchor::Right:
             newX = this->position.x + this->width - child->width;
             break;
-        }
-
-        switch (child->verticalAnchor) {
-        case VerticalAnchor::Center:
-            const int height = getCorrectiveHeight(indexOfChild);
-            newY = this->position.y + (this->height / 2) - (fullHeight / 2) + height;
+        case HorizontalAnchor::None:
+        case HorizontalAnchor::Left:
+            newX = this->position.x;
             break;
         }
 
-        child->SetPosition(newX, newY);
+        const int height = getCorrectiveHeight(indexOfChild);
+        switch (child->verticalAnchor) {
+        case VerticalAnchor::Center:
+            if (alignItems == AlignItems::Column && child->horizontalAnchor == HorizontalAnchor::Center) {
+                newY = this->position.y + (this->height / 2) - (fullHeight / 2) + height;
+            } else {
+                newY = this->position.y + (this->height / 2) - (child->height / 2);
+            }
+            break;
+        case VerticalAnchor::Bottom:
+            newY = this->position.y + this->height - child->height;
+            break;
+        case VerticalAnchor::None:
+        case VerticalAnchor::Top:
+            newY = this->position.y;
+            break;
+        }
+
+        if (newX != child->position.x || newY != child->position.y) {
+            child->SetPosition(newX, newY);
+        }
     }
     CallUpdatePositionForChildren();
 }
@@ -90,19 +127,8 @@ void GuiWidget::UpdateChildrenSize(const float widthFactor, const float heightFa
 }
 
 void GuiWidget::CallUpdatePositionForChildren() const {
-    if (Children.empty()) {
-        return;
-    }
-
-    std::stack<GuiWidgetPtr> stackOfWidgets{};
-    stackOfWidgets.push(Children[0]);
-    while (!stackOfWidgets.empty()) {
-        const GuiWidgetPtr widget = stackOfWidgets.top();
-        stackOfWidgets.pop();
-        widget->UpdateChildrenPosition();
-        for (const GuiWidgetPtr& subWidget : widget->Children) {
-            stackOfWidgets.push(subWidget);
-        }
+    for (const GuiWidgetPtr& child : Children) {
+        child->UpdateChildrenPosition();
     }
 }
 
@@ -113,10 +139,23 @@ int GuiWidget::getCorrectiveHeight(const int indexOfChild) const {
     int child = 0;
     int height = 0;
     while (child < indexOfChild) {
-        height += Children[child]->height;
+        height += Children[child]->height + paddingBetweenChildren;
         child++;
     }
     return height;
+}
+
+int GuiWidget::getCorrectiveWidth(const int indexOfChild) const {
+    if (indexOfChild == 0) {
+        return 0;
+    }
+    int child = 0;
+    int width = 0;
+    while (child < indexOfChild) {
+        width += Children[child]->width + paddingBetweenChildren;
+        child++;
+    }
+    return width;
 }
 
 } // namespace RP

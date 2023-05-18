@@ -12,9 +12,11 @@ namespace RP {
 
         virtual void Click();
         void Draw(SDL_Renderer* renderer) override;
+        virtual void SetBackgroundColor(SDL_Color color);
 
     protected:
         std::function<void()> callback;
+        SDL_Color backgroundColor{};
     };
 
 } // namespace RP

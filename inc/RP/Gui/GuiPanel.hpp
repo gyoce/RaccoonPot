@@ -7,8 +7,9 @@ namespace RP {
 
     class GuiPanel: public GuiWidget {
     public:
+        explicit GuiPanel() = default;
         void Draw(SDL_Renderer* renderer) override;
-        void SetBackgroundColor(SDL_Color color);
+        virtual void SetBackgroundColor(SDL_Color color);
 
     protected:
         SDL_Color backgroundColor{};

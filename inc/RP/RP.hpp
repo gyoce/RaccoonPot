@@ -28,7 +28,9 @@
 
 // GUI
 #include <RP/Gui/Anchors.hpp>
+#include <RP/Gui/AlignItems.hpp>
 #include <RP/Gui/GuiButton.hpp>
+#include <RP/Gui/GuiButtonText.hpp>
 #include <RP/Gui/GuiButtonTexture.hpp>
 #include <RP/Gui/GuiButtonTextureText.hpp>
 #include <RP/Gui/GuiPanel.hpp>
