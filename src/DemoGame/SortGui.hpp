@@ -1,39 +1,47 @@
 #ifndef GAME_SORT_HPP
 #define GAME_SORT_HPP
 
+#include <thread>
+#include <atomic>
+
 #include <RP/RP.hpp>
 
 enum class SortingAlgorithm {
-    None,
-    InsertionSort
+    InsertionSort,
+    BubbleSort,
+    QuickSort
 };
 
 class SortGui {
 public:
-    explicit SortGui(int x, int y, int width, int height);
+    SortGui(SDL_Renderer* renderer, int x, int y, int width, int height);
 
-    void Draw(SDL_Renderer* renderer);
-    void Update(double dt);
+    void Draw() const;
 
     void SetUp(SortingAlgorithm sortingAlgorithm);
-    bool Ready() const;
-    void Start();
+    void StopSort();
 
 private:
-    void drawValues(SDL_Renderer* renderer) const;
+    void drawValues() const;
     void generateRandomValues();
 
-    void insertionSort();
+    void start();
+    void startSort();
 
-    const int sizeOfEachValue = 10;
-    const int paddingBetweenValues = 5;
-    const double delay = 0.01;
-    double timer{};
+    void insertionSort();
+    void bubbleSort();
+    void quicksort(int start, int end);
+
+    void swap(int firstIndex, int secondIndex);
+    int quicksortPartition(int start, int end);
+
+    SDL_Renderer* renderer = nullptr;
     int numberOfValues{};
     std::vector<int> values{};
-    SortingAlgorithm actualAlgorithm = SortingAlgorithm::None;
+    SortingAlgorithm actualAlgorithm{};
     SDL_Rect workingRectangle;
-    bool ready{}, start{};
+    std::thread sortingThread{};
+    std::atomic<bool> forceStop{false};
 };
 
 #endif // GAME_SORT_HPP

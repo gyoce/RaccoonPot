@@ -31,6 +31,7 @@ namespace RP {
         bool initRenderer();
 
         [[nodiscard]] int getRendererFlags() const;
+        [[nodiscard]] int getWindowFlags() const;
 
         GameOptions options;
         bool isInitialized = false;

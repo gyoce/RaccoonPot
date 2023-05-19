@@ -10,9 +10,7 @@ const std::vector<std::pair<std::string, SDL_Rect>> SpriteSheetInfos{
 
 const RP::GameOptions Options{
     .VSync = true,
-    .Width = 1980,
-    .Height = 1080,
-    .Title = "DemoGame"
+    .Title = "DemoGame",
 };
 
 enum SceneAction {
@@ -48,7 +46,8 @@ public:
         : Scene(renderer), spriteSheet(std::move(spriteSheet)), font(std::move(font)) {
         initPanels();
         initButtons();
-        sortGui = std::make_shared<SortGui>(0, 0, Options.Width, Options.Height - bottomPanel->GetHeight());
+        sortGui = std::make_shared<SortGui>(renderer, 0, 0, Options.Width, Options.Height - bottomPanel->GetHeight());
+        eventManager->Bind<void()>(SDL_QUIT, [this] { sortGui->StopSort(); });
     }
 
 private:
@@ -82,23 +81,26 @@ private:
         btnInsertionSort->SetPadding(10);
         panelButtons->AddChild(btnInsertionSort);
 
-        std::function callbackStart = [this] { if (sortGui->Ready()) { sortGui->Start(); } };
-        const RP::GuiButtonTextPtr btnStart = guiManager->CreateWidget<RP::GuiButtonText>(callbackStart, "Start", font);
-        btnStart->SetAnchor(RP::HorizontalAnchor::Left, RP::VerticalAnchor::Center);
-        btnStart->SetSize(150, 50);
-        btnStart->SetBackgroundColor({ 169, 215, 246, 255 });
-        btnStart->SetPadding(10);
-        panelButtons->AddChild(btnStart);
+        std::function callbackBubbleSort = [this] { sortGui->SetUp(SortingAlgorithm::BubbleSort); };
+        const RP::GuiButtonTextPtr btnBubbleSort = guiManager->CreateWidget<RP::GuiButtonText>(callbackBubbleSort, "Bubble Sort", font);
+        btnBubbleSort->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+        btnBubbleSort->SetSize(225, 50);
+        btnBubbleSort->SetBackgroundColor({ 169, 215, 246, 255 });
+        btnBubbleSort->SetPadding(10);
+        panelButtons->AddChild(btnBubbleSort);
+
+        std::function callbackQuickSort = [this] { sortGui->SetUp(SortingAlgorithm::QuickSort); };
+        const RP::GuiButtonTextPtr btnQuickSort = guiManager->CreateWidget<RP::GuiButtonText>(callbackQuickSort, "Quick Sort", font);
+        btnQuickSort->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+        btnQuickSort->SetSize(225, 50);
+        btnQuickSort->SetBackgroundColor({ 169, 215, 246, 255 });
+        btnQuickSort->SetPadding(10);
+        panelButtons->AddChild(btnQuickSort);
     }
 
     void Draw() override {
         Scene::Draw();
-        sortGui->Draw(renderer);
-    }
-
-    void Update(const double dt) override {
-        Scene::Update(dt);
-        sortGui->Update(dt);
+        sortGui->Draw();
     }
 
     RP::SpriteSheetPtr spriteSheet = nullptr;

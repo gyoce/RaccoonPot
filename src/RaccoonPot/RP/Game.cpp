@@ -64,7 +64,7 @@ bool Game::initSdlImage() {
 
 bool Game::initWindow() {
     Log("Initializing Window");
-    window = SDL_CreateWindow(options.Title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, options.Width, options.Height, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow(options.Title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, options.Width, options.Height, getWindowFlags());
     if (window == nullptr) {
         LogError("Error while initializing Window : {}", SDL_GetError());
         return false;
@@ -87,6 +87,14 @@ int Game::getRendererFlags() const {
     int flags = SDL_RENDERER_ACCELERATED;
     if (options.VSync) {
         flags |= SDL_RENDERER_PRESENTVSYNC;
+    }
+    return flags;
+}
+
+int Game::getWindowFlags() const {
+    int flags = SDL_WINDOW_SHOWN;
+    if (options.FullScreen) {
+        flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
     }
     return flags;
 }
