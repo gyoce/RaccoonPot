@@ -46,8 +46,10 @@ private:
     
     RP::SpriteSheetPtr spriteSheet = nullptr;
     RP::FontPtr font = nullptr;
-    RP::GuiPanelPtr panelButtons = nullptr;
-    RP::GuiPanelPtr bottomPanel = nullptr;
+    RP::GuiPanelPtr panelAlgorithms = nullptr;
+    RP::GuiPanelPtr panelBottom = nullptr;
+    RP::GuiPanelPtr panelDelay = nullptr;
+    RP::GuiPanelPtr panelStats = nullptr;
     std::shared_ptr<SortGui> sortGui = nullptr;
 };
 
