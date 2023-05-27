@@ -1,5 +1,5 @@
-#ifndef GAME_SORT_HPP
-#define GAME_SORT_HPP
+#ifndef DEMO_SORT_HPP
+#define DEMO_SORT_HPP
 
 #include <thread>
 #include <atomic>
@@ -59,4 +59,4 @@ void BubbleSort(std::vector<int>& values, const std::atomic<bool>& forceStop);
 int QuickSortPartition(std::vector<int>& values, int start, int end, const std::atomic<bool>& forceStop);
 void QuickSort(std::vector<int>& values, int start, int end, const std::atomic<bool>& forceStop);
 
-#endif // GAME_SORT_HPP
+#endif // DEMO_SORT_HPP

@@ -13,6 +13,7 @@ std::atomic delayInMs = { 100 };
 //                    SORT GUI
 // -------------------------------------------------
 // *************************************************
+
 SortGui::SortGui(SDL_Renderer* renderer, const int x, const int y, const  int width, const  int height)
     : renderer(renderer), workingRectangle(x, y, width, height) {
     numberOfValues = width / (SizeOfEachValue + PaddingBetweenValues);
@@ -84,6 +85,7 @@ void SortGui::generateRandomValues() {
 //           SORTING ALGORITHMS SCENE
 // -------------------------------------------------
 // *************************************************
+
 SortingAlgorithmsScene::SortingAlgorithmsScene(SDL_Renderer* renderer, RP::SpriteSheetPtr spriteSheet, RP::FontPtr font)
     : Scene(renderer), spriteSheet(std::move(spriteSheet)), font(std::move(font)) {
     initPanels();
@@ -180,6 +182,7 @@ void SortingAlgorithmsScene::Draw() {
 //               SORTING ALGORITHMS
 // -------------------------------------------------
 // *************************************************
+
 void InsertionSort(std::vector<int>& values, const std::atomic<bool>& forceStop) {
     const int numberOfValues = static_cast<int>(values.size());
     int i = 1;

@@ -19,7 +19,7 @@ private:
         button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
         guiManager->AddToMainPanel(button);
     }
-
+    
     RP::SpriteSheetPtr spriteSheet = nullptr;
     RP::FontPtr font = nullptr;
 };

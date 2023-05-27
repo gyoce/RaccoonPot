@@ -1,14 +1,14 @@
-#ifndef GAME_MAIN_HPP
-#define GAME_MAIN_HPP
+#ifndef DEMO_MAIN_HPP
+#define DEMO_MAIN_HPP
 
 #include <RP/RP.hpp>
 
-const std::vector<std::pair<std::string, SDL_Rect>> SpriteSheetInfos{
+const std::vector<std::pair<std::string, SDL_Rect>> SpriteSheetInfos {
     { "ButtonSort", { 0, 0, 192, 64 }},
     { "ButtonGame", { 0, 64, 192, 64 }}
 };
 
-const RP::GameOptions Options{
+const RP::GameOptions Options {
     .VSync = true,
     .Width = 1920,
     .Height = 1080,
@@ -21,4 +21,4 @@ enum SceneAction {
     SaGame
 };
 
-#endif // GAME_MAIN_HPP
+#endif // DEMO_MAIN_HPP

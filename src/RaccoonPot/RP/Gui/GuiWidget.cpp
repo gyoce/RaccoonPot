@@ -1,6 +1,5 @@
 #include "RP/Gui/GuiWidget.hpp"
 
-#include <stack>
 #include <cmath>
 #include <limits>
 
