@@ -10,7 +10,7 @@ namespace RP
 Scene::Scene(SDL_Renderer* renderer)
     : renderer(renderer) {
     eventManager = std::make_shared<EventManager>();
-    eventManager->Bind<void()>(SDL_QUIT, [this] { run = false; action = -1; });
+    eventManager->Bind<void()>(SDL_QUIT, [this] { run = false; action = 0; });
     eventManager->Bind<void(int, int)>(SDL_MOUSEBUTTONDOWN, [](const int x, const int y) { Log("Click @[{}, {}]", x, y); });
 
     guiManager = std::make_shared<GuiManager>();
@@ -27,11 +27,16 @@ int Scene::Loop() {
     run = true;
     double deltaTime = 0;
     while (run) {
+        SDL_Color color;
+        SDL_GetRenderDrawColor(renderer, &color.r, &color.g, &color.b, &color.a);
         const std::uint64_t startFrame = SDL_GetPerformanceCounter();
         SDL_RenderClear(renderer);
+
         Event();
         Update(deltaTime);
         Draw();
+
+        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         SDL_RenderPresent(renderer);
         const std::uint64_t endFrame = SDL_GetPerformanceCounter();
         deltaTime = static_cast<double>(endFrame - startFrame) / static_cast<double>(SDL_GetPerformanceFrequency());

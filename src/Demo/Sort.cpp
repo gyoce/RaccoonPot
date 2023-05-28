@@ -36,10 +36,7 @@ void SortGui::StopSort() {
 
 void SortGui::Draw() const {
     if (values.empty()) { return; }
-    SDL_Color color;
-    SDL_GetRenderDrawColor(renderer, &color.r, &color.g, &color.b, &color.a);
     drawValues();
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 }
 
 void SortGui::drawValues() const {
