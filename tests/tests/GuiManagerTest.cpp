@@ -10,6 +10,7 @@ protected:
         guiManager->RegisterEventManager(eventManager);
         guiManager->RegisterClickEvent(1);
         guiManager->RegisterWindowResizeEvent(2);
+        guiManager->RegisterMouseMoveEvent(3);
     }
     
     RP::EventManagerPtr eventManager = nullptr;
@@ -51,6 +52,27 @@ TEST_F(GuiManagerTest, ResizeWindow) {
     guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(2, 1920, 1080);
     RP_EXPECT_EQ_SIZE(widget->Parent->GetWidth(), widget->Parent->GetHeight(), 1920, 1080);
+}
+
+TEST_F(GuiManagerTest, MouseMoveWithHoverableWidget) {
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    widget->SetPosition(10, 10);
+    widget->SetSize(10, 10);
+    widget->SetHoverable(true);
+    guiManager->AddToMainPanel(widget);
+    eventManager->Dispatch<void(int, int)>(3, 9, 9); // Outside
+    EXPECT_FALSE(widget->GetHover());
+    eventManager->Dispatch<void(int, int)>(3, 11, 11); // Inside
+    EXPECT_TRUE(widget->GetHover());
+}
+
+TEST_F(GuiManagerTest, MouseMoveWithNonHoverableWidget) {
+    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    widget->SetPosition(10, 10);
+    widget->SetSize(10, 10);
+    guiManager->AddToMainPanel(widget);
+    eventManager->Dispatch<void(int, int)>(3, 11, 11); // Inside
+    EXPECT_FALSE(widget->GetHover());
 }
 
 #ifndef NDEBUG

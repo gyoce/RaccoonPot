@@ -126,6 +126,7 @@ void SortingAlgorithmsScene::initButtons() const {
     btnInsertionSort->SetSize(225, 50);
     btnInsertionSort->SetBackgroundColor({ 169, 215, 246, 255 });
     btnInsertionSort->SetPadding(10);
+    btnInsertionSort->SetHoverable(true);
     panelAlgorithms->AddChild(btnInsertionSort);
 
     std::function callbackBubbleSort = [this] { sortGui->Start(SortingAlgorithm::BubbleSort); };
@@ -134,6 +135,7 @@ void SortingAlgorithmsScene::initButtons() const {
     btnBubbleSort->SetSize(225, 50);
     btnBubbleSort->SetBackgroundColor({ 169, 215, 246, 255 });
     btnBubbleSort->SetPadding(10);
+    btnBubbleSort->SetHoverable(true);
     panelAlgorithms->AddChild(btnBubbleSort);
 
     std::function callbackQuickSort = [this] { sortGui->Start(SortingAlgorithm::QuickSort); };
@@ -142,6 +144,7 @@ void SortingAlgorithmsScene::initButtons() const {
     btnQuickSort->SetSize(225, 50);
     btnQuickSort->SetBackgroundColor({ 169, 215, 246, 255 });
     btnQuickSort->SetPadding(10);
+    btnQuickSort->SetHoverable(true);
     panelAlgorithms->AddChild(btnQuickSort);
 
     std::function callbackDelay1 = [this] { delayInMs = 1; };
@@ -150,6 +153,7 @@ void SortingAlgorithmsScene::initButtons() const {
     btnDelay1->SetSize(175, 35);
     btnDelay1->SetBackgroundColor({ 169, 215, 246, 255 });
     btnDelay1->SetPadding(10);
+    btnDelay1->SetHoverable(true);
     panelDelay->AddChild(btnDelay1);
 
     std::function callbackDelay10 = [this] { delayInMs = 10; };
@@ -158,6 +162,7 @@ void SortingAlgorithmsScene::initButtons() const {
     btnDelay10->SetSize(175, 35);
     btnDelay10->SetBackgroundColor({ 169, 215, 246, 255 });
     btnDelay10->SetPadding(10);
+    btnDelay10->SetHoverable(true);
     panelDelay->AddChild(btnDelay10);
 
     std::function callbackDelay100 = [this] { delayInMs = 100; };
@@ -166,6 +171,7 @@ void SortingAlgorithmsScene::initButtons() const {
     btnDelay100->SetSize(175, 35);
     btnDelay100->SetBackgroundColor({ 169, 215, 246, 255 });
     btnDelay100->SetPadding(10);
+    btnDelay100->SetHoverable(true);
     panelDelay->AddChild(btnDelay100);
 }
 

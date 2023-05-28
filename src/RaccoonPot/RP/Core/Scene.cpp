@@ -17,6 +17,7 @@ Scene::Scene(SDL_Renderer* renderer)
     guiManager->RegisterEventManager(eventManager);
     guiManager->RegisterClickEvent(SDL_MOUSEBUTTONDOWN);
     guiManager->RegisterWindowResizeEvent(SDL_WINDOWEVENT_RESIZED);
+    guiManager->RegisterMouseMoveEvent(SDL_MOUSEMOTION);
 
     int width, height;
     SDL_GetRendererOutputSize(renderer, &width, &height);
@@ -53,6 +54,9 @@ void Scene::Event() {
             break;
         case SDL_MOUSEBUTTONDOWN:
             eventManager->Dispatch<void(int, int)>(SDL_MOUSEBUTTONDOWN, event.motion.x, event.motion.y);
+            break;
+        case SDL_MOUSEMOTION:
+            eventManager->Dispatch<void(int, int)>(SDL_MOUSEMOTION, event.motion.x, event.motion.y);
             break;
         case SDL_WINDOWEVENT:
             switch (event.window.event) {

@@ -28,9 +28,14 @@ namespace RP {
         virtual void SetVerticalAnchor(VerticalAnchor anchor);
         virtual void SetAlignItems(AlignItems alignItems);
         virtual void SetPaddingBetweenChildren(int padding);
+        virtual void SetHoverable(bool hoverable);
+        virtual void SetHover(bool hover);
+
         virtual Vector3Int& GetPosition();
         virtual int GetWidth();
         virtual int GetHeight();
+        virtual bool IsHoverable();
+
         virtual void AddChild(const GuiWidgetPtr& widget);
         virtual void Draw(SDL_Renderer* renderer) = 0;
 
@@ -48,6 +53,7 @@ namespace RP {
         int width{}, height{};
         Vector3Int position{};
         int paddingBetweenChildren{};
+        bool hoverable{}, hover{};
 
     private:
         [[nodiscard]] int getCorrectiveHeight(int indexOfChild) const;

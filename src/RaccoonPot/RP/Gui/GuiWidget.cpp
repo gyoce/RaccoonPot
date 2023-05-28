@@ -51,12 +51,24 @@ void GuiWidget::SetPaddingBetweenChildren(const int padding) {
     this->paddingBetweenChildren = padding;
 }
 
+void GuiWidget::SetHoverable(const bool hoverable) {
+    this->hoverable = hoverable;
+}
+
+void GuiWidget::SetHover(const bool hover) {
+    this->hover = hover;
+}
+
 Vector3Int& GuiWidget::GetPosition() {
     return position;
 }
 
 int GuiWidget::GetHeight() {
     return height;
+}
+
+bool GuiWidget::IsHoverable() {
+    return hoverable;
 }
 
 int GuiWidget::GetWidth() {

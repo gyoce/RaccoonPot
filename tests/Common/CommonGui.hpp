@@ -17,6 +17,10 @@ public:
     void Draw(SDL_Renderer* renderer) override {
         CallDrawFunction = true;
     }
+
+    bool GetHover() const {
+        return hover;
+    }
 };
 
 #endif // TESTS_COMMON_GUI_HPP
