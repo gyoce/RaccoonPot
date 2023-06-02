@@ -12,9 +12,11 @@ public:
 
 private:
     void initButtons() {
-        std::function callback = [this] { run = false; action = SaGame; };
-        const RP::GuiButtonTextureTextPtr button = guiManager->CreateWidget<RP::GuiButtonTextureText>(
-            callback, this->spriteSheet->GetTextureByName("ButtonSort"), "Sort", font);
+        const std::function callback = [this] { run = false; action = SaGame; };
+        auto* button = new RP::GuiButtonTextureText();
+        button->SetCallback(callback);
+        button->SetTexture(this->spriteSheet->GetTextureByName("ButtonSort"));
+        button->SetText("Sort", font);
         button->SetSize(128, 64);
         button->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
         guiManager->AddToMainPanel(button);

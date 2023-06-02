@@ -4,15 +4,20 @@
 
 class GuiWidgetTest : public testing::Test {
 protected:
+    ~GuiWidgetTest() override {
+        delete mainPanel;
+    }
+
     void SetUp() override {
-        mainPanel = std::make_shared<RP::GuiPanel>();
+        mainPanel = new RP::GuiPanel();
         mainPanel->SetSize(1280, 720);
     }
-    RP::GuiPanelPtr mainPanel;
+
+    RP::GuiPanel* mainPanel = nullptr;
 };
 
 TEST_F(GuiWidgetTest, CenterOneObject) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetSize(100, 100);
     panel->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     mainPanel->AddChild(panel);
@@ -21,13 +26,13 @@ TEST_F(GuiWidgetTest, CenterOneObject) {
 
 TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
     mainPanel->SetPaddingBetweenChildren(10);
-    const RP::GuiPanelPtr panel1 = std::make_shared<RP::GuiPanel>();
+    auto* panel1 = new RP::GuiPanel();
     panel1->SetSize(100, 100);
     panel1->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    const RP::GuiPanelPtr panel2 = std::make_shared<RP::GuiPanel>();
+    auto* panel2 = new RP::GuiPanel();
     panel2->SetSize(75, 75);
     panel2->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    const RP::GuiPanelPtr panel3 = std::make_shared<RP::GuiPanel>();
+    auto* panel3 = new RP::GuiPanel();
     panel3->SetSize(50, 50);
     panel3->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     
@@ -43,13 +48,13 @@ TEST_F(GuiWidgetTest, CenterMultipleObjectsInColumn) {
 TEST_F(GuiWidgetTest, CenterMultipleObjectsInRow) {
     mainPanel->SetPaddingBetweenChildren(10);
     mainPanel->SetAlignItems(RP::AlignItems::Row);
-    const RP::GuiPanelPtr panel1 = std::make_shared<RP::GuiPanel>();
+    auto* panel1 = new RP::GuiPanel();
     panel1->SetSize(100, 100);
     panel1->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    const RP::GuiPanelPtr panel2 = std::make_shared<RP::GuiPanel>();
+    auto* panel2 = new RP::GuiPanel();
     panel2->SetSize(75, 75);
     panel2->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    const RP::GuiPanelPtr panel3 = std::make_shared<RP::GuiPanel>();
+    auto* panel3 = new RP::GuiPanel();
     panel3->SetSize(50, 50);
     panel3->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
 
@@ -63,10 +68,10 @@ TEST_F(GuiWidgetTest, CenterMultipleObjectsInRow) {
 }
 
 TEST_F(GuiWidgetTest, MultipleObjectsLeftAndRightWithCenterVertically) {
-    const RP::GuiPanelPtr panel1 = std::make_shared<RP::GuiPanel>();
+    auto* panel1 = new RP::GuiPanel();
     panel1->SetSize(100, 100);
     panel1->SetAnchor(RP::HorizontalAnchor::Left, RP::VerticalAnchor::Center);
-    const RP::GuiPanelPtr panel2 = std::make_shared<RP::GuiPanel>();
+    auto* panel2 = new RP::GuiPanel();
     panel2->SetSize(75, 75);
     panel2->SetAnchor(RP::HorizontalAnchor::Right, RP::VerticalAnchor::Center);
 
@@ -78,10 +83,10 @@ TEST_F(GuiWidgetTest, MultipleObjectsLeftAndRightWithCenterVertically) {
 }
 
 TEST_F(GuiWidgetTest, MultipleObjectsTopAndBottomWithCenterHorizontally) {
-    const RP::GuiPanelPtr panel1 = std::make_shared<RP::GuiPanel>();
+    auto* panel1 = new RP::GuiPanel();
     panel1->SetSize(100, 100);
     panel1->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Top);
-    const RP::GuiPanelPtr panel2 = std::make_shared<RP::GuiPanel>();
+    auto* panel2 = new RP::GuiPanel();
     panel2->SetSize(75, 75);
     panel2->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Bottom);
 
@@ -93,7 +98,7 @@ TEST_F(GuiWidgetTest, MultipleObjectsTopAndBottomWithCenterHorizontally) {
 }
 
 TEST_F(GuiWidgetTest, RepositioningChildrenWhenResizeWidget) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetSize(100, 100);
     panel->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     mainPanel->AddChild(panel);
@@ -102,7 +107,7 @@ TEST_F(GuiWidgetTest, RepositioningChildrenWhenResizeWidget) {
 }
 
 TEST_F(GuiWidgetTest, ResizeChildrenWhenResizeWidget) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetSize(100, 25);
     mainPanel->AddChild(panel);
     mainPanel->SetSize(1920, 1080);
@@ -112,7 +117,7 @@ TEST_F(GuiWidgetTest, ResizeChildrenWhenResizeWidget) {
 }
 
 TEST_F(GuiWidgetTest, AnchorLeftOneElement) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetPosition(100, 100);
     panel->SetSize(100, 720);
     panel->SetHorizontalAnchor(RP::HorizontalAnchor::Left);
@@ -121,7 +126,7 @@ TEST_F(GuiWidgetTest, AnchorLeftOneElement) {
 }
 
 TEST_F(GuiWidgetTest, AnchorRightOneElement) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetPosition(100, 100);
     panel->SetSize(100, 720);
     panel->SetHorizontalAnchor(RP::HorizontalAnchor::Right);
@@ -130,7 +135,7 @@ TEST_F(GuiWidgetTest, AnchorRightOneElement) {
 }
 
 TEST_F(GuiWidgetTest, AnchorBottomOneElement) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetPosition(100, 100);
     panel->SetSize(1280, 100);
     panel->SetVerticalAnchor(RP::VerticalAnchor::Bottom);
@@ -139,7 +144,7 @@ TEST_F(GuiWidgetTest, AnchorBottomOneElement) {
 }
 
 TEST_F(GuiWidgetTest, AnchorTopOneElement) {
-    const RP::GuiPanelPtr panel = std::make_shared<RP::GuiPanel>();
+    auto* panel = new RP::GuiPanel();
     panel->SetPosition(100, 100);
     panel->SetSize(1280, 100);
     panel->SetVerticalAnchor(RP::VerticalAnchor::Top);
@@ -149,9 +154,11 @@ TEST_F(GuiWidgetTest, AnchorTopOneElement) {
 
 TEST_F(GuiWidgetTest, GuiButtonTextWithPadding) {
     const RP::FontPtr font = std::make_shared<RP::Font>(nullptr, nullptr);
-    const RP::GuiButtonTextPtr buttonText = std::make_shared<RP::GuiButtonText>(nullptr, "", font);
+    auto* buttonText = new RP::GuiButtonText();
+    buttonText->SetText("", font);
     buttonText->SetPadding(10);
     buttonText->SetSize(100, 100);
     buttonText->SetPosition(100, 200);
     RP_EXPECT_EQ_POSITION(buttonText->GetGuiText()->GetPosition(), 110, 210, 0);
+    delete buttonText;
 }

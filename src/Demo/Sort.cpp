@@ -92,23 +92,23 @@ SortingAlgorithmsScene::SortingAlgorithmsScene(SDL_Renderer* renderer, RP::Sprit
 }
 
 void SortingAlgorithmsScene::initPanels() {
-    panelBottom = guiManager->CreateWidget<RP::GuiPanel>();
+    panelBottom = new RP::GuiPanel();
     panelBottom->SetBackgroundColor({ 249, 109, 109, 255 });
     panelBottom->SetSize(Options.Width, 200);
     panelBottom->SetVerticalAnchor(RP::VerticalAnchor::Bottom);
     panelBottom->SetAlignItems(RP::AlignItems::Row);
     guiManager->AddToMainPanel(panelBottom);
 
-    panelStats = guiManager->CreateWidget<RP::GuiPanel>();
+    panelStats = new RP::GuiPanel();
     panelStats->SetSize(300, 200);
     panelStats->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     
-    panelDelay = guiManager->CreateWidget<RP::GuiPanel>();
+    panelDelay = new RP::GuiPanel();
     panelDelay->SetSize(300, 200);
     panelDelay->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
     panelDelay->SetPaddingBetweenChildren(20);
 
-    panelAlgorithms = guiManager->CreateWidget<RP::GuiPanel>();
+    panelAlgorithms = new RP::GuiPanel();
     panelAlgorithms->SetPaddingBetweenChildren(20);
     panelAlgorithms->SetAlignItems(RP::AlignItems::Row);
     panelAlgorithms->SetSize(panelBottom->GetWidth() - panelStats->GetWidth() - panelDelay->GetWidth(), 150);
@@ -120,58 +120,62 @@ void SortingAlgorithmsScene::initPanels() {
 }
 
 void SortingAlgorithmsScene::initButtons() const {
-    std::function callbackInsertionSort = [this] { sortGui->Start(SortingAlgorithm::InsertionSort); };
-    const RP::GuiButtonTextPtr btnInsertionSort = guiManager->CreateWidget<RP::GuiButtonText>(callbackInsertionSort, "Insertion Sort", font);
-    btnInsertionSort->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    btnInsertionSort->SetSize(225, 50);
-    btnInsertionSort->SetBackgroundColor({ 169, 215, 246, 255 });
-    btnInsertionSort->SetPadding(10);
-    btnInsertionSort->SetHoverable(true);
+    initSortingAlgortihmsButtons();
+    initDelaysButtons();
+}
+
+void SortingAlgorithmsScene::initSortingAlgortihmsButtons() const {
+    RP::GuiBuilder<RP::GuiButtonText> buttonTextBuilder{};
+    buttonTextBuilder->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+    buttonTextBuilder->SetSize(225, 50);
+    buttonTextBuilder->SetBackgroundColor({ 169, 215, 246, 255 });
+    buttonTextBuilder->SetPadding(10);
+    buttonTextBuilder->SetHoverable(true);
+
+    const std::function callbackInsertionSort = [this] { sortGui->Start(SortingAlgorithm::InsertionSort); };
+    auto* btnInsertionSort = buttonTextBuilder.Build();
+    btnInsertionSort->SetCallback(callbackInsertionSort);
+    btnInsertionSort->SetText("Insertion Sort", font);
     panelAlgorithms->AddChild(btnInsertionSort);
 
-    std::function callbackBubbleSort = [this] { sortGui->Start(SortingAlgorithm::BubbleSort); };
-    const RP::GuiButtonTextPtr btnBubbleSort = guiManager->CreateWidget<RP::GuiButtonText>(callbackBubbleSort, "Bubble Sort", font);
-    btnBubbleSort->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    btnBubbleSort->SetSize(225, 50);
-    btnBubbleSort->SetBackgroundColor({ 169, 215, 246, 255 });
-    btnBubbleSort->SetPadding(10);
-    btnBubbleSort->SetHoverable(true);
+    const std::function callbackBubbleSort = [this] { sortGui->Start(SortingAlgorithm::BubbleSort); };
+    auto* btnBubbleSort = buttonTextBuilder.Build();
+    btnBubbleSort->SetCallback(callbackBubbleSort);
+    btnBubbleSort->SetText("Bubble Sort", font);
     panelAlgorithms->AddChild(btnBubbleSort);
 
-    std::function callbackQuickSort = [this] { sortGui->Start(SortingAlgorithm::QuickSort); };
-    const RP::GuiButtonTextPtr btnQuickSort = guiManager->CreateWidget<RP::GuiButtonText>(callbackQuickSort, "Quick Sort", font);
-    btnQuickSort->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    btnQuickSort->SetSize(225, 50);
-    btnQuickSort->SetBackgroundColor({ 169, 215, 246, 255 });
-    btnQuickSort->SetPadding(10);
-    btnQuickSort->SetHoverable(true);
+    const std::function callbackQuickSort = [this] { sortGui->Start(SortingAlgorithm::QuickSort); };
+    auto* btnQuickSort = buttonTextBuilder.Build();
+    btnQuickSort->SetCallback(callbackQuickSort);
+    btnQuickSort->SetText("Quick Sort", font);
     panelAlgorithms->AddChild(btnQuickSort);
+}
 
-    std::function callbackDelay1 = [this] { delayInMs = 1; };
-    const RP::GuiButtonTextPtr btnDelay1 = guiManager->CreateWidget<RP::GuiButtonText>(callbackDelay1, "Delay 1 ms", font);
-    btnDelay1->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    btnDelay1->SetSize(175, 35);
-    btnDelay1->SetBackgroundColor({ 169, 215, 246, 255 });
-    btnDelay1->SetPadding(10);
-    btnDelay1->SetHoverable(true);
+
+void SortingAlgorithmsScene::initDelaysButtons() const {
+    RP::GuiBuilder<RP::GuiButtonText> buttonTextBuilder{};
+    buttonTextBuilder->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
+    buttonTextBuilder->SetSize(175, 35);
+    buttonTextBuilder->SetBackgroundColor({ 169, 215, 246, 255 });
+    buttonTextBuilder->SetPadding(10);
+    buttonTextBuilder->SetHoverable(true);
+
+    const std::function callbackDelay1 = [this] { delayInMs = 1; };
+    auto* btnDelay1 = buttonTextBuilder.Build();
+    btnDelay1->SetCallback(callbackDelay1);
+    btnDelay1->SetText("Delay 1 ms", font);
     panelDelay->AddChild(btnDelay1);
 
-    std::function callbackDelay10 = [this] { delayInMs = 10; };
-    const RP::GuiButtonTextPtr btnDelay10 = guiManager->CreateWidget<RP::GuiButtonText>(callbackDelay10, "Delay 10 ms", font);
-    btnDelay10->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    btnDelay10->SetSize(175, 35);
-    btnDelay10->SetBackgroundColor({ 169, 215, 246, 255 });
-    btnDelay10->SetPadding(10);
-    btnDelay10->SetHoverable(true);
+    const std::function callbackDelay10 = [this] { delayInMs = 10; };
+    auto* btnDelay10 = buttonTextBuilder.Build();
+    btnDelay10->SetCallback(callbackDelay10);
+    btnDelay10->SetText("Delay 10 ms", font);
     panelDelay->AddChild(btnDelay10);
 
-    std::function callbackDelay100 = [this] { delayInMs = 100; };
-    const RP::GuiButtonTextPtr btnDelay100 = guiManager->CreateWidget<RP::GuiButtonText>(callbackDelay100, "Delay 100 ms", font);
-    btnDelay100->SetAnchor(RP::HorizontalAnchor::Center, RP::VerticalAnchor::Center);
-    btnDelay100->SetSize(175, 35);
-    btnDelay100->SetBackgroundColor({ 169, 215, 246, 255 });
-    btnDelay100->SetPadding(10);
-    btnDelay100->SetHoverable(true);
+    const std::function callbackDelay100 = [this] { delayInMs = 100; };
+    auto* btnDelay100 = buttonTextBuilder.Build();
+    btnDelay100->SetCallback(callbackDelay100);
+    btnDelay100->SetText("Delay 100 ms", font);
     panelDelay->AddChild(btnDelay100);
 }
 

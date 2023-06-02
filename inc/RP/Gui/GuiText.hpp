@@ -11,7 +11,7 @@ namespace RP {
 
     class GuiText: public GuiWidget {
     public:
-        explicit GuiText(std::string text, const FontPtr& font);
+        GuiText(std::string text, const FontPtr& font);
 
         void Draw(SDL_Renderer* renderer) override;
 
@@ -19,7 +19,6 @@ namespace RP {
         SDL_Texture* textTexture = nullptr;
         std::string text;
     };
-    using GuiTextPtr = std::shared_ptr<GuiText>;
 
 } // namespace RP
 

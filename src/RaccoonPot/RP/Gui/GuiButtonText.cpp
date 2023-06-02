@@ -5,17 +5,8 @@
 namespace RP
 {
 
-GuiButtonText::GuiButtonText(std::function<void()> callback, const std::string& text, const FontPtr& font)
-    : GuiButton(std::move(callback)) {
-    guiText = std::make_shared<GuiText>(text, font);
-    guiText->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
-    GuiWidget::AddChild(guiText);
-}
-
-void GuiButtonText::SetSize(const int width, const int height) {
-    GuiWidget::SetSize(width, height);
-    guiText->SetSize(width, height);
-    guiText->SetPosition(this->position.x + paddingWithText, this->position.y + paddingWithText);
+GuiButtonText::GuiButtonText(const GuiButtonText& guiButtonText) : GuiButton(guiButtonText) {
+    paddingWithText = guiButtonText.paddingWithText;
 }
 
 void GuiButtonText::SetPosition(const int x, const int y) {
@@ -25,11 +16,21 @@ void GuiButtonText::SetPosition(const int x, const int y) {
 
 void GuiButtonText::SetPadding(const int padding) {
     this->paddingWithText = padding;
-    guiText->SetSize(width - 2 * paddingWithText, height - 2 * paddingWithText);
-    guiText->SetPosition(this->position.x + paddingWithText, this->position.y + paddingWithText);
 }
 
-GuiTextPtr& GuiButtonText::GetGuiText() {
+void GuiButtonText::SetText(const std::string& text, const FontPtr& font) {
+    if (guiText != nullptr) {
+        std::erase(Children, guiText);
+        delete guiText;
+        guiText = nullptr;
+    }
+    guiText = new GuiText(text, font);
+    guiText->SetSize(width - 2 * paddingWithText, height - 2 * paddingWithText);
+    guiText->SetPosition(this->position.x + paddingWithText, this->position.y + paddingWithText);
+    GuiWidget::AddChild(guiText);
+}
+
+GuiText* GuiButtonText::GetGuiText() const {
     return guiText;
 }
 

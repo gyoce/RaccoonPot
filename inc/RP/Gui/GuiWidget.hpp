@@ -1,25 +1,20 @@
 #ifndef RP_GUI_WIDGET_HPP
 #define RP_GUI_WIDGET_HPP
 
-#include <memory>
 #include <vector>
 
 #include <SDL2/SDL.h>
-#include <RP/RPMacros.hpp>
 #include <RP/Gui/Anchors.hpp>
 #include <RP/Gui/AlignItems.hpp>
 #include <RP/Math/Vector3Int.hpp>
 
 namespace RP {
 
-    class GuiWidget;
-    using GuiWidgetPtr = std::shared_ptr<GuiWidget>;
-
     class GuiWidget {
     public:
-        explicit GuiWidget() = default;
-        virtual ~GuiWidget() = default;
-        RP_DELETE_MISC_CONSTRUCTORS(GuiWidget)
+        GuiWidget() = default;
+        virtual ~GuiWidget();
+        GuiWidget(const GuiWidget& widget);
 
         virtual void SetPosition(int x, int y);
         virtual void SetSize(int width, int height);
@@ -36,10 +31,10 @@ namespace RP {
         virtual int GetHeight();
         virtual bool IsHoverable();
 
-        virtual void AddChild(const GuiWidgetPtr& widget);
+        virtual void AddChild(GuiWidget* widget);
         virtual void Draw(SDL_Renderer* renderer) = 0;
 
-        std::vector<GuiWidgetPtr> Children{};
+        std::vector<GuiWidget*> Children{};
         GuiWidget* Parent = nullptr;
 
     protected:

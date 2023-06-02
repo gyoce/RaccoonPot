@@ -11,7 +11,7 @@ namespace RP {
 
     class Font {
     public:
-        explicit Font(TTF_Font* font, SDL_Renderer* renderer);
+        Font(TTF_Font* font, SDL_Renderer* renderer);
         ~Font();
         RP_DELETE_MISC_CONSTRUCTORS(Font)
 

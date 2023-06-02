@@ -13,6 +13,7 @@ add_executable(${TEST_EXEC_NAME}
     tests/CoordinatorTest.cpp
     tests/EntityManagerTest.cpp
     tests/EventManagerTest.cpp
+    tests/GuiBuilderTest.cpp
     tests/GuiManagerTest.cpp
     tests/GuiWidgetTest.cpp
     tests/LogTest.cpp

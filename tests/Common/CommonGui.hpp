@@ -3,8 +3,8 @@
 
 class WidgetTest final : public RP::GuiButton {
 public:
-    WidgetTest() : GuiButton(nullptr) {  }
-    explicit WidgetTest(const int value) : GuiButton(nullptr), ValueByConstructor(value) {  }
+    WidgetTest() : GuiButton() {  }
+    explicit WidgetTest(const int value) : GuiButton(), ValueByConstructor(value) {  }
 
     bool CallClickFunction = false;
     bool CallDrawFunction = false;
@@ -16,6 +16,10 @@ public:
 
     void Draw(SDL_Renderer* renderer) override {
         CallDrawFunction = true;
+    }
+
+    bool GetHoverable() const {
+        return hoverable;
     }
 
     bool GetHover() const {

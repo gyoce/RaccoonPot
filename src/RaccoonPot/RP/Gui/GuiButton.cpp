@@ -1,10 +1,13 @@
+#include <utility>
+
 #include "RP/Gui/GuiButton.hpp"
 
 namespace RP
 {
 
-GuiButton::GuiButton(std::function<void()> callback)
-    : callback(std::move(callback)) {  }
+GuiButton::GuiButton(const GuiButton& guiButton) : GuiWidget(guiButton) {
+    backgroundColor = guiButton.backgroundColor;
+}
 
 void GuiButton::Click() {
     callback();
@@ -22,6 +25,10 @@ void GuiButton::Draw(SDL_Renderer* renderer) {
 
 void GuiButton::SetBackgroundColor(const SDL_Color color) {
     backgroundColor = color;
+}
+
+void GuiButton::SetCallback(std::function<void()> callback) {
+    this->callback = std::move(callback);
 }
 
 } // namespace RP

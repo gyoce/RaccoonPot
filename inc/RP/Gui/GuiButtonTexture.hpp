@@ -8,13 +8,15 @@ namespace RP {
 
     class GuiButtonTexture: public GuiButton {
     public:
-        explicit GuiButtonTexture(std::function<void()> callback, SDL_Texture* texture);
+        GuiButtonTexture() = default;
+
+        void SetTexture(SDL_Texture* texture);
+
         void Draw(SDL_Renderer* renderer) override;
 
     protected:
         SDL_Texture* texture = nullptr;
     };
-    using GuiButtonTexturePtr = std::shared_ptr<GuiButtonTexture>;
 
 } // namespace RP
 

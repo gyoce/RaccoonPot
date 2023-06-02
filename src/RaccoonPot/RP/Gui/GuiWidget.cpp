@@ -6,7 +6,13 @@
 namespace RP
 {
 
-void GuiWidget::AddChild(const GuiWidgetPtr& widget) {
+GuiWidget::~GuiWidget() {
+    for (const GuiWidget* child : Children) {
+        delete child;
+    }
+}
+
+void GuiWidget::AddChild(GuiWidget* widget) {
     Children.push_back(widget);
     widget->Parent = this;
     if (widget->horizontalAnchor != HorizontalAnchor::None || widget->verticalAnchor != VerticalAnchor::None) {
@@ -78,13 +84,13 @@ int GuiWidget::GetWidth() {
 void GuiWidget::UpdateChildrenPosition() const {
     const int numberOfChildren = static_cast<int>(Children.size());
     int fullHeight{}, fullWidth{};
-    for (const GuiWidgetPtr& child : Children) {
+    for (const GuiWidget* child : Children) {
         fullHeight += child->height + paddingBetweenChildren;
         fullWidth += child->width + paddingBetweenChildren;
     }
     fullHeight -= paddingBetweenChildren; fullWidth -= paddingBetweenChildren;
     for (int indexOfChild = 0; indexOfChild < numberOfChildren; indexOfChild++) {
-        const GuiWidgetPtr& child = Children[indexOfChild];
+        GuiWidget* child = Children[indexOfChild];
         int newX{}, newY{};
         const int width = getCorrectiveWidth(indexOfChild);
         switch (child->horizontalAnchor) {
@@ -130,7 +136,7 @@ void GuiWidget::UpdateChildrenPosition() const {
 }
 
 void GuiWidget::UpdateChildrenSize(const float widthFactor, const float heightFactor) const {
-    for (const GuiWidgetPtr& widget : Children) {
+    for (GuiWidget* widget : Children) {
         const int width = static_cast<int>(std::round(widthFactor * static_cast<float>(widget->width)));
         const int height = static_cast<int>(std::round(heightFactor * static_cast<float>(widget->height)));
         widget->SetSize(width, height);
@@ -138,7 +144,7 @@ void GuiWidget::UpdateChildrenSize(const float widthFactor, const float heightFa
 }
 
 void GuiWidget::CallUpdatePositionForChildren() const {
-    for (const GuiWidgetPtr& child : Children) {
+    for (const GuiWidget* child : Children) {
         child->UpdateChildrenPosition();
     }
 }
@@ -167,6 +173,17 @@ int GuiWidget::getCorrectiveWidth(const int indexOfChild) const {
         child++;
     }
     return width;
+}
+
+GuiWidget::GuiWidget(const GuiWidget& widget) {
+    width = widget.width;
+    height = widget.height;
+    hoverable = widget.hoverable;
+    horizontalAnchor = widget.horizontalAnchor;
+    verticalAnchor = widget.verticalAnchor;
+    alignItems = widget.alignItems;
+    position = widget.position;
+    paddingBetweenChildren = widget.paddingBetweenChildren;
 }
 
 } // namespace RP

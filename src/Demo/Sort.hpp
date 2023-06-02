@@ -41,15 +41,17 @@ public:
 private:
     void initPanels();
     void initButtons() const;
+    void initSortingAlgortihmsButtons() const;
+    void initDelaysButtons() const;
 
     void Draw() override;
     
     RP::SpriteSheetPtr spriteSheet = nullptr;
     RP::FontPtr font = nullptr;
-    RP::GuiPanelPtr panelAlgorithms = nullptr;
-    RP::GuiPanelPtr panelBottom = nullptr;
-    RP::GuiPanelPtr panelDelay = nullptr;
-    RP::GuiPanelPtr panelStats = nullptr;
+    RP::GuiPanel* panelAlgorithms = nullptr;
+    RP::GuiPanel* panelBottom = nullptr;
+    RP::GuiPanel* panelDelay = nullptr;
+    RP::GuiPanel* panelStats = nullptr;
     std::shared_ptr<SortGui> sortGui = nullptr;
 };
 

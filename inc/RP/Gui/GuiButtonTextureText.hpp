@@ -8,14 +8,14 @@ namespace RP {
 
     class GuiButtonTextureText: public GuiButtonTexture {
     public:
-        explicit GuiButtonTextureText(const std::function<void()>& callback, SDL_Texture* texture, const std::string& text, const FontPtr& font);
+        GuiButtonTextureText() = default;
         
         void SetSize(int width, int height) override;
+        virtual void SetText(const std::string& text, const FontPtr& font);
 
     protected:
-        GuiTextPtr guiText = nullptr;
+        GuiText* guiText = nullptr;
     };
-    using GuiButtonTextureTextPtr = std::shared_ptr<GuiButtonTextureText>;
 
 } // namespace RP
 

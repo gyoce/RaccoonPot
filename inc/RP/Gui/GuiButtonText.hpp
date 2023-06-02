@@ -8,17 +8,19 @@ namespace RP {
 
     class GuiButtonText: public GuiButton {
     public:
-        explicit GuiButtonText(std::function<void()> callback, const std::string& text, const FontPtr& font);
-        void SetSize(int width, int height) override;
+        GuiButtonText() = default;
+        GuiButtonText(const GuiButtonText& guiButtonText);
+
         void SetPosition(int x, int y) override;
-        void SetPadding(int padding);
-        GuiTextPtr& GetGuiText();
+        virtual void SetPadding(int padding);
+        virtual void SetText(const std::string& text, const FontPtr& font);
+
+        GuiText* GetGuiText() const;
 
     protected:
-        GuiTextPtr guiText = nullptr;
+        GuiText* guiText = nullptr;
         int paddingWithText{};
     };
-    using GuiButtonTextPtr = std::shared_ptr<GuiButtonText>;
 
 } // namespace RP
 

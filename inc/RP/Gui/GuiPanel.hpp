@@ -7,14 +7,14 @@ namespace RP {
 
     class GuiPanel: public GuiWidget {
     public:
-        explicit GuiPanel() = default;
+        GuiPanel() = default;
+        GuiPanel(const GuiPanel& guiPanel);
         void Draw(SDL_Renderer* renderer) override;
         virtual void SetBackgroundColor(SDL_Color color);
 
     protected:
         SDL_Color backgroundColor{};
     };
-    using GuiPanelPtr = std::shared_ptr<GuiPanel>;
 
 } // namespace RP
 

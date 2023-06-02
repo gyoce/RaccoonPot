@@ -18,20 +18,15 @@ protected:
 };
 
 TEST_F(GuiManagerTest, CallRenderFunction) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    auto* widget = new  WidgetTest();
     guiManager->AddToMainPanel(widget);
     EXPECT_FALSE(widget->CallDrawFunction);
     guiManager->Render(nullptr);
     EXPECT_TRUE(widget->CallDrawFunction);
 }
 
-TEST_F(GuiManagerTest, CallConstructor) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>(10);
-    EXPECT_EQ(widget->ValueByConstructor, 10);
-}
-
 TEST_F(GuiManagerTest, CallClickEvent) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    auto* widget = new  WidgetTest();
     widget->SetPosition(100, 100);
     widget->SetSize(10, 10);
     guiManager->AddToMainPanel(widget);
@@ -42,20 +37,20 @@ TEST_F(GuiManagerTest, CallClickEvent) {
 }
 
 TEST_F(GuiManagerTest, WidgetCreateWithAParent) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    auto* widget = new WidgetTest();
     guiManager->AddToMainPanel(widget);
     EXPECT_TRUE(widget->Parent != nullptr);
 }
 
 TEST_F(GuiManagerTest, ResizeWindow) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    auto* widget = new WidgetTest();
     guiManager->AddToMainPanel(widget);
     eventManager->Dispatch<void(int, int)>(2, 1920, 1080);
     RP_EXPECT_EQ_SIZE(widget->Parent->GetWidth(), widget->Parent->GetHeight(), 1920, 1080);
 }
 
 TEST_F(GuiManagerTest, MouseMoveWithHoverableWidget) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    auto* widget = new WidgetTest();
     widget->SetPosition(10, 10);
     widget->SetSize(10, 10);
     widget->SetHoverable(true);
@@ -67,7 +62,7 @@ TEST_F(GuiManagerTest, MouseMoveWithHoverableWidget) {
 }
 
 TEST_F(GuiManagerTest, MouseMoveWithNonHoverableWidget) {
-    const std::shared_ptr<WidgetTest> widget = guiManager->CreateWidget<WidgetTest>();
+    auto* widget = new WidgetTest();
     widget->SetPosition(10, 10);
     widget->SetSize(10, 10);
     guiManager->AddToMainPanel(widget);

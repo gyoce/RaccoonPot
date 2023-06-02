@@ -13,28 +13,25 @@ namespace RP {
     class GuiManager {
     public:
         GuiManager();
+        ~GuiManager();
         void RegisterEventManager(const EventManagerPtr& eventManager);
         void RegisterClickEvent(int event) const;
         void RegisterWindowResizeEvent(int event) const;
         void RegisterMouseMoveEvent(int event) const;
-        template<class T, typename ...Args> std::shared_ptr<T> CreateWidget(Args&&... args);
-        void AddToMainPanel(const GuiWidgetPtr& widget) const;
+        void AddToMainPanel(GuiWidget* widget) const;
         void Render(SDL_Renderer* renderer) const;
-        
 
     private:
-        static bool positionIsInsideWidget(int x, int y, const GuiWidgetPtr& widget);
+        static bool positionIsInsideWidget(int x, int y, GuiWidget* widget);
         void mouseClick(int x, int y) const;
         void mouseMove(int x, int y) const;
         void windowResized(int width, int height) const;
          
-        GuiPanelPtr mainPanel = nullptr;
+        GuiPanel* mainPanel = nullptr;
         EventManagerPtr eventManager = nullptr;
     };
     using GuiManagerPtr = std::shared_ptr<GuiManager>;
 
 } // namespace RP
-
-#include <RP/Core/Managers/GuiManager.inl>
 
 #endif // RP_GUI_MANAGER_HPP

@@ -9,17 +9,19 @@ namespace RP {
 
     class GuiButton: public GuiWidget {
     public:
-        explicit GuiButton(std::function<void()> callback);
+        GuiButton() = default;
+        GuiButton(const GuiButton& guiButton);
+
+        virtual void SetBackgroundColor(SDL_Color color);
+        virtual void SetCallback(std::function<void()> callback);
 
         virtual void Click();
         void Draw(SDL_Renderer* renderer) override;
-        virtual void SetBackgroundColor(SDL_Color color);
 
     protected:
-        std::function<void()> callback;
+        std::function<void()> callback = nullptr;
         SDL_Color backgroundColor{};
     };
-    using GuiButtonPtr = std::shared_ptr<GuiButton>;
 
 } // namespace RP
 
