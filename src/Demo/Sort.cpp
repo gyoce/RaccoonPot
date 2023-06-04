@@ -133,19 +133,19 @@ void SortingAlgorithmsScene::initSortingAlgortihmsButtons() const {
     buttonTextBuilder->SetHoverable(true);
 
     const std::function callbackInsertionSort = [this] { sortGui->Start(SortingAlgorithm::InsertionSort); };
-    auto* btnInsertionSort = buttonTextBuilder.Build();
+    RP::GuiButtonText* btnInsertionSort = buttonTextBuilder.Build();
     btnInsertionSort->SetCallback(callbackInsertionSort);
     btnInsertionSort->SetText("Insertion Sort", font);
     panelAlgorithms->AddChild(btnInsertionSort);
 
     const std::function callbackBubbleSort = [this] { sortGui->Start(SortingAlgorithm::BubbleSort); };
-    auto* btnBubbleSort = buttonTextBuilder.Build();
+    RP::GuiButtonText* btnBubbleSort = buttonTextBuilder.Build();
     btnBubbleSort->SetCallback(callbackBubbleSort);
     btnBubbleSort->SetText("Bubble Sort", font);
     panelAlgorithms->AddChild(btnBubbleSort);
 
     const std::function callbackQuickSort = [this] { sortGui->Start(SortingAlgorithm::QuickSort); };
-    auto* btnQuickSort = buttonTextBuilder.Build();
+    RP::GuiButtonText* btnQuickSort = buttonTextBuilder.Build();
     btnQuickSort->SetCallback(callbackQuickSort);
     btnQuickSort->SetText("Quick Sort", font);
     panelAlgorithms->AddChild(btnQuickSort);
@@ -161,19 +161,19 @@ void SortingAlgorithmsScene::initDelaysButtons() const {
     buttonTextBuilder->SetHoverable(true);
 
     const std::function callbackDelay1 = [this] { delayInMs = 1; };
-    auto* btnDelay1 = buttonTextBuilder.Build();
+    RP::GuiButtonText* btnDelay1 = buttonTextBuilder.Build();
     btnDelay1->SetCallback(callbackDelay1);
     btnDelay1->SetText("Delay 1 ms", font);
     panelDelay->AddChild(btnDelay1);
 
     const std::function callbackDelay10 = [this] { delayInMs = 10; };
-    auto* btnDelay10 = buttonTextBuilder.Build();
+    RP::GuiButtonText* btnDelay10 = buttonTextBuilder.Build();
     btnDelay10->SetCallback(callbackDelay10);
     btnDelay10->SetText("Delay 10 ms", font);
     panelDelay->AddChild(btnDelay10);
 
     const std::function callbackDelay100 = [this] { delayInMs = 100; };
-    auto* btnDelay100 = buttonTextBuilder.Build();
+    RP::GuiButtonText* btnDelay100 = buttonTextBuilder.Build();
     btnDelay100->SetCallback(callbackDelay100);
     btnDelay100->SetText("Delay 100 ms", font);
     panelDelay->AddChild(btnDelay100);

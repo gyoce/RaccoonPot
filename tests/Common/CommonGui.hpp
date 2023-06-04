@@ -18,11 +18,11 @@ public:
         CallDrawFunction = true;
     }
 
-    bool GetHoverable() const {
+    [[nodiscard]] bool GetHoverable() const {
         return hoverable;
     }
 
-    bool GetHover() const {
+    [[nodiscard]] bool GetHover() const {
         return hover;
     }
 };

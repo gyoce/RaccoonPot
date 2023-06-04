@@ -11,7 +11,9 @@ GuiButtonText::GuiButtonText(const GuiButtonText& guiButtonText) : GuiButton(gui
 
 void GuiButtonText::SetPosition(const int x, const int y) {
     GuiWidget::SetPosition(x, y);
-    guiText->SetPosition(this->position.x + paddingWithText, this->position.y + paddingWithText);
+    if (guiText != nullptr) {
+        guiText->SetPosition(this->position.x + paddingWithText, this->position.y + paddingWithText);
+    }
 }
 
 void GuiButtonText::SetPadding(const int padding) {
@@ -22,11 +24,10 @@ void GuiButtonText::SetText(const std::string& text, const FontPtr& font) {
     if (guiText != nullptr) {
         std::erase(Children, guiText);
         delete guiText;
-        guiText = nullptr;
     }
     guiText = new GuiText(text, font);
     guiText->SetSize(width - 2 * paddingWithText, height - 2 * paddingWithText);
-    guiText->SetPosition(this->position.x + paddingWithText, this->position.y + paddingWithText);
+    guiText->SetAnchor(HorizontalAnchor::Center, VerticalAnchor::Center);
     GuiWidget::AddChild(guiText);
 }
 

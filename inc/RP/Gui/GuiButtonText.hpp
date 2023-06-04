@@ -15,7 +15,7 @@ namespace RP {
         virtual void SetPadding(int padding);
         virtual void SetText(const std::string& text, const FontPtr& font);
 
-        GuiText* GetGuiText() const;
+        [[nodiscard]] GuiText* GetGuiText() const;
 
     protected:
         GuiText* guiText = nullptr;
